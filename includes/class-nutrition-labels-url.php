@@ -130,14 +130,18 @@ class NutritionLabels_URL
       wp_die('Product not found');
     }
 
+    // Get nutrition data from database
+    $db = new NutritionLabels_DB_Extended();
+    $nutrition_table_data = $db->get_complete_nutrition_data($product_id);
+    
     // Enhanced security: validate all data
     $nutrition_data = array(
       'product_title' => sanitize_text_field($product->get_name()),
-      'ingredient_list' => get_post_meta($product_id, '_nutrition_ingredients', true),
-      'calories' => get_post_meta($product_id, '_nutrition_calories', true),
-      'kilojoules' => get_post_meta($product_id, '_nutrition_kilojoules', true),
-      'carbohydrates' => get_post_meta($product_id, '_nutrition_carbohydrates', true),
-      'sugar' => get_post_meta($product_id, '_nutrition_sugar', true)
+      'ingredient_list' => $nutrition_table_data['ingredients'],
+      'calories' => $nutrition_table_data['calories'],
+      'kilojoules' => $nutrition_table_data['kilojoules'],
+      'carbohydrates' => $nutrition_table_data['carbohydrates'],
+      'sugar' => $nutrition_table_data['sugar']
     );
 
     // Sanitize ingredient list specifically for display

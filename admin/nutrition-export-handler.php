@@ -67,12 +67,13 @@ class NutritionLabels_Export
           $entry->product_id,
           $product->post_title,
           $entry->short_code,
-          get_post_meta($entry->product_id, '_nutrition_ingredients', true),
-          get_post_meta($entry->product_id, '_nutrition_calories', true),
-          get_post_meta($entry->product_id, '_nutrition_kilojoules', true),
-          get_post_meta($entry->product_id, '_nutrition_carbohydrates', true),
-          get_post_meta($entry->product_id, '_nutrition_sugar', true),
-          date('Y-m-d H:i:s', strtotime($entry->created_at))
+          $entry->ingredients,
+          $entry->calories,
+          $entry->kilojoules,
+          $entry->carbohydrates,
+          $entry->sugar,
+          date('Y-m-d H:i:s', strtotime($entry->created_at)),
+          date('Y-m-d H:i:s', strtotime($entry->updated_at))
         ));
       }
     }
@@ -85,7 +86,7 @@ class NutritionLabels_Export
   private function get_entries_for_export($search = '')
   {
     if (empty($search)) {
-      return $this->db->get_all_entries();
+      return $this->db->get_entries_with_nutrition_for_export();
     } else {
       return $this->db->search_entries($search);
     }

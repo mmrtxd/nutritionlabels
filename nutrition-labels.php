@@ -18,6 +18,7 @@ require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-url.
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-qr.php';
 
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/class-nutrition-labels-admin-extended.php';
+require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/class-nutrition-labels-metabox.php';
 
 
 
@@ -60,6 +61,7 @@ class NutritionLabels
     // Only initialize in admin area
     if (is_admin()) {
       new NutritionLabels_Admin_Extended();
+      new NutritionLabels_MetaBox();
     }
   }
 }

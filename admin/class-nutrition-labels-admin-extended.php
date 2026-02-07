@@ -164,60 +164,62 @@ class NutritionLabels_Admin_Extended
     ));
   }
 
-  public function ajax_export_csv()
-  {
-    check_ajax_referer('nutrition_export_csv');
-    if (!current_user_can('manage_options')) {
-      wp_die('Unauthorized');
-    }
+    public function ajax_export_csv()
+    {
+        check_ajax_referer('nutrition_export_csv');
+        if (!current_user_can('manage_options')) {
+            wp_die('Unauthorized');
+        }
 
-    $filename = 'nutrition-labels-export-' . date('Y-m-d-His') . '.csv';
+        $filename = 'nutrition-labels-export-' . date('Y-m-d-His') . '.csv';
 
-    header('Content-Type: text/csv; charset=' . get_option('blog_charset') . '');
-    header('Content-Disposition: attachment; filename="' . $filename . '"');
-    header('Cache-Control: no-cache, must-revalidate');
-    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+        header('Content-Type: text/csv; charset=' . get_option('blog_charset') . '');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        header('Cache-Control: no-cache, must-revalidate');
+        header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
 
-    $output = fopen('php://output', 'w');
+        $output = fopen('php://output', 'w');
 
-    // CSV header
-    fputcsv($output, array(
-      'Product ID',
-      'Product Name',
-      'Short Code',
-      'Ingredients',
-      'Calories',
-      'Kilojoules',
-      'Carbohydrates',
-      'Sugar',
-      'Created At'
-    ));
-
-    // Get all entries
-    $db = new NutritionLabels_DB_Extended();
-    $entries = $db->get_entries_for_export();
-
-    foreach ($entries as $entry) {
-      $product = get_post($entry->product_id);
-      if ($product && $product->post_type === 'product') {
+        // CSV header
         fputcsv($output, array(
-          $entry->product_id,
-          $product->post_title,
-          $entry->short_code,
-          get_post_meta($entry->product_id, '_nutrition_ingredients', true),
-          get_post_meta($entry->product_id, '_nutrition_calories', true),
-          get_post_meta($entry->product_id, '_nutrition_kilojoules', true),
-          get_post_meta($entry->product_id, '_nutrition_carbohydrates', true),
-          get_post_meta($entry->product_id, '_nutrition_sugar', true),
-          date('Y-m-d H:i:s', strtotime($entry->created_at))
+            'Product ID',
+            'Product Name',
+            'Short Code',
+            'Ingredients',
+            'Calories',
+            'Kilojoules',
+            'Carbohydrates',
+            'Sugar',
+            'Created At',
+            'Updated At'
         ));
-      }
-    }
 
-    fclose($output);
-    readfile('php://output');
-    exit;
-  }
+        // Get all entries with nutrition data from table
+        $db = new NutritionLabels_DB_Extended();
+        $entries = $db->get_entries_with_nutrition_for_export();
+
+        foreach ($entries as $entry) {
+            $product = get_post($entry->product_id);
+            if ($product && $product->post_type === 'product') {
+                fputcsv($output, array(
+                    $entry->product_id,
+                    $product->post_title,
+                    $entry->short_code,
+                    $entry->ingredients,
+                    $entry->calories,
+                    $entry->kilojoules,
+                    $entry->carbohydrates,
+                    $entry->sugar,
+                    date('Y-m-d H:i:s', strtotime($entry->created_at)),
+                    date('Y-m-d H:i:s', strtotime($entry->updated_at))
+                ));
+            }
+        }
+
+        fclose($output);
+        readfile('php://output');
+        exit;
+    }
 
   public function render_config_page() {
     require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/nutrition-settings-page.php';
