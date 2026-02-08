@@ -21,13 +21,13 @@ class NutritionLabels_Admin_Extended
     add_action('wp_ajax_nutrition_search', array($this, 'ajax_search'));
     add_action('wp_ajax_nutrition_delete', array($this, 'ajax_delete'));
     add_action('wp_ajax_nutrition_export_csv', array($this, 'ajax_export_csv'));
+    add_action('wp_ajax_flush_rewrite_rules', array($this, 'ajax_flush_rewrite_rules'));
     
     // Register admin menu pages
     add_action('admin_menu', array($this, 'register_admin_menu_pages'));
     
     // Register settings
     add_action('admin_init', array($this, 'register_settings'));
-    add_action('admin_init', array($this, 'register_settings_sections'));
   }
 
   public function register_admin_menu_pages() {
@@ -135,7 +135,7 @@ class NutritionLabels_Admin_Extended
 
   public function ajax_delete()
   {
-    check_ajax_referer('nutrition_delete');
+    check_ajax_referer('nutrition_delete', '_wpnonce');
     if (!current_user_can('manage_options')) {
       wp_die('Unauthorized');
     }
@@ -148,19 +148,22 @@ class NutritionLabels_Admin_Extended
     }
 
     $deleted_count = 0;
+    $db = new NutritionLabels_DB_Extended();
+    
     foreach ($product_ids as $product_id) {
       if (get_post($product_id)) {
-        wp_delete_post($product_id, true);
-        $db = new NutritionLabels_DB_Extended();
-        $db->delete_by_product_id($product_id);
-        $deleted_count++;
+        // Only delete the nutrition label entry, NOT the product
+        $result = $db->delete_by_product_id($product_id);
+        if ($result !== false) {
+          $deleted_count++;
+        }
       }
     }
 
     wp_send_json(array(
       'success' => true,
       'deleted_count' => $deleted_count,
-      'message' => "Successfully deleted {$deleted_count} entries"
+      'message' => "Successfully deleted {$deleted_count} nutrition label entries"
     ));
   }
 
@@ -221,6 +224,10 @@ class NutritionLabels_Admin_Extended
         exit;
     }
 
+  public function render_settings_page() {
+    require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/nutrition-settings-page-simple.php';
+  }
+
   public function render_config_page() {
     require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/nutrition-settings-page.php';
   }
@@ -233,26 +240,23 @@ class NutritionLabels_Admin_Extended
     require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/nutrition-db-management.php';
   }
 
-  public function render_settings_page() {
-    require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/nutrition-settings-page-simple.php';
-  }
-
-  public static function get_delete_nonce() {
-    return function_exists('wp_create_nonce') ? wp_create_nonce('nutrition_delete_' . get_current_user_id()) : '';
-  }
-
   public static function get_settings_nonce() {
     return function_exists('wp_create_nonce') ? wp_create_nonce('update-options') : '';
   }
 
-  public function register_settings_sections() {
-    add_settings_section(
-      'nutrition_labels_main_section',
-      'Main Settings',
-      '__return_empty_string',
-      'nutrition_labels_group'
-    );
-  }
+  public function ajax_flush_rewrite_rules() {
+        check_ajax_referer('flush_rewrite_rules', '_wpnonce_flush');
+        if (!current_user_can('manage_options')) {
+            wp_die('Unauthorized');
+        }
+        
+        flush_rewrite_rules(false);
+        
+        wp_send_json(array(
+            'success' => true,
+            'message' => 'Rewrite rules flushed successfully!'
+        ));
+    }
 
   public static function handle_settings_submission() {
     if (function_exists('wp_verify_nonce') && wp_verify_nonce($_POST['_wpnonce'] ?? '', 'update-options')) {
@@ -266,6 +270,12 @@ class NutritionLabels_Admin_Extended
       if (isset($_POST['nutrition_labels']['character_set'])) {
         update_option('character_set', sanitize_text_field($_POST['nutrition_labels']['character_set']));
       }
+      
+      // Flush rewrite rules when URL prefix changes
+      if (isset($_POST['nutrition_labels']['url_prefix'])) {
+        flush_rewrite_rules(false);
+      }
+      
       echo '<div class="notice notice-success"><p>Settings saved successfully!</p></div>';
     }
   }

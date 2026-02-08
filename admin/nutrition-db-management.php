@@ -38,13 +38,13 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
       <p>Showing <?php echo count($entries); ?> of <?php echo $total; ?> entries</p>
 
       <form method="post" action="">
+        <?php wp_nonce_field('nutrition_delete', '_wpnonce'); ?>
         <table class="wp-list-table widefat fixed striped">
           <thead>
             <tr>
               <td class="manage-column column-cb check-column">
-                <label class="screen-reader-text" for="cb-select-all-1">
-                  <input id="cb-select-all-1" type="checkbox">
-                </label>
+                <input type="checkbox" id="cb-select-all-1" onclick="toggleAllCheckboxes(this)">
+                <label class="screen-reader-text" for="cb-select-all-1">Select All</label>
               </td>
               <th class="manage-column column-primary">Product</th>
               <th>Short Code</th>
@@ -55,11 +55,10 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
           <tbody>
             <?php foreach ($entries as $entry): ?>
               <tr>
-                <th scope="row" class="check-column">
-                  <label class="screen-reader-text" for="cb-select-<?php echo $entry->product_id; ?>">
-                    <input id="cb-select-<?php echo $entry->product_id; ?>" type="checkbox" name="product_ids[]" value="<?php echo $entry->product_id; ?>">
-                  </label>
-                </th>
+                <td class="check-column">
+                  <input id="cb-select-<?php echo $entry->product_id; ?>" type="checkbox" name="product_ids[]" value="<?php echo $entry->product_id; ?>">
+                  <label class="screen-reader-text" for="cb-select-<?php echo $entry->product_id; ?>">Select</label>
+                </td>
                 <td>
                   <strong><?php echo esc_html(get_the_title($entry->product_id)); ?></strong>
                   <br>
@@ -85,7 +84,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
         </table>
 
         <div class="nutrition-labels-bulk-actions">
-          <button type="submit" name="bulk_delete" class="button button-primary">Delete Selected</button>
+          <button type="button" id="bulk_delete" class="button button-primary">Delete Selected</button>
           <button type="submit" name="export_csv" class="button">Export to CSV</button>
         </div>
       </form>
@@ -111,39 +110,111 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
   <?php endif; ?>
 
   <script>
+    // Define ajaxurl if not already defined
+    if (typeof ajaxurl === 'undefined') {
+        var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+    }
+
+    function toggleAllCheckboxes(source) {
+        checkboxes = document.getElementsByName('product_ids[]');
+        for(var i=0, n=checkboxes.length; i<n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+
     function viewNutritionLabel(productId) {
-      window.open('<?php echo home_url('/l/'); ?>' + prompt('Enter short code for this product:'));
+      // Get the short code from the table
+      var shortCode = '';
+      jQuery('input[name="product_ids[]"]').each(function() {
+          if (this.value == productId) {
+              var row = jQuery(this).closest('tr');
+              shortCode = row.find('td:nth-child(3) code').text().replace('/l/', '').trim();
+          }
+      });
+      
+      if (!shortCode) {
+        shortCode = prompt('Enter short code for product ID ' + productId + ':');
+        if (!shortCode) return;
+      }
+      
+      window.open('<?php echo home_url('/l/'); ?>' + shortCode);
     }
 
     function deleteEntry(productId) {
-      if (confirm('Are you sure you want to delete this nutrition label entry? This cannot be undone.')) {
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = ajaxurl;
+      if (confirm('Delete nutrition label entry?\n\nProduct will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.')) {
+        jQuery.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'nutrition_delete',
+                product_ids: [productId],
+                _wpnonce: jQuery('input[name="_wpnonce"]').val()
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message || response.data.message);
+                    location.reload();
+                } else {
+                    alert('Error: ' + (response.data || response.message));
+                }
+            },
+            error: function() {
+                alert('Error: Could not delete entry');
+                // Still reload to show current state
+                location.reload();
+            }
+        });
+    }
+    }
 
-        var input1 = document.createElement('input');
-        input1.type = 'hidden';
-        input1.name = 'action';
-        input1.value = 'nutrition_delete';
+    function viewNutritionLabel(productId) {
+      // Get the short code from the current row
+      var row = document.querySelector('tr:has(input[value="' + productId + '"])');
+      var shortCodeCell = row.querySelector('td:nth-child(3) code');
+      var shortCode = shortCodeCell.textContent.replace('/l/', '');
+      window.open('<?php echo home_url('/l/'); ?>' + shortCode);
+    }
 
-        var input2 = document.createElement('input');
-        input2.type = 'hidden';
-        input2.name = 'product_ids[]';
-        input2.value = productId;
 
-        var input3 = document.createElement('input');
-        input3.type = 'hidden';
-        input3.name = '_ajax_nonce';
-        input3.value = '<?php echo NutritionLabels_Admin_Extended::get_delete_nonce(); ?>';
 
-        form.appendChild(input1);
-        form.appendChild(input2);
-        form.appendChild(input3);
-
-        document.body.appendChild(form);
-        form.submit();
-        document.body.removeChild(form);
-      }
+    jQuery(document).ready(function($) {
+        // Handle bulk delete button
+        $('#bulk_delete').click(function() {
+            var selectedIds = $('input[name="product_ids[]"]:checked').map(function() {
+                return $(this).val();
+            }).get();
+            
+            if (selectedIds.length === 0) {
+                alert('Please select at least one entry to delete');
+                return;
+            }
+            
+            if (confirm('Delete ' + selectedIds.length + ' nutrition label entries?\n\nProducts will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.')) {
+                $.ajax({
+                    url: ajaxurl,
+                    type: 'POST',
+                    data: {
+                        action: 'nutrition_delete',
+                        product_ids: selectedIds,
+                        _wpnonce: $('input[name="_wpnonce"]').val()
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message || response.data.message);
+                            location.reload();
+                        } else {
+                            alert('Error: ' + (response.data || response.message));
+                        }
+                    },
+                    error: function() {
+                        alert('Error: Could not delete entries');
+                        // Still reload to show current state
+                        location.reload();
+                    }
+                });
+            }
+        });
+    });
   </script>
 </div>
 
@@ -192,5 +263,19 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
   .nutrition-labels-actions button {
     margin-right: 5px;
     font-size: 12px;
+  }
+
+  .check-column input[type="checkbox"] {
+    margin: 0;
+  }
+
+  .nutrition-labels-table-wrapper .wp-list-table th.check-column {
+    width: 2.2em;
+    padding: 8px 10px;
+  }
+
+  .nutrition-labels-table-wrapper .wp-list-table td.check-column {
+    width: 2.2em;
+    padding: 8px 10px;
   }
 </style>

@@ -6,12 +6,12 @@
 
 class NutritionLabels_DB {
     
-    private $table_name;
+    public $wpdb;
+    public $table_name;
     
     public function __construct() {
       global $wpdb;
       $this->wpdb = $wpdb;
-
       $this->table_name = $this->wpdb->prefix . 'nutrition_short_urls';
     }
     

@@ -100,6 +100,42 @@ if (function_exists('submit_button')) {
 }
 ?>
   </form>
+  
+  <div class="nutrition-labels-actions">
+    <form method="post" action="">
+      <?php wp_nonce_field('flush_rewrite_rules', '_wpnonce_flush'); ?>
+      <input type="hidden" name="action" value="flush_rewrite_rules">
+      <button type="submit" class="button button-secondary">🔄 Flush Rewrite Rules</button>
+    </form>
+    <p class="description">If short URLs are not working (404 errors), click this button to refresh WordPress rewrite rules.</p>
+  </div>
+
+  <script>
+    jQuery(document).ready(function($) {
+        $('form input[name="action"][value="flush_rewrite_rules"]').closest('form').submit(function(e) {
+            e.preventDefault();
+            
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flush_rewrite_rules',
+                    _wpnonce_flush: $('input[name="_wpnonce_flush"]').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                    } else {
+                        alert('Error: ' + (response.data || 'Unknown error'));
+                    }
+                },
+                error: function() {
+                    alert('Error: Could not flush rewrite rules');
+                }
+            });
+        });
+    });
+  </script>
 
   <div class="nutrition-labels-info">
     <h3>Information</h3>

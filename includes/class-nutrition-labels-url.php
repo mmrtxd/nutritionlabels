@@ -16,7 +16,7 @@ class NutritionLabels_URL
       return;
     }
     
-    self::$db = new NutritionLabels_DB();
+    self::$db = new NutritionLabels_DB_Extended();
     add_action('init', array(__CLASS__, 'add_rewrite_rules'));
     add_filter('query_vars', array(__CLASS__, 'add_query_vars'));
     add_action('template_redirect', array(__CLASS__, 'handle_short_url'));
@@ -25,15 +25,18 @@ class NutritionLabels_URL
   private static function get_db()
   {
     if (!self::$db) {
-      self::$db = new NutritionLabels_DB();
+      self::$db = new NutritionLabels_DB_Extended();
     }
     return self::$db;
   }
 
   public static function add_rewrite_rules()
   {
+    // Get configurable URL prefix
+    $prefix = get_option('url_prefix', 'l');
+    
     add_rewrite_rule(
-      '^l/([a-zA-Z0-9]{5})/?$',
+      '^' . $prefix . '/([a-zA-Z0-9]{5})/?$',
       'index.php?nutrition_shortcode=$matches[1]',
       'top'
     );
@@ -119,12 +122,22 @@ class NutritionLabels_URL
   public static function get_short_url($product_id)
   {
     $short_code = self::get_short_code($product_id);
-    return home_url('/l/' . $short_code);
+    $prefix = get_option('url_prefix', 'l');
+    return home_url('/' . $prefix . '/' . $short_code);
   }
 
   private static function display_nutrition_label($product_id)
   {
-    $product = wc_get_product($product_id);
+    // Try WooCommerce first, fall back to standard WordPress post
+    if (class_exists('WooCommerce') && function_exists('wc_get_product')) {
+      $product = wc_get_product($product_id);
+    } else {
+      $post = get_post($product_id);
+      $product = (object) array(
+        'get_name' => function() use ($post) { return $post->post_title; },
+        'post_title' => $post->post_title
+      );
+    }
 
     if (!$product) {
       wp_die('Product not found');
@@ -135,8 +148,9 @@ class NutritionLabels_URL
     $nutrition_table_data = $db->get_complete_nutrition_data($product_id);
     
     // Enhanced security: validate all data
+    $product_title = method_exists($product, 'get_name') ? $product->get_name() : $product->post_title;
     $nutrition_data = array(
-      'product_title' => sanitize_text_field($product->get_name()),
+      'product_title' => sanitize_text_field($product_title),
       'ingredient_list' => $nutrition_table_data['ingredients'],
       'calories' => $nutrition_table_data['calories'],
       'kilojoules' => $nutrition_table_data['kilojoules'],
