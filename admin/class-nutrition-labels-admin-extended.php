@@ -21,7 +21,6 @@ class NutritionLabels_Admin_Extended
     // Register AJAX handlers
     add_action('wp_ajax_nutrition_search', array($this, 'ajax_search'));
     add_action('wp_ajax_nutrition_delete', array($this, 'ajax_delete'));
-    add_action('wp_ajax_nutrition_export_csv', array($this, 'ajax_export_csv'));
     add_action('wp_ajax_flush_rewrite_rules', array($this, 'ajax_flush_rewrite_rules'));
 
     // Register admin menu pages
@@ -29,6 +28,9 @@ class NutritionLabels_Admin_Extended
 
     // Register settings
     add_action('admin_init', array($this, 'register_settings'));
+
+    // CSV Download
+    add_action('admin_init', array($this, 'elabel_export_csv'));
   }
 
   public function register_admin_menu_pages()
@@ -169,60 +171,44 @@ class NutritionLabels_Admin_Extended
     ));
   }
 
-  public function ajax_export_csv()
+  public function elabel_export_csv()
   {
-    check_ajax_referer('nutrition_export_csv');
     if (!current_user_can('manage_options')) {
-      wp_die('Unauthorized');
+      wp_die('You do not have permission to export CSV');
     }
 
-    $filename = 'nutrition-labels-export-' . date('Y-m-d-His') . '.csv';
+    if (isset($_GET['export']) && $_GET['export'] === 'csv') {
 
-    header('Content-Type: text/csv; charset=' . get_option('blog_charset') . '');
-    header('Content-Disposition: attachment; filename="' . $filename . '"');
-    header('Cache-Control: no-cache, must-revalidate');
-    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+      if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'nutrition_labels_export')) {
+        wp_die(__('Invalid nonce', 'nutrition-labels'));
+      }
 
-    $output = fopen('php://output', 'w');
+      $db = new NutritionLabels_DB_Extended();
+      $entries = $db->get_entries_for_export();
 
-    // CSV header
-    fputcsv($output, array(
-      'Product ID',
-      'Product Name',
-      'Short Code',
-      'Ingredients',
-      'Calories',
-      'Kilojoules',
-      'Carbohydrates',
-      'Sugar',
-      'Created At',
-      'Updated At'
-    ));
+      header('Content-Type: text/csv');
+      header('Content-Disposition: attachment; filename="nutrition-labels.csv"');
+      $output = fopen('php://output', 'w');
 
-    // Get all entries with nutrition data from table
-    $entries = $this->db->get_entries_for_export();
+      // Headers
+      fputcsv($output, ['Product ID', 'Product Title', 'Short Code', 'Prefix', 'Calories', 'Kilojoules', 'Carbs', 'Sugar']);
 
-    foreach ($entries as $entry) {
-      $product = get_post($entry->product_id);
-      if ($product && $product->post_type === 'product') {
-        fputcsv($output, array(
+      foreach ($entries as $entry) {
+        fputcsv($output, [
           $entry->product_id,
-          $product->post_title,
+          get_the_title($entry->product_id),
           $entry->short_code,
-          $entry->ingredients,
+          $entry->url_prefix,
           $entry->calories,
           $entry->kilojoules,
           $entry->carbohydrates,
-          $entry->sugar,
-          $entry->created_at ?: '',
-          $entry->updated_at ?: ''
-        ));
+          $entry->sugar
+        ]);
       }
-    }
 
-    fclose($output);
-    readfile('php://output');
-    exit;
+      fclose($output);
+      exit;
+    }
   }
 
   public function render_settings_page()

@@ -89,7 +89,14 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
 
         <div class="nutrition-labels-bulk-actions">
           <button type="button" id="bulk_delete" class="button button-primary">Delete Selected</button>
-          <button type="submit" name="export_csv" class="button">Export to CSV</button>
+          <a
+            href="<?php echo wp_nonce_url(
+                    admin_url('admin.php?page=nutrition_labels_db_management&export=csv'),
+                    'nutrition_labels_export'
+                  ); ?>"
+            class="button">
+            Export to CSV
+          </a>
         </div>
       </form>
     </div>

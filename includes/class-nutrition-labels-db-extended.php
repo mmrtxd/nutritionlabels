@@ -403,7 +403,6 @@ class NutritionLabels_DB_Extended
 
   private function is_valid_shortcode($shortcode)
   {
-    $length = absint(get_option('short_code_length', 5));
     $charset = get_option('character_set', 'alphanumeric');
 
     $pattern = '';
@@ -415,8 +414,8 @@ class NutritionLabels_DB_Extended
         break;
         // You can add more character sets later if needed
     }
-
-    if (!preg_match('/^[' . $pattern . ']{' . $length . '}$/', $shortcode)) {
+    // we need to check if the shortcode is in the length scope (4-8 chars long)
+    if (!preg_match('/^[' . $pattern . ']{4,8}$/', $shortcode)) {
       return false;
     }
 
