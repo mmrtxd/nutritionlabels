@@ -24,6 +24,7 @@ class NutritionLabels_DB_Extended
     $sql = "CREATE TABLE {$this->table_name} (
             id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
             product_id BIGINT(20) UNSIGNED NOT NULL,
+            url_prefix VARCHAR(10) NOT NULL DEFAULT 'l',
             short_code VARCHAR(10) NOT NULL,
             ingredients TEXT NOT NULL,
             calories MEDIUMINT(5) UNSIGNED NOT NULL DEFAULT 0,
@@ -48,7 +49,7 @@ class NutritionLabels_DB_Extended
 
   public function get_product_id_by_shortcode($shortcode)
   {
-    if (!preg_match('/^[A-Za-z0-9]{5}$/', $shortcode)) {
+    if (!$this->is_valid_shortcode($shortcode)) {
       return false;
     }
 
@@ -76,8 +77,8 @@ class NutritionLabels_DB_Extended
 
   public function shortcode_exists($shortcode)
   {
-    if (!preg_match('/^[A-Za-z0-9]{5}$/', $shortcode)) {
-      return true;
+    if (empty($shortcode)) {
+      return false;
     }
 
     return (bool) $this->wpdb->get_var(
@@ -98,7 +99,7 @@ class NutritionLabels_DB_Extended
       return false;
     }
 
-    if (!preg_match('/^[A-Za-z0-9]{5}$/', $shortcode)) {
+    if (!$this->is_valid_shortcode($shortcode)) {
       return false;
     }
 
@@ -106,6 +107,7 @@ class NutritionLabels_DB_Extended
       $this->table_name,
       array(
         'product_id' => (int) $product_id,
+        'url_prefix' => get_option('url_prefix', 'l'),
         'short_code' => $shortcode,
         'created_at' => current_time('mysql'),
         'updated_at' => current_time('mysql'),
@@ -217,9 +219,11 @@ class NutritionLabels_DB_Extended
     // character_set
 
     $length = absint(get_option('short_code_length', 5));
-    $charset = get_option('character_set', 'alphanumeric'); // unused at the moment
+    $charset = get_option('character_set', 'alphanumeric');
 
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    if ($charset == 'alphanumeric') {
+      $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    }
 
     do {
 
@@ -242,9 +246,9 @@ class NutritionLabels_DB_Extended
     // Insert the new shortcode into the existing row
     $updated = $this->wpdb->update(
       $this->table_name,
-      ['short_code' => $new_code, 'updated_at' => current_time('mysql')],
+      ['url_prefix' => get_option('url_prefix', 'l'), 'short_code' => $new_code, 'updated_at' => current_time('mysql')],
       ['product_id' => $product_id],
-      ['%s', '%s'],
+      ['%s', '%s', '%s'],
       ['%d']
     );
 
@@ -371,6 +375,7 @@ class NutritionLabels_DB_Extended
 
     if ($row) {
       return array(
+        'url_prefix'     => $row->url_prefix ?? '',
         'short_code'     => $row->short_code ?? '',
         'ingredients'    => $row->ingredients ?? '',
         'calories'       => (int) $row->calories,
@@ -382,19 +387,6 @@ class NutritionLabels_DB_Extended
         'source'         => 'table',
       );
     }
-
-    // Fallback to legacy post meta
-    return array(
-      'short_code'     => '',
-      'ingredients'    => (string) get_post_meta($product_id, '_nutrition_ingredients', true),
-      'calories'       => (int) get_post_meta($product_id, '_nutrition_calories', true),
-      'kilojoules'     => (int) get_post_meta($product_id, '_nutrition_kilojoules', true),
-      'carbohydrates'  => (float) get_post_meta($product_id, '_nutrition_carbohydrates', true),
-      'sugar'          => (float) get_post_meta($product_id, '_nutrition_sugar', true),
-      'created_at'     => '',
-      'updated_at'     => '',
-      'source'         => 'post_meta',
-    );
   }
 
 
@@ -407,5 +399,27 @@ class NutritionLabels_DB_Extended
             WHERE p.post_type = 'product'
             ORDER BY ns.created_at DESC
         ");
+  }
+
+  private function is_valid_shortcode($shortcode)
+  {
+    $length = absint(get_option('short_code_length', 5));
+    $charset = get_option('character_set', 'alphanumeric');
+
+    $pattern = '';
+
+    switch ($charset) {
+      case 'alphanumeric':
+      default:
+        $pattern = 'A-Za-z0-9';
+        break;
+        // You can add more character sets later if needed
+    }
+
+    if (!preg_match('/^[' . $pattern . ']{' . $length . '}$/', $shortcode)) {
+      return false;
+    }
+
+    return true;
   }
 }

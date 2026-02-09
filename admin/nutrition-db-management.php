@@ -47,6 +47,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                 <label class="screen-reader-text" for="cb-select-all-1">Select All</label>
               </td>
               <th class="manage-column column-primary">Product</th>
+              <th>Prefix</th>
               <th>Short Code</th>
               <th>Created</th>
               <th class="column-actions">Actions</th>
@@ -65,7 +66,10 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                   <small>ID: <?php echo $entry->product_id; ?></small>
                 </td>
                 <td>
-                  <code>/l/<?php echo esc_html($entry->short_code); ?></code>
+                  <code><?php echo esc_html($entry->url_prefix); ?></code>
+                </td>
+                <td>
+                  <code>/<?php echo esc_html(get_option('url_prefix', 'l')) . '/' . esc_html($entry->short_code); ?></code>
                 </td>
                 <td>
                   <?php echo date('Y-m-d H:i', strtotime($entry->created_at)); ?>
@@ -112,59 +116,59 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
   <script>
     // Define ajaxurl if not already defined
     if (typeof ajaxurl === 'undefined') {
-        var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+      var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
     }
 
     function toggleAllCheckboxes(source) {
-        checkboxes = document.getElementsByName('product_ids[]');
-        for(var i=0, n=checkboxes.length; i<n; i++) {
-            checkboxes[i].checked = source.checked;
-        }
+      checkboxes = document.getElementsByName('product_ids[]');
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+        checkboxes[i].checked = source.checked;
+      }
     }
 
     function viewNutritionLabel(productId) {
       // Get the short code from the table
       var shortCode = '';
       jQuery('input[name="product_ids[]"]').each(function() {
-          if (this.value == productId) {
-              var row = jQuery(this).closest('tr');
-              shortCode = row.find('td:nth-child(3) code').text().replace('/l/', '').trim();
-          }
+        if (this.value == productId) {
+          var row = jQuery(this).closest('tr');
+          shortCode = row.find('td:nth-child(3) code').text().replace('/l/', '').trim();
+        }
       });
-      
+
       if (!shortCode) {
         shortCode = prompt('Enter short code for product ID ' + productId + ':');
         if (!shortCode) return;
       }
-      
+
       window.open('<?php echo home_url('/l/'); ?>' + shortCode);
     }
 
     function deleteEntry(productId) {
       if (confirm('Delete nutrition label entry?\n\nProduct will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.')) {
         jQuery.ajax({
-            url: ajaxurl,
-            type: 'POST',
-            data: {
-                action: 'nutrition_delete',
-                product_ids: [productId],
-                _wpnonce: jQuery('input[name="_wpnonce"]').val()
-            },
-            success: function(response) {
-                if (response.success) {
-                    alert(response.message || response.data.message);
-                    location.reload();
-                } else {
-                    alert('Error: ' + (response.data || response.message));
-                }
-            },
-            error: function() {
-                alert('Error: Could not delete entry');
-                // Still reload to show current state
-                location.reload();
+          url: ajaxurl,
+          type: 'POST',
+          data: {
+            action: 'nutrition_delete',
+            product_ids: [productId],
+            _wpnonce: jQuery('input[name="_wpnonce"]').val()
+          },
+          success: function(response) {
+            if (response.success) {
+              alert(response.message || response.data.message);
+              location.reload();
+            } else {
+              alert('Error: ' + (response.data || response.message));
             }
+          },
+          error: function() {
+            alert('Error: Could not delete entry');
+            // Still reload to show current state
+            location.reload();
+          }
         });
-    }
+      }
     }
 
     function viewNutritionLabel(productId) {
@@ -178,42 +182,42 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
 
 
     jQuery(document).ready(function($) {
-        // Handle bulk delete button
-        $('#bulk_delete').click(function() {
-            var selectedIds = $('input[name="product_ids[]"]:checked').map(function() {
-                return $(this).val();
-            }).get();
-            
-            if (selectedIds.length === 0) {
-                alert('Please select at least one entry to delete');
-                return;
+      // Handle bulk delete button
+      $('#bulk_delete').click(function() {
+        var selectedIds = $('input[name="product_ids[]"]:checked').map(function() {
+          return $(this).val();
+        }).get();
+
+        if (selectedIds.length === 0) {
+          alert('Please select at least one entry to delete');
+          return;
+        }
+
+        if (confirm('Delete ' + selectedIds.length + ' nutrition label entries?\n\nProducts will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.')) {
+          $.ajax({
+            url: ajaxurl,
+            type: 'POST',
+            data: {
+              action: 'nutrition_delete',
+              product_ids: selectedIds,
+              _wpnonce: $('input[name="_wpnonce"]').val()
+            },
+            success: function(response) {
+              if (response.success) {
+                alert(response.message || response.data.message);
+                location.reload();
+              } else {
+                alert('Error: ' + (response.data || response.message));
+              }
+            },
+            error: function() {
+              alert('Error: Could not delete entries');
+              // Still reload to show current state
+              location.reload();
             }
-            
-            if (confirm('Delete ' + selectedIds.length + ' nutrition label entries?\n\nProducts will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.')) {
-                $.ajax({
-                    url: ajaxurl,
-                    type: 'POST',
-                    data: {
-                        action: 'nutrition_delete',
-                        product_ids: selectedIds,
-                        _wpnonce: $('input[name="_wpnonce"]').val()
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert(response.message || response.data.message);
-                            location.reload();
-                        } else {
-                            alert('Error: ' + (response.data || response.message));
-                        }
-                    },
-                    error: function() {
-                        alert('Error: Could not delete entries');
-                        // Still reload to show current state
-                        location.reload();
-                    }
-                });
-            }
-        });
+          });
+        }
+      });
     });
   </script>
 </div>
