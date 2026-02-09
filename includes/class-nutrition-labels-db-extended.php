@@ -197,7 +197,10 @@ class NutritionLabels_DB_Extended
   public function ensure_short_code($product_id)
   {
     if (empty($product_id) || !is_numeric($product_id) || $product_id <= 0) {
-      return false;
+      return new WP_Error(
+        'invalid_product_id',
+        __('Invalid Product Id or product does not exist', 'nutrition-labels')
+      );
     }
 
     // Check if product already has a short code
@@ -208,14 +211,32 @@ class NutritionLabels_DB_Extended
 
     // Generate unique 5-character alphanumeric code
     $tries = 0;
+
+    // Get Options from Admin Settings
+    // short_code_length
+    // character_set
+
+    $length = absint(get_option('short_code_length', 5));
+    $charset = get_option('character_set', 'alphanumeric'); // unused at the moment
+
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
     do {
+
       $tries++;
-      $new_code = substr(md5(uniqid($product_id . time(), true)), 0, 5);
+      $new_code = '';
+
+      for ($i = 0; $i < $length; $i++) {
+        $new_code .= $chars[wp_rand(0, strlen($chars) - 1)];
+      }
     } while ($this->shortcode_exists($new_code) && $tries < 50);
 
     if ($tries >= 50) {
       // Failed to generate a unique code
-      return false;
+      return new WP_Error(
+        'shortcode_generation_failed',
+        __('Unable to generate shortcode - exceeded 50 tries', 'nutrition-labels')
+      );
     }
 
     // Insert the new shortcode into the existing row
@@ -227,7 +248,14 @@ class NutritionLabels_DB_Extended
       ['%d']
     );
 
-    return $updated !== false ? $new_code : false;
+    if ($updated == false) {
+      return new WP_Error(
+        'shortcode_db_update_failed',
+        __('Shortcode DB Update failed', 'nutrition-labels')
+      );
+    }
+
+    return $new_code;
   }
 
 

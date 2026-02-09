@@ -1,40 +1,45 @@
 <?php
 
 /**
- * Main plugin file with simplified settings integration
+ * Plugin Name: Nutrition Labels
+ * Plugin URI:  https://example.com/nutrition-labels
+ * Description: Adds nutrition label management, shortcodes, and QR code generation for products.
+ * Version:     1.0.0
+ * Author:      Markus Hammer 
+ * Author URI:  https://hammerwein.at
+ * Text Domain: nutrition-labels
+ * Domain Path: /languages
+ * License:     GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Requires PHP: 7.2
+ * Requires at least: 5.0
  */
 
 if (!defined('ABSPATH')) {
   exit;
 }
 
+define('NUTRITION_LABELS_VERSION', '1.0.0');
 define('NUTRITION_LABELS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NUTRITION_LABELS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Include required files
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-db-extended.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-url.php';
-require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-qr.php';
-
-require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/class-nutrition-labels-admin-extended.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/working-metabox.php';
 
-
-
-
+// load the URL rewrite handling class
+NutritionLabels_URL::init();
 
 class NutritionLabels
 {
 
   public function __construct()
   {
-    error_log('Nutrition Labels: Plugin constructor called');
-    register_activation_hook(__FILE__, array($this, 'activate'));
-    register_deactivation_hook(__FILE__, array($this, 'deactivate'));
-    add_action('plugins_loaded', array($this, 'init'));
+    add_action('init', [$this, 'init']);
   }
 
-  public function activate()
+  public static function activate()
   {
     $db = new NutritionLabels_DB_Extended();
     $db->create_tables();
@@ -42,31 +47,24 @@ class NutritionLabels
     flush_rewrite_rules();
   }
 
-  public function deactivate()
+  public static function deactivate()
   {
     flush_rewrite_rules();
   }
 
   public function init()
   {
-    // Wait for WordPress to be fully loaded
-    if (function_exists('add_action')) {
-      // Initialize URL handling for e-label display (independent of WooCommerce)
-      NutritionLabels_URL::init();
-      // Initialize admin on 'init' hook with lower priority to ensure WordPress functions are available
-      add_action('init', array($this, 'initialize_admin'), 20);
-    }
-  }
 
-  public function initialize_admin()
-  {
-    // Only initialize in admin area
     if (is_admin()) {
-      error_log('Nutrition Labels: Initializing admin components');
+      require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/working-metabox.php';
+      require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/class-nutrition-labels-admin-extended.php';
+      require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-qr.php';
       new NutritionLabels_Admin_Extended();
-      error_log('Nutrition Labels: Admin components initialized');
     }
   }
 }
+
+register_activation_hook(__FILE__, ['NutritionLabels', 'activate']);
+register_deactivation_hook(__FILE__, ['NutritionLabels', 'deactivate']);
 
 new NutritionLabels();
