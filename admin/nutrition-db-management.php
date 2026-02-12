@@ -181,7 +181,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
     function viewNutritionLabel(productId) {
       // Get the short code from the current row
       var row = document.querySelector('tr:has(input[value="' + productId + '"])');
-      var shortCodeCell = row.querySelector('td:nth-child(3) code');
+      var shortCodeCell = row.querySelector('td:nth-child(4) code');
       var shortCode = shortCodeCell.textContent.replace('/l/', '');
       window.open('<?php echo home_url('/l/'); ?>' + shortCode);
     }
