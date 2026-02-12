@@ -1,85 +1,62 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo esc_html($nutrition_data['product_title']); ?> - Nutrition Label</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background: white;
-            color: black;
-        }
-        .nutrition-label {
-            max-width: 400px;
-            margin: 0 auto;
-            border: 1px solid #333;
-            padding: 20px;
-        }
-        .product-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .ingredients {
-            margin-bottom: 20px;
-            font-size: 12px;
-        }
-        .nutrition-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .nutrition-table td {
-            padding: 8px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
-        .nutrition-table .label {
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?php echo esc_html($nutrition_data['product_title']); ?> - Nutrition Label</title>
+  <link rel="stylesheet" href="<?php echo plugins_url('nutrition-labels/assets/css/style.css');  ?>">
 </head>
-<body>
-    <div class="nutrition-label">
-        <div class="product-title"><?php echo esc_html($nutrition_data['product_title']); ?></div>
-        
-        <?php if (!empty($nutrition_data['ingredient_list'])): ?>
-        <div class="ingredients">
-            <strong>Ingredients:</strong><br>
-            <?php echo $nutrition_data['ingredient_list']; ?>
-        </div>
-        <?php endif; ?>
-        
-        <?php if (!empty($nutrition_data['calories']) || !empty($nutrition_data['kilojoules']) || !empty($nutrition_data['carbohydrates']) || !empty($nutrition_data['sugar'])): ?>
-        <table class="nutrition-table">
-            <?php if (!empty($nutrition_data['calories'])): ?>
-            <tr>
-                <td class="label">Calories</td>
-                <td><?php echo esc_html(number_format($nutrition_data['calories'])); ?> kcal</td>
-            </tr>
-            <?php endif; ?>
-            <?php if (!empty($nutrition_data['kilojoules'])): ?>
-            <tr>
-                <td class="label">Kilojoules</td>
-                <td><?php echo esc_html(number_format($nutrition_data['kilojoules'])); ?> kJ</td>
-            </tr>
-            <?php endif; ?>
-            <?php if (!empty($nutrition_data['carbohydrates'])): ?>
-            <tr>
-                <td class="label">Carbohydrates</td>
-                <td><?php echo esc_html(number_format($nutrition_data['carbohydrates'], 1)); ?> g</td>
-            </tr>
-            <?php endif; ?>
-            <?php if (!empty($nutrition_data['sugar'])): ?>
-            <tr>
-                <td class="label">Sugar</td>
-                <td><?php echo esc_html(number_format($nutrition_data['sugar'], 1)); ?> g</td>
-            </tr>
-            <?php endif; ?>
-        </table>
-        <?php endif; ?>
+
+<body class="bg-stone-300 p-5">
+  <div id="label" class="bg-white p-5 text-xl shadow-xl w-full">
+    <h1 class="text-1xl font-bold uppercase tracking-wider m-2 p-6 pt-3 pb-0">
+      <?php echo esc_html($nutrition_data['product_title']); ?>
+    </h1>
+
+    <?php if (!empty($nutrition_data['ingredient_list'])): ?>
+      <h4 class="m-2 p-6 pb-0 text-sm font-medium tracking-widest uppercase">
+        Inhaltsstoffe:
+      </h4>
+
+      <div id="elabel-ingredientslist" class="m-2 p-6 pt-0 pb-5">
+        <p class="text-lg">
+          <?php echo $nutrition_data['ingredient_list']; ?>
+        </p>
+      </div>
+    <?php endif; ?>
+    <div id="nutrtiontable" class="border outline-double m-2 p-1">
+      <table class="border-2 p-0 border-black text-base w-full">
+        <tr class="text-base bg-black font-bold text-white">
+          <td class="p-5">Nährwertangaben</td>
+          <td class="p-5 text-right">Pro 100ml</td>
+        </tr>
+        <tr class="border">
+          <td class="p-5 align-top">
+            Energie
+          </td>
+          <td class="p-5 text-right"><?php echo esc_html(number_format($nutrition_data['kilojoules'])); ?> kj<br><?php echo esc_html(number_format($nutrition_data['calories'])); ?></td>
+        </tr>
+        <tr class="border">
+          <td class="p-5">
+            Kohlenhydrate
+          </td>
+          <td class="p-5 text-right">
+            <?php echo esc_html(number_format($nutrition_data['carbohydrates'], 1)); ?> g
+          </td>
+        </tr>
+        <tr>
+          <td class="p-5">Davon Zucker</td>
+          <td class="p-5 text-right"><?php echo esc_html(number_format($nutrition_data['sugar'], 1)); ?> g</td>
+        </tr>
+      </table>
+      <div id="negligible" class="text-sm p-4 tracking-widest uppercase text-center">
+        <p>Kann geringfügige Mengen von Eiweiß und Salz enthalten.</p>
+      </div>
     </div>
+  </div>
+
 </body>
+
 </html>
