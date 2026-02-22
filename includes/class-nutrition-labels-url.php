@@ -64,7 +64,7 @@ class NutritionLabels_URL
 
     // Enhanced validation
     if (is_admin() || empty($shortcode) || !ctype_alnum($shortcode)) {
-      return new WP_Error('shortcode_query_var', __('Error parsing shortcode for Nutrition Label', 'nutrition_labels'));
+      return;
     }
 
     $db = self::get_db();
@@ -72,7 +72,6 @@ class NutritionLabels_URL
 
     if ($product_id) {
       self::display_nutrition_label($product_id);
-      exit;
     }
 
     // If no valid short code found, let WordPress handle 404 normally
@@ -81,9 +80,8 @@ class NutritionLabels_URL
 
   private static function display_nutrition_label($product_id)
   {
-
     // Get nutrition data from database
-    $db = new NutritionLabels_DB_Extended();
+    $db = self::get_db();
     $nutrition_table_data = $db->get_complete_nutrition_data($product_id);
 
     if (!$nutrition_table_data) {
@@ -92,29 +90,31 @@ class NutritionLabels_URL
     // Enhanced security: validate all data
     $product_title = get_the_title($product_id);
 
+    $ingredients_obj = $nutrition_table_data['ingredients'];
+    $ingredient_display = ($ingredients_obj instanceof NutritionLabelIngredientList)
+      ? esc_html($ingredients_obj->toDisplayString())
+      : '';
+
     $nutrition_data = array(
-      'product_title' => sanitize_text_field($product_title),
-      'ingredient_list' => $nutrition_table_data['ingredients'],
-      'calories' => $nutrition_table_data['calories'],
-      'kilojoules' => $nutrition_table_data['kilojoules'],
-      'carbohydrates' => $nutrition_table_data['carbohydrates'],
-      'sugar' => $nutrition_table_data['sugar']
+      'product_title'  => sanitize_text_field($product_title),
+      'ingredient_list' => $ingredient_display,
+      'calories'        => $nutrition_table_data['calories'],
+      'kilojoules'      => $nutrition_table_data['kilojoules'],
+      'carbohydrates'   => $nutrition_table_data['carbohydrates'],
+      'sugar'           => $nutrition_table_data['sugar'],
     );
 
-    // Sanitize ingredient list specifically for display
-    $nutrition_data['ingredient_list'] = wp_kses_post($nutrition_data['ingredient_list'], array(
-      'a' => array(
-        'href' => true,
-        'title' => true,
-      ),
-      'br' => array(),
-      'strong' => array(),
-      'em' => array(),
-      'p' => array()
-    ));
+    // Locate template — themes may override by placing a file at:
+    // {theme}/nutrition-labels/nutrition-label-secure.php
+    $template = locate_template('nutrition-labels/nutrition-label-secure.php');
+    if (empty($template)) {
+      $template = NUTRITION_LABELS_PLUGIN_DIR . 'templates/nutrition-label-secure.php';
+    }
 
-    // Load template
-    include NUTRITION_LABELS_PLUGIN_DIR . 'templates/nutrition-label-secure.php';
+    // Allow programmatic override via filter
+    $template = apply_filters('nutrition_labels_template', $template, $product_id);
+
+    include $template;
     exit;
   }
 }

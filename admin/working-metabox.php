@@ -47,13 +47,55 @@ class Working_NutritionLabels_MetaBox
     $short_url = !empty($nutrition_data['short_code'])
       ? home_url("/{$current_prefix}/{$nutrition_data['short_code']}")
       : '';
+
+    // Resolve current ingredient list (empty list for new/old-text rows)
+    $ingredient_list = ($nutrition_data && $nutrition_data['ingredients'] instanceof NutritionLabelIngredientList)
+      ? $nutrition_data['ingredients']
+      : new NutritionLabelIngredientList();
+
+    $col_left  = ['ingredients' => 'Grundzutaten',      'conservants' => 'Konservierungsstoffe'];
+    $col_right = ['regulators'  => 'Säureregulatoren', 'stabilizers' => 'Stabilisatoren'];
 ?>
 
+    <style>
+      .nutrition-ing-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+      .nutrition-ing-full-width { grid-column: 1 / -1; }
+      .nutrition-ing-group { margin-bottom: 16px; }
+      .nutrition-ing-group legend { font-weight: 600; font-size: 13px; padding: 0 4px; }
+      .nutrition-ing-group fieldset { border: 1px solid #ddd; padding: 8px 12px; border-radius: 3px; }
+      .nutrition-ing-row { display: flex; align-items: center; padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
+      .nutrition-ing-row:last-child { border-bottom: none; }
+      .nutrition-ing-label { flex: 0 0 180px; font-size: 13px; }
+      .nutrition-ing-radios { display: flex; gap: 12px; flex-wrap: wrap; }
+      .nutrition-ing-radios label { font-size: 12px; cursor: pointer; white-space: nowrap; }
+      .nutrition-ing-radios input[type="radio"] { margin-right: 3px; }
+    </style>
+
     <div class="nutrition-fields">
-      <p><strong>Ingredient List:</strong></p>
-      <textarea name="nutrition_ingredients" rows="6" style="width: 100%;"><?php
-                                                                            echo esc_textarea($nutrition_data['ingredients'] ?? '');
-                                                                            ?></textarea>
+      <p><strong>Zutaten / Ingredients:</strong></p>
+
+      <div class="nutrition-ing-columns">
+
+        <?php /* ---- Left column ---- */ ?>
+        <div>
+          <?php foreach ($col_left as $group_key => $group_label): ?>
+            <?php $this->render_ing_group($group_key, $group_label, $ingredient_list); ?>
+          <?php endforeach; ?>
+        </div>
+
+        <?php /* ---- Right column ---- */ ?>
+        <div>
+          <?php foreach ($col_right as $group_key => $group_label): ?>
+            <?php $this->render_ing_group($group_key, $group_label, $ingredient_list); ?>
+          <?php endforeach; ?>
+        </div>
+
+        <?php /* ---- Gases — full width ---- */ ?>
+        <div class="nutrition-ing-full-width">
+          <?php $this->render_ing_group('gases', 'Gase', $ingredient_list); ?>
+        </div>
+
+      </div><!-- end .nutrition-ing-columns -->
 
       <p><strong>Calories (kcal):</strong></p>
       <input type="number" name="nutrition_calories" value="<?php
@@ -88,6 +130,69 @@ class Working_NutritionLabels_MetaBox
   }
 
   /**
+   * Render a single ingredient group fieldset.
+   *
+   * @param string                       $group_key       Group property name on NutritionLabelIngredientList
+   * @param string                       $group_label     German fieldset legend
+   * @param NutritionLabelIngredientList $ingredient_list Current ingredient state
+   */
+  private function render_ing_group(
+    string $group_key,
+    string $group_label,
+    NutritionLabelIngredientList $ingredient_list
+  ): void {
+    $group_obj = $ingredient_list->$group_key;
+?>
+    <div class="nutrition-ing-group">
+      <fieldset>
+        <legend><?php echo esc_html($group_label); ?></legend>
+        <?php foreach (get_object_vars($group_obj) as $ing_key => $current_type): ?>
+          <?php
+          $current_value = ($current_type instanceof IngredientType) ? $current_type->value : IngredientType::Nil->value;
+          $label         = NutritionLabelIngredientList::getLabel($group_key, $ing_key);
+          $enumber       = NutritionLabelIngredientList::getENumber($group_key, $ing_key);
+          $code_label    = $enumber !== '' ? 'Code (' . $enumber . ')' : 'Code';
+          $field_name    = 'nutrition_ing[' . esc_attr($group_key) . '][' . esc_attr($ing_key) . ']';
+          $id_base       = 'ing_' . esc_attr($group_key) . '_' . esc_attr($ing_key);
+          ?>
+          <div class="nutrition-ing-row">
+            <span class="nutrition-ing-label"><?php echo esc_html($label); ?></span>
+            <div class="nutrition-ing-radios">
+              <label>
+                <input type="radio"
+                  name="<?php echo $field_name; ?>"
+                  id="<?php echo $id_base; ?>_text"
+                  value="<?php echo esc_attr(IngredientType::Text->value); ?>"
+                  <?php checked($current_value, IngredientType::Text->value); ?>>
+                Text
+              </label>
+              <?php if ($enumber !== ''): ?>
+              <label>
+                <input type="radio"
+                  name="<?php echo $field_name; ?>"
+                  id="<?php echo $id_base; ?>_code"
+                  value="<?php echo esc_attr(IngredientType::Code->value); ?>"
+                  <?php checked($current_value, IngredientType::Code->value); ?>>
+                <?php echo esc_html($code_label); ?>
+              </label>
+              <?php endif; ?>
+              <label>
+                <input type="radio"
+                  name="<?php echo $field_name; ?>"
+                  id="<?php echo $id_base; ?>_nil"
+                  value="<?php echo esc_attr(IngredientType::Nil->value); ?>"
+                  <?php checked($current_value, IngredientType::Nil->value); ?>>
+                Nil
+              </label>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </fieldset>
+    </div>
+<?php
+  }
+
+  /**
    * Save meta box data (delegates to DB class)
    */
   public function save_data($post_id, $post)
@@ -100,9 +205,24 @@ class Working_NutritionLabels_MetaBox
     if (!current_user_can('edit_post', $post_id)) return;
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
+    // Build structured ingredient list from POST
+    $ingredient_list = new NutritionLabelIngredientList();
+    if (isset($_POST['nutrition_ing']) && is_array($_POST['nutrition_ing'])) {
+      $ing_post = [];
+      foreach ($_POST['nutrition_ing'] as $group => $values) {
+        if (is_array($values)) {
+          $ing_post[$group] = [];
+          foreach ($values as $key => $value) {
+            $ing_post[$group][$key] = sanitize_text_field((string) $value);
+          }
+        }
+      }
+      $ingredient_list->hydrateFromPost($ing_post);
+    }
+
     // Prepare sanitized data
     $data = [
-      'ingredients'   => sanitize_textarea_field($_POST['nutrition_ingredients'] ?? ''),
+      'ingredients'   => $ingredient_list,
       'calories'      => absint($_POST['nutrition_calories'] ?? 0),
       'kilojoules'    => absint($_POST['nutrition_kilojoules'] ?? 0),
       'carbohydrates' => max(0, floatval($_POST['nutrition_carbohydrates'] ?? 0.0)),
@@ -112,8 +232,8 @@ class Working_NutritionLabels_MetaBox
     // Save via DB class
     $this->db->save_nutrition_data($post_id, $data);
 
-    // Ensure short code exists
-    if (!empty($data['ingredients'])) {
+    // Ensure short code exists if any ingredient is selected
+    if ($ingredient_list->toDisplayString() !== '') {
       $this->db->ensure_short_code($post_id);
     }
   }
@@ -154,7 +274,8 @@ class Working_NutritionLabels_MetaBox
    */
   public function enqueue_scripts($hook)
   {
-    if ($GLOBALS['post_type'] !== 'product') return;
+    $screen = get_current_screen();
+    if (!$screen || $screen->post_type !== 'product') return;
 
     wp_enqueue_script(
       'nutrition-labels-admin',
@@ -176,5 +297,3 @@ if (is_admin()) {
   $db = new NutritionLabels_DB_Extended();
   new Working_NutritionLabels_MetaBox($db);
 }
-
-?>

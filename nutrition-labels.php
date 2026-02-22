@@ -11,7 +11,7 @@
  * Domain Path: /languages
  * License:     GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Requires PHP: 7.2
+ * Requires PHP: 8.1
  * Requires at least: 5.0
  */
 
@@ -26,6 +26,7 @@ define('NUTRITION_LABELS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NUTRITION_LABELS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Include required files
+require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-ingredients.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-db-extended.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-url.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/working-metabox.php';

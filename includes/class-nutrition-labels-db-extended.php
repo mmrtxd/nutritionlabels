@@ -150,7 +150,9 @@ class NutritionLabels_DB_Extended
     );
 
     $payload = array(
-      'ingredients'   => wp_kses_post($data['ingredients'] ?? ''),
+      'ingredients'   => ($data['ingredients'] instanceof NutritionLabelIngredientList)
+                            ? json_encode($data['ingredients'])
+                            : json_encode([]),
       'calories'      => absint($data['calories'] ?? 0),
       'kilojoules'    => absint($data['kilojoules'] ?? 0),
       'carbohydrates' => (float) ($data['carbohydrates'] ?? 0),
@@ -374,10 +376,16 @@ class NutritionLabels_DB_Extended
     $row = $this->get_nutrition_by_product_id($product_id);
 
     if ($row) {
+      $ingredient_list = new NutritionLabelIngredientList();
+      if (!empty($row->ingredients)) {
+        $ingredient_list->hydrate($row->ingredients);
+        // hydrate() calls json_decode internally; invalid/plain-text rows are silently ignored
+      }
+
       return array(
         'url_prefix'     => $row->url_prefix ?? '',
         'short_code'     => $row->short_code ?? '',
-        'ingredients'    => $row->ingredients ?? '',
+        'ingredients'    => $ingredient_list,
         'calories'       => (int) $row->calories,
         'kilojoules'     => (int) $row->kilojoules,
         'carbohydrates'  => (float) $row->carbohydrates,
