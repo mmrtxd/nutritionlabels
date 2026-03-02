@@ -22,6 +22,7 @@ class NutritionLabels_Admin_Extended
     add_action('wp_ajax_nutrition_search', array($this, 'ajax_search'));
     add_action('wp_ajax_nutrition_delete', array($this, 'ajax_delete'));
     add_action('wp_ajax_flush_rewrite_rules', array($this, 'ajax_flush_rewrite_rules'));
+    add_action('wp_ajax_nutrition_qr_download', array($this, 'ajax_download_qr'));
 
     // Register admin menu pages
     add_action('admin_menu', array($this, 'register_admin_menu_pages'));
@@ -174,6 +175,40 @@ class NutritionLabels_Admin_Extended
         $deleted_count,
         'nutrition-labels'
       ), $deleted_count),
+    ));
+  }
+
+  public function ajax_download_qr()
+  {
+    check_ajax_referer('nutrition_qr_download', 'nonce');
+    if (!current_user_can('manage_options')) {
+      wp_die('Unauthorized');
+    }
+
+    $product_id = absint($_POST['product_id']);
+    if (!$product_id) {
+      wp_send_json_error('Invalid product ID');
+    }
+
+    $nutrition_data = $this->db->get_complete_nutrition_data($product_id);
+    if (empty($nutrition_data['short_code'])) {
+      wp_send_json_error('No short URL for this product');
+    }
+
+    $prefix    = get_option('url_prefix', 'l');
+    $short_url = home_url("/{$prefix}/{$nutrition_data['short_code']}");
+
+    $data_uri = NutritionLabels_QR::generate_qr_code_base64($short_url);
+    if ($data_uri === false) {
+      wp_send_json_error('QR code generation failed');
+    }
+
+    $product      = get_post($product_id);
+    $product_name = sanitize_file_name($product->post_title);
+
+    wp_send_json_success(array(
+      'url'      => $data_uri,
+      'filename' => $product_name . '-nutrition-qr.png',
     ));
   }
 

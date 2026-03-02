@@ -78,6 +78,9 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                   <button type="button" class="button" onclick="viewNutritionLabel(<?php echo $entry->product_id; ?>)">
                     <?php esc_html_e('View Label', 'nutrition-labels'); ?>
                   </button>
+                  <button type="button" class="button" onclick="downloadQrCode(<?php echo $entry->product_id; ?>, this)">
+                    <?php esc_html_e('Download QR', 'nutrition-labels'); ?>
+                  </button>
                   <button type="button" class="button" onclick="deleteEntry(<?php echo $entry->product_id; ?>)">
                     <?php esc_html_e('Delete', 'nutrition-labels'); ?>
                   </button>
@@ -187,6 +190,43 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
     }
 
 
+
+    var nutritionQrNonce = '<?php echo esc_js(wp_create_nonce('nutrition_qr_download')); ?>';
+
+    function downloadQrCode(productId, button) {
+      var originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = '<?php echo esc_js(esc_html__('Generating...', 'nutrition-labels')); ?>';
+
+      jQuery.ajax({
+        url: ajaxurl,
+        type: 'POST',
+        data: {
+          action: 'nutrition_qr_download',
+          product_id: productId,
+          nonce: nutritionQrNonce
+        },
+        success: function(response) {
+          if (response.success) {
+            var link = document.createElement('a');
+            link.href = response.data.url;
+            link.download = response.data.filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          } else {
+            alert('<?php echo esc_js(esc_html__('Error:', 'nutrition-labels')); ?> ' + (response.data || '<?php echo esc_js(esc_html__('Failed to generate QR code', 'nutrition-labels')); ?>'));
+          }
+        },
+        error: function() {
+          alert('<?php echo esc_js(esc_html__('Error: Could not generate QR code', 'nutrition-labels')); ?>');
+        },
+        complete: function() {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
+      });
+    }
 
     jQuery(document).ready(function($) {
       // Handle bulk delete button
