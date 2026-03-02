@@ -25,7 +25,7 @@ class Working_NutritionLabels_MetaBox
   {
     add_meta_box(
       'nutrition_labels',
-      'Nutrition Information',
+      __('Nutrition Information', 'nutrition-labels'),
       [$this, 'render_metabox'],
       'product',
       'normal',
@@ -53,8 +53,14 @@ class Working_NutritionLabels_MetaBox
       ? $nutrition_data['ingredients']
       : new NutritionLabelIngredientList();
 
-    $col_left  = ['ingredients' => 'Grundzutaten',      'conservants' => 'Konservierungsstoffe'];
-    $col_right = ['regulators'  => 'Säureregulatoren', 'stabilizers' => 'Stabilisatoren'];
+    $col_left  = [
+      'ingredients' => __('Base Ingredients', 'nutrition-labels'),
+      'conservants' => __('Preservatives', 'nutrition-labels'),
+    ];
+    $col_right = [
+      'regulators'  => __('Acid Regulators', 'nutrition-labels'),
+      'stabilizers' => __('Stabilizers', 'nutrition-labels'),
+    ];
 ?>
 
     <style>
@@ -72,7 +78,7 @@ class Working_NutritionLabels_MetaBox
     </style>
 
     <div class="nutrition-fields">
-      <p><strong>Zutaten / Ingredients:</strong></p>
+      <p><strong><?php esc_html_e('Ingredients:', 'nutrition-labels'); ?></strong></p>
 
       <div class="nutrition-ing-columns">
 
@@ -92,36 +98,36 @@ class Working_NutritionLabels_MetaBox
 
         <?php /* ---- Gases — full width ---- */ ?>
         <div class="nutrition-ing-full-width">
-          <?php $this->render_ing_group('gases', 'Gase', $ingredient_list); ?>
+          <?php $this->render_ing_group('gases', __('Gases', 'nutrition-labels'), $ingredient_list); ?>
         </div>
 
       </div><!-- end .nutrition-ing-columns -->
 
-      <p><strong>Calories (kcal):</strong></p>
+      <p><strong><?php esc_html_e('Calories (kcal):', 'nutrition-labels'); ?></strong></p>
       <input type="number" name="nutrition_calories" value="<?php
                                                             echo esc_attr($nutrition_data['calories'] ?? 0); ?>" step="1" min="0" max="10000" style="width: 100%;">
 
-      <p><strong>Kilojoules (kJ):</strong></p>
+      <p><strong><?php esc_html_e('Kilojoules (kJ):', 'nutrition-labels'); ?></strong></p>
       <input type="number" name="nutrition_kilojoules" value="<?php
                                                               echo esc_attr($nutrition_data['kilojoules'] ?? 0); ?>" step="1" min="0" max="40000" style="width: 100%;">
 
-      <p><strong>Carbohydrates (g):</strong></p>
+      <p><strong><?php esc_html_e('Carbohydrates (g):', 'nutrition-labels'); ?></strong></p>
       <input type="number" name="nutrition_carbohydrates" value="<?php
                                                                   echo esc_attr($nutrition_data['carbohydrates'] ?? 0); ?>" step="0.1" min="0" max="1000" style="width: 100%;">
 
-      <p><strong>Sugar (g):</strong></p>
+      <p><strong><?php esc_html_e('Sugar (g):', 'nutrition-labels'); ?></strong></p>
       <input type="number" name="nutrition_sugar" value="<?php
                                                           echo esc_attr($nutrition_data['sugar'] ?? 0); ?>" step="0.1" min="0" max="1000" style="width: 100%;">
 
       <?php if ($short_url): ?>
-        <p><strong>Nutrition Label URL:</strong></p>
+        <p><strong><?php esc_html_e('Nutrition Label URL:', 'nutrition-labels'); ?></strong></p>
         <input type="text" value="<?php echo esc_url($short_url); ?>" readonly style="width: 100%; background: #f5f5f5;">
         <button type="button" id="download_qr_code" class="button" data-product-id="<?php
                                                                                     echo esc_attr($product_id); ?>" style="margin-top: 10px;">
-          Download QR Code
+          <?php esc_html_e('Download QR Code', 'nutrition-labels'); ?>
         </button>
       <?php else: ?>
-        <p><em>Save product to generate short URL first.</em></p>
+        <p><em><?php esc_html_e('Save product to generate short URL first.', 'nutrition-labels'); ?></em></p>
       <?php endif; ?>
 
       <?php wp_nonce_field('nutrition_labels_save', 'nutrition_labels_nonce'); ?>
@@ -164,7 +170,7 @@ class Working_NutritionLabels_MetaBox
                   id="<?php echo $id_base; ?>_text"
                   value="<?php echo esc_attr(IngredientType::Text->value); ?>"
                   <?php checked($current_value, IngredientType::Text->value); ?>>
-                Text
+                <?php esc_html_e('Text', 'nutrition-labels'); ?>
               </label>
               <?php if ($enumber !== ''): ?>
               <label>
@@ -182,7 +188,7 @@ class Working_NutritionLabels_MetaBox
                   id="<?php echo $id_base; ?>_nil"
                   value="<?php echo esc_attr(IngredientType::Nil->value); ?>"
                   <?php checked($current_value, IngredientType::Nil->value); ?>>
-                Nil
+                <?php esc_html_e('Nil', 'nutrition-labels'); ?>
               </label>
             </div>
           </div>

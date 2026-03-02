@@ -32,8 +32,8 @@ $active_count = $db->count_all_entries();
 ?>
 
 <div class="wrap">
-  <h1>Nutrition Labels Settings</h1>
-  <p class="description">Configure your nutrition labels plugin settings and manage QR code generation.</p>
+  <h1><?php esc_html_e('Nutrition Labels Settings', 'nutrition-labels'); ?></h1>
+  <p class="description"><?php esc_html_e('Configure your nutrition labels plugin settings and manage QR code generation.', 'nutrition-labels'); ?></p>
 
   <form method="post" action="">
     <?php 
@@ -47,21 +47,21 @@ $active_count = $db->count_all_entries();
       <tbody>
         <tr>
           <th scope="row">
-            <label for="url_prefix">URL Prefix</label>
+            <label for="url_prefix"><?php esc_html_e('URL Prefix', 'nutrition-labels'); ?></label>
           </th>
           <td>
             <input type="text" name="nutrition_labels[url_prefix]" id="url_prefix" value="<?php echo esc_attr($current_prefix); ?>" class="regular-text">
             <p class="description">
               <strong>Current:</strong> <code><?php echo home_url($current_prefix . '/[shortcode]'); ?></code>
               <br>
-              <strong>Warning:</strong> Changing this will make existing QR codes stop working!
+              <strong><?php esc_html_e('Warning:', 'nutrition-labels'); ?></strong> <?php esc_html_e('Changing this will make existing QR codes stop working!', 'nutrition-labels'); ?>
             </p>
           </td>
         </tr>
 
         <tr>
           <th scope="row">
-            <label for="short_code_length">Short Code Length</label>
+            <label for="short_code_length"><?php esc_html_e('Short Code Length', 'nutrition-labels'); ?></label>
           </th>
           <td>
             <select name="nutrition_labels[short_code_length]" id="short_code_length">
@@ -72,21 +72,21 @@ $active_count = $db->count_all_entries();
               <option value="8" <?php nutrition_selected($current_length, 8); ?>>8 characters</option>
             </select>
             <p class="description">
-              Minimum is 4 characters. Shorter codes may conflict more often.
+              <?php esc_html_e('Minimum is 4 characters. Shorter codes may conflict more often.', 'nutrition-labels'); ?>
             </p>
           </td>
         </tr>
 
         <tr>
           <th scope="row">
-            <label for="character_set">Character Set</label>
+            <label for="character_set"><?php esc_html_e('Character Set', 'nutrition-labels'); ?></label>
           </th>
           <td>
             <select name="nutrition_labels[character_set]" id="character_set">
               <option value="alphanumeric" <?php nutrition_selected(get_option('character_set', 'alphanumeric'), 'alphanumeric'); ?>>Alphanumeric</option>
               <option value="numeric">Numeric</option>
             </select>
-            <p class="description">Choose allowed characters for short codes.</p>
+            <p class="description"><?php esc_html_e('Choose allowed characters for short codes.', 'nutrition-labels'); ?></p>
           </td>
         </tr>
       </tbody>
@@ -138,9 +138,9 @@ if (function_exists('submit_button')) {
   </script>
 
   <div class="nutrition-labels-info">
-    <h3>Information</h3>
+    <h3><?php esc_html_e('Information', 'nutrition-labels'); ?></h3>
     <ul>
-      <li><strong>Current Entries:</strong> <?php echo $active_count; ?> nutrition labels active</li>
+      <li><strong><?php esc_html_e('Current Entries:', 'nutrition-labels'); ?></strong> <?php printf(esc_html__('%d nutrition labels active', 'nutrition-labels'), $active_count); ?></li>
       <li><strong>URL Format:</strong> <code><?php echo home_url($current_prefix . '/[shortcode]'); ?></code></li>
       <li><strong>QR Code Default:</strong> <code><?php echo get_option('qr_size', '500x500'); ?></code></li>
       <li><strong>Database Table:</strong> <code>wp_nutrition_short_urls</code></li>

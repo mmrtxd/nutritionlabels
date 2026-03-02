@@ -37,8 +37,8 @@ class NutritionLabels_Admin_Extended
   {
     // Add top-level menu with position just below Settings
     add_menu_page(
-      'Nutrition Labels Settings',
-      'Nutrition Labels',
+      __('Nutrition Labels Settings', 'nutrition-labels'),
+      __('Nutrition Labels', 'nutrition-labels'),
       'manage_options',
       'nutrition_labels_main',
       array($this, 'render_settings_page'),
@@ -49,8 +49,8 @@ class NutritionLabels_Admin_Extended
     // Add Configuration submenu
     add_submenu_page(
       'nutrition_labels_main',
-      'Configuration',
-      'Configuration',
+      __('Configuration', 'nutrition-labels'),
+      __('Configuration', 'nutrition-labels'),
       'manage_options',
       'nutrition_labels_config',
       array($this, 'render_config_page')
@@ -59,8 +59,8 @@ class NutritionLabels_Admin_Extended
     // Add Database Management submenu
     add_submenu_page(
       'nutrition_labels_main',
-      'Database Management',
-      'Database Management',
+      __('Database Management', 'nutrition-labels'),
+      __('Database Management', 'nutrition-labels'),
       'manage_options',
       'nutrition_labels_db_management',
       array($this, 'render_db_management_page')
@@ -167,7 +167,13 @@ class NutritionLabels_Admin_Extended
     wp_send_json(array(
       'success' => true,
       'deleted_count' => $deleted_count,
-      'message' => "Successfully deleted {$deleted_count} nutrition label entries"
+      /* translators: %d: number of deleted entries */
+      'message' => sprintf(_n(
+        'Successfully deleted %d nutrition label entry',
+        'Successfully deleted %d nutrition label entries',
+        $deleted_count,
+        'nutrition-labels'
+      ), $deleted_count),
     ));
   }
 
@@ -269,7 +275,7 @@ class NutritionLabels_Admin_Extended
         flush_rewrite_rules(false);
       }
 
-      echo '<div class="notice notice-success"><p>Settings saved successfully!</p></div>';
+      echo '<div class="notice notice-success"><p>' . esc_html__('Settings saved successfully!', 'nutrition-labels') . '</p></div>';
     }
   }
 }

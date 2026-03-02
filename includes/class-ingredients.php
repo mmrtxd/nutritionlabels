@@ -93,44 +93,44 @@ class NutritionLabelIngredientList implements \JsonSerializable
   public IngStabilizers     $stabilizers;
   public IngGases           $gases;
 
-  // German display names: [group][key] => label
+  // Display names (English msgids): [group][key] => label
   private static array $labels = [
     'ingredients' => [
-      'grapes'        => 'Trauben',
-      'organicgrapes' => 'Bio-Trauben',
-      'sacharose'     => 'Saccharose',
-      'gconcentrate'  => 'Traubenkonzentrat',
+      'grapes'        => 'Grapes',
+      'organicgrapes' => 'Organic Grapes',
+      'sacharose'     => 'Sucrose',
+      'gconcentrate'  => 'Grape Concentrate',
     ],
     'conservants' => [
-      'sulfur'      => 'Schwefeldioxid',
-      'potbi'       => 'Kaliumhydrogensulfit',
-      'potmetabi'   => 'Kaliumdisulfit',
-      'potsorbate'  => 'Kaliumsorbat',
-      'lysozyme'    => 'Lysozym',
-      'ascorbic'    => 'Ascorbinsäure',
-      'dmdc'        => 'Dimethyldicarbonat',
+      'sulfur'      => 'Sulfur Dioxide',
+      'potbi'       => 'Potassium Bisulfite',
+      'potmetabi'   => 'Potassium Metabisulfite',
+      'potsorbate'  => 'Potassium Sorbate',
+      'lysozyme'    => 'Lysozyme',
+      'ascorbic'    => 'Ascorbic Acid',
+      'dmdc'        => 'Dimethyl Dicarbonate',
     ],
     'regulators' => [
-      'tacid'    => 'Weinsäure',
-      'macid'    => 'Äpfelsäure',
-      'lacid'    => 'Milchsäure',
-      'csulfate' => 'Calciumsulfat',
-      'rcitric'  => 'Citronensäure',
+      'tacid'    => 'Tartaric Acid',
+      'macid'    => 'Malic Acid',
+      'lacid'    => 'Lactic Acid',
+      'csulfate' => 'Calcium Sulfate',
+      'rcitric'  => 'Citric Acid',
     ],
     'stabilizers' => [
-      'citric'       => 'Citronensäure',
-      'metawine'     => 'Metaweinsäure',
-      'gumarabic'    => 'Gummi arabicum',
-      'yeastprotein' => 'Hefemannoproteine',
+      'citric'       => 'Citric Acid',
+      'metawine'     => 'Metatartaric Acid',
+      'gumarabic'    => 'Gum Arabic',
+      'yeastprotein' => 'Yeast Mannoproteins',
       'carboexy'     => 'Carboxymethylcellulose',
-      'potpoly'      => 'Kaliumpolyaspartat',
-      'fumar'        => 'Fumarsäure',
+      'potpoly'      => 'Potassium Polyaspartate',
+      'fumar'        => 'Fumaric Acid',
     ],
     'gases' => [
       'argon'     => 'Argon',
-      'nitrogen'  => 'Stickstoff',
-      'carbon'    => 'Kohlendioxid',
-      'schutzatm' => 'unter Schutzatmosphäre abgepackt',
+      'nitrogen'  => 'Nitrogen',
+      'carbon'    => 'Carbon Dioxide',
+      'schutzatm' => 'Packaged under protective atmosphere',
     ],
   ];
 
@@ -226,11 +226,12 @@ class NutritionLabelIngredientList implements \JsonSerializable
   }
 
   /**
-   * Returns the German display name for an ingredient key.
+   * Returns the translated display name for an ingredient key.
    */
   public static function getLabel(string $group, string $key): string
   {
-    return self::$labels[$group][$key] ?? $key;
+    $msgid = self::$labels[$group][$key] ?? $key;
+    return __($msgid, 'nutrition-labels');
   }
 
   /**
@@ -241,12 +242,12 @@ class NutritionLabelIngredientList implements \JsonSerializable
     return self::$enumbers[$group][$key] ?? '';
   }
 
-  // Group headings shown on the e-label (empty string = no heading, items listed inline)
+  // Group headings shown on the e-label (English msgids; empty string = no heading)
   private static array $groupHeadings = [
     'ingredients' => '',
-    'conservants' => 'Konservierungsstoffe',
-    'regulators'  => 'Säureregulatoren',
-    'stabilizers' => 'Stabilisatoren',
+    'conservants' => 'Preservatives',
+    'regulators'  => 'Acid Regulators',
+    'stabilizers' => 'Stabilizers',
     'gases'       => '',
   ];
 
@@ -278,7 +279,8 @@ class NutritionLabelIngredientList implements \JsonSerializable
 
       if (empty($items)) continue;
 
-      $heading = self::$groupHeadings[$group] ?? '';
+      $headingMsgid = self::$groupHeadings[$group] ?? '';
+      $heading = $headingMsgid !== '' ? __($headingMsgid, 'nutrition-labels') : '';
       $segments[] = $heading !== ''
         ? $heading . ': ' . implode(', ', $items)
         : implode(', ', $items);

@@ -1,0 +1,419 @@
+# Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+#. Plugin Name of the plugin
+msgid "Nutrition Labels"
+msgstr ""
+
+#. Description of the plugin
+msgid "Adds nutrition label management, shortcodes, and QR code generation for products."
+msgstr ""
+
+# --- includes/class-ingredients.php ---
+
+#: includes/class-ingredients.php
+msgid "Grapes"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Organic Grapes"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Sucrose"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Grape Concentrate"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Sulfur Dioxide"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Potassium Bisulfite"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Potassium Metabisulfite"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Potassium Sorbate"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Lysozyme"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Ascorbic Acid"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Dimethyl Dicarbonate"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Tartaric Acid"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Malic Acid"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Lactic Acid"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Calcium Sulfate"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Metatartaric Acid"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Gum Arabic"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Yeast Mannoproteins"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Carboxymethylcellulose"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Potassium Polyaspartate"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Fumaric Acid"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Argon"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Nitrogen"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Carbon Dioxide"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Packaged under protective atmosphere"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Preservatives"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Acid Regulators"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Stabilizers"
+msgstr ""
+
+# --- templates/nutrition-label-secure.php ---
+
+#: templates/nutrition-label-secure.php
+msgid "Nutrition Label"
+msgstr ""
+
+#: templates/nutrition-label-secure.php
+msgid "Ingredients:"
+msgstr ""
+
+#: templates/nutrition-label-secure.php
+msgid "Nutritional Information"
+msgstr ""
+
+#: templates/nutrition-label-secure.php
+msgid "Per 100ml"
+msgstr ""
+
+#: templates/nutrition-label-secure.php
+msgid "Energy"
+msgstr ""
+
+#: templates/nutrition-label-secure.php
+msgid "Carbohydrates"
+msgstr ""
+
+#: templates/nutrition-label-secure.php
+msgid "of which Sugars"
+msgstr ""
+
+#: templates/nutrition-label-secure.php
+msgid "May contain negligible amounts of protein and salt."
+msgstr ""
+
+# --- admin/working-metabox.php ---
+
+#: admin/working-metabox.php
+msgid "Nutrition Information"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Ingredients:"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Base Ingredients"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Gases"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Calories (kcal):"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Kilojoules (kJ):"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Carbohydrates (g):"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Sugar (g):"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Nutrition Label URL:"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Download QR Code"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Save product to generate short URL first."
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Text"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Nil"
+msgstr ""
+
+# --- admin/class-nutrition-labels-admin-extended.php ---
+
+#: admin/class-nutrition-labels-admin-extended.php
+msgid "Nutrition Labels Settings"
+msgstr ""
+
+#: admin/class-nutrition-labels-admin-extended.php
+msgid "Configuration"
+msgstr ""
+
+#: admin/class-nutrition-labels-admin-extended.php
+msgid "Database Management"
+msgstr ""
+
+#: admin/class-nutrition-labels-admin-extended.php
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: admin/class-nutrition-labels-admin-extended.php
+msgid "Invalid nonce"
+msgstr ""
+
+#. translators: %d: number of deleted entries
+#: admin/class-nutrition-labels-admin-extended.php
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] ""
+msgstr[1] ""
+
+# --- admin/nutrition-db-management.php ---
+
+#: admin/nutrition-db-management.php
+msgid "Nutrition Labels - Database Management"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Search product name or short code..."
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Search"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Clear Search"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "No nutrition label entries found."
+msgstr ""
+
+#. translators: %1$d: number of visible entries, %2$d: total entries
+#: admin/nutrition-db-management.php
+msgid "Showing %1$d of %2$d entries"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Select All"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Select"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Product"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Prefix"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Short Code"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Created"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Actions"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "View Label"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Delete"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Delete Selected"
+msgstr ""
+
+#: admin/nutrition-db-management.php
+msgid "Export to CSV"
+msgstr ""
+
+# --- admin/nutrition-settings-page.php ---
+
+#: admin/nutrition-settings-page.php
+msgid "Nutrition Labels - Configuration"
+msgstr ""
+
+#: admin/nutrition-settings-page.php
+msgid "QR Code Size"
+msgstr ""
+
+#: admin/nutrition-settings-page.php
+msgid "Choose QR code size for download. Smaller sizes are better for small labels, larger for posters."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
+msgid "Short Code Length"
+msgstr ""
+
+#: admin/nutrition-settings-page.php
+msgid "Length affects uniqueness vs readability. Shorter codes may conflict more often."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
+msgid "Character Set"
+msgstr ""
+
+#: admin/nutrition-settings-page.php
+msgid "Current URL Format"
+msgstr ""
+
+#: admin/nutrition-settings-page.php
+#: admin/nutrition-settings-page-simple.php
+msgid "Information"
+msgstr ""
+
+# --- admin/nutrition-settings-page-simple.php ---
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Nutrition Labels Settings"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Configure your nutrition labels plugin settings and manage QR code generation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "URL Prefix"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Warning:"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Changing this will make existing QR codes stop working!"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Minimum is 4 characters. Shorter codes may conflict more often."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Choose allowed characters for short codes."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Current Entries:"
+msgstr ""
+
+#. translators: %d: number of active nutrition labels
+#: admin/nutrition-settings-page-simple.php
+msgid "%d nutrition labels active"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Save Settings"
+msgstr ""

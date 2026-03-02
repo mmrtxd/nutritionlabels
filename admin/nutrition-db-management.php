@@ -16,26 +16,26 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
 ?>
 
 <div class="wrap">
-  <h1>Nutrition Labels - Database Management</h1>
+  <h1><?php esc_html_e('Nutrition Labels - Database Management', 'nutrition-labels'); ?></h1>
 
   <div class="nutrition-labels-toolbar">
     <form method="get" action="">
-      <input type="text" name="search" value="<?php echo esc_attr($search); ?>" placeholder="Search product name or short code...">
-      <input type="submit" value="Search" class="button">
+      <input type="text" name="search" value="<?php echo esc_attr($search); ?>" placeholder="<?php esc_attr_e('Search product name or short code...', 'nutrition-labels'); ?>">
+      <input type="submit" value="<?php esc_attr_e('Search', 'nutrition-labels'); ?>" class="button">
     </form>
 
     <?php if (!empty($search)): ?>
-      <a href="?paged=1" class="button">Clear Search</a>
+      <a href="?paged=1" class="button"><?php esc_html_e('Clear Search', 'nutrition-labels'); ?></a>
     <?php endif; ?>
   </div>
 
   <?php if (empty($entries)): ?>
     <div class="notice notice-warning">
-      <p>No nutrition label entries found.</p>
+      <p><?php esc_html_e('No nutrition label entries found.', 'nutrition-labels'); ?></p>
     </div>
   <?php else: ?>
     <div class="nutrition-labels-table-wrapper">
-      <p>Showing <?php echo count($entries); ?> of <?php echo $total; ?> entries</p>
+      <p><?php printf(esc_html__('Showing %1$d of %2$d entries', 'nutrition-labels'), count($entries), $total); ?></p>
 
       <form method="post" action="">
         <?php wp_nonce_field('nutrition_delete', '_wpnonce'); ?>
@@ -44,13 +44,13 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
             <tr>
               <td class="manage-column column-cb check-column">
                 <input type="checkbox" id="cb-select-all-1" onclick="toggleAllCheckboxes(this)">
-                <label class="screen-reader-text" for="cb-select-all-1">Select All</label>
+                <label class="screen-reader-text" for="cb-select-all-1"><?php esc_html_e('Select All', 'nutrition-labels'); ?></label>
               </td>
-              <th class="manage-column column-primary">Product</th>
-              <th>Prefix</th>
-              <th>Short Code</th>
-              <th>Created</th>
-              <th class="column-actions">Actions</th>
+              <th class="manage-column column-primary"><?php esc_html_e('Product', 'nutrition-labels'); ?></th>
+              <th><?php esc_html_e('Prefix', 'nutrition-labels'); ?></th>
+              <th><?php esc_html_e('Short Code', 'nutrition-labels'); ?></th>
+              <th><?php esc_html_e('Created', 'nutrition-labels'); ?></th>
+              <th class="column-actions"><?php esc_html_e('Actions', 'nutrition-labels'); ?></th>
             </tr>
           </thead>
           <tbody>
@@ -58,7 +58,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
               <tr>
                 <td class="check-column">
                   <input id="cb-select-<?php echo $entry->product_id; ?>" type="checkbox" name="product_ids[]" value="<?php echo $entry->product_id; ?>">
-                  <label class="screen-reader-text" for="cb-select-<?php echo $entry->product_id; ?>">Select</label>
+                  <label class="screen-reader-text" for="cb-select-<?php echo $entry->product_id; ?>"><?php esc_html_e('Select', 'nutrition-labels'); ?></label>
                 </td>
                 <td>
                   <strong><?php echo esc_html(get_the_title($entry->product_id)); ?></strong>
@@ -76,10 +76,10 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                 </td>
                 <td>
                   <button type="button" class="button" onclick="viewNutritionLabel(<?php echo $entry->product_id; ?>)">
-                    View Label
+                    <?php esc_html_e('View Label', 'nutrition-labels'); ?>
                   </button>
                   <button type="button" class="button" onclick="deleteEntry(<?php echo $entry->product_id; ?>)">
-                    Delete
+                    <?php esc_html_e('Delete', 'nutrition-labels'); ?>
                   </button>
                 </td>
               </tr>
@@ -88,14 +88,14 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
         </table>
 
         <div class="nutrition-labels-bulk-actions">
-          <button type="button" id="bulk_delete" class="button button-primary">Delete Selected</button>
+          <button type="button" id="bulk_delete" class="button button-primary"><?php esc_html_e('Delete Selected', 'nutrition-labels'); ?></button>
           <a
             href="<?php echo wp_nonce_url(
                     admin_url('admin.php?page=nutrition_labels_db_management&export=csv'),
                     'nutrition_labels_export'
                   ); ?>"
             class="button">
-            Export to CSV
+            <?php esc_html_e('Export to CSV', 'nutrition-labels'); ?>
           </a>
         </div>
       </form>
