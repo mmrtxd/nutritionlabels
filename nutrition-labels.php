@@ -37,8 +37,18 @@ class NutritionLabels
 
   public function __construct()
   {
+    add_action('plugins_loaded', [$this, 'load_textdomain']);
     add_action('init', [$this, 'init']);
     add_action('admin_init', [$this, 'migrate_database']);
+  }
+
+  public function load_textdomain()
+  {
+    load_plugin_textdomain(
+      'nutrition-labels',
+      false,
+      dirname(plugin_basename(__FILE__)) . '/languages'
+    );
   }
 
   public static function activate()
