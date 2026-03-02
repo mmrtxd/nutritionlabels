@@ -1,0 +1,349 @@
+# German translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+# Markus Hammer <markus@hammerwein.at>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Markus Hammer <markus@hammerwein.at>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+# -----------------------------------------------
+# Plugin meta
+# -----------------------------------------------
+
+#. Plugin Name of the plugin
+msgid "Nutrition Labels"
+msgstr "Nährwertkennzeichnung"
+
+#. Description of the plugin
+msgid "Adds nutrition label management, shortcodes, and QR code generation for products."
+msgstr "Fügt Nährwertkennzeichnungsverwaltung, Kurzcodes und QR-Code-Generierung für Produkte hinzu."
+
+# -----------------------------------------------
+# Ingredient names  (includes/class-ingredients.php)
+# -----------------------------------------------
+
+msgid "Grapes"
+msgstr "Trauben"
+
+msgid "Organic Grapes"
+msgstr "Bio-Trauben"
+
+msgid "Sucrose"
+msgstr "Saccharose"
+
+msgid "Grape Concentrate"
+msgstr "Traubenkonzentrat"
+
+msgid "Sulfur Dioxide"
+msgstr "Schwefeldioxid"
+
+msgid "Potassium Bisulfite"
+msgstr "Kaliumhydrogensulfit"
+
+msgid "Potassium Metabisulfite"
+msgstr "Kaliumdisulfit"
+
+msgid "Potassium Sorbate"
+msgstr "Kaliumsorbat"
+
+msgid "Lysozyme"
+msgstr "Lysozym"
+
+msgid "Ascorbic Acid"
+msgstr "Ascorbinsäure"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimethyldicarbonat"
+
+msgid "Tartaric Acid"
+msgstr "Weinsäure"
+
+msgid "Malic Acid"
+msgstr "Äpfelsäure"
+
+msgid "Lactic Acid"
+msgstr "Milchsäure"
+
+msgid "Calcium Sulfate"
+msgstr "Calciumsulfat"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Citronensäure"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Citronensäure"
+
+msgid "Metatartaric Acid"
+msgstr "Metaweinsäure"
+
+msgid "Gum Arabic"
+msgstr "Gummi arabicum"
+
+msgid "Yeast Mannoproteins"
+msgstr "Hefemannoproteine"
+
+msgid "Carboxymethylcellulose"
+msgstr "Carboxymethylcellulose"
+
+msgid "Potassium Polyaspartate"
+msgstr "Kaliumpolyaspartat"
+
+msgid "Fumaric Acid"
+msgstr "Fumarsäure"
+
+msgid "Argon"
+msgstr "Argon"
+
+msgid "Nitrogen"
+msgstr "Stickstoff"
+
+msgid "Carbon Dioxide"
+msgstr "Kohlendioxid"
+
+msgid "Packaged under protective atmosphere"
+msgstr "unter Schutzatmosphäre abgepackt"
+
+# -----------------------------------------------
+# Group headings  (class-ingredients.php + working-metabox.php)
+# -----------------------------------------------
+
+msgid "Preservatives"
+msgstr "Konservierungsstoffe"
+
+msgid "Acid Regulators"
+msgstr "Säureregulatoren"
+
+msgid "Stabilizers"
+msgstr "Stabilisatoren"
+
+msgid "Base Ingredients"
+msgstr "Grundzutaten"
+
+msgid "Gases"
+msgstr "Gase"
+
+# -----------------------------------------------
+# Frontend label  (templates/nutrition-label-secure.php)
+# -----------------------------------------------
+
+msgid "Nutrition Label"
+msgstr "Nährwertkennzeichnung"
+
+#: templates/nutrition-label-secure.php
+#: admin/working-metabox.php
+msgid "Ingredients:"
+msgstr "Inhaltsstoffe:"
+
+msgid "Nutritional Information"
+msgstr "Nährwertangaben"
+
+msgid "Per 100ml"
+msgstr "Pro 100ml"
+
+msgid "Energy"
+msgstr "Energie"
+
+msgid "Carbohydrates"
+msgstr "Kohlenhydrate"
+
+msgid "of which Sugars"
+msgstr "Davon Zucker"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Kann geringfügige Mengen von Eiweiß und Salz enthalten."
+
+# -----------------------------------------------
+# Metabox  (admin/working-metabox.php)
+# -----------------------------------------------
+
+msgid "Nutrition Information"
+msgstr "Nährwertinformationen"
+
+msgid "Calories (kcal):"
+msgstr "Kalorien (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilojoules (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Kohlenhydrate (g):"
+
+msgid "Sugar (g):"
+msgstr "Zucker (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "Nährwertkennzeichnungs-URL:"
+
+msgid "Download QR Code"
+msgstr "QR-Code herunterladen"
+
+msgid "Save product to generate short URL first."
+msgstr "Produkt zuerst speichern, um eine Kurz-URL zu generieren."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Nil"
+msgstr "Nein"
+
+# -----------------------------------------------
+# Admin menu + messages  (class-nutrition-labels-admin-extended.php)
+# -----------------------------------------------
+
+msgid "Nutrition Labels Settings"
+msgstr "Nährwertkennzeichnung – Einstellungen"
+
+msgid "Configuration"
+msgstr "Konfiguration"
+
+msgid "Database Management"
+msgstr "Datenbankverwaltung"
+
+msgid "Settings saved successfully!"
+msgstr "Einstellungen erfolgreich gespeichert!"
+
+msgid "Invalid nonce"
+msgstr "Ungültiges Sicherheits-Token"
+
+#. translators: %d: number of deleted entries
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "%d Nährwertkennzeichnung erfolgreich gelöscht"
+msgstr[1] "%d Nährwertkennzeichnungen erfolgreich gelöscht"
+
+# -----------------------------------------------
+# Database management page  (admin/nutrition-db-management.php)
+# -----------------------------------------------
+
+msgid "Nutrition Labels - Database Management"
+msgstr "Nährwertkennzeichnung – Datenbankverwaltung"
+
+msgid "Search product name or short code..."
+msgstr "Produktname oder Kurzcode suchen …"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Clear Search"
+msgstr "Suche zurücksetzen"
+
+msgid "No nutrition label entries found."
+msgstr "Keine Nährwertkennzeichnungen gefunden."
+
+#. translators: %1$d: number of visible entries, %2$d: total entries
+msgid "Showing %1$d of %2$d entries"
+msgstr "%1$d von %2$d Einträgen angezeigt"
+
+msgid "Select All"
+msgstr "Alle auswählen"
+
+msgid "Select"
+msgstr "Auswählen"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Prefix"
+msgstr "Präfix"
+
+msgid "Short Code"
+msgstr "Kurzcode"
+
+msgid "Created"
+msgstr "Erstellt"
+
+msgid "Actions"
+msgstr "Aktionen"
+
+msgid "View Label"
+msgstr "Etikett anzeigen"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Delete Selected"
+msgstr "Ausgewählte löschen"
+
+msgid "Export to CSV"
+msgstr "Als CSV exportieren"
+
+# -----------------------------------------------
+# Configuration page  (admin/nutrition-settings-page.php)
+# -----------------------------------------------
+
+msgid "Nutrition Labels - Configuration"
+msgstr "Nährwertkennzeichnung – Konfiguration"
+
+msgid "QR Code Size"
+msgstr "QR-Code-Größe"
+
+msgid "Choose QR code size for download. Smaller sizes are better for small labels, larger for posters."
+msgstr "QR-Code-Größe für den Download wählen. Kleinere Größen eignen sich besser für kleine Etiketten, größere für Poster."
+
+#: admin/nutrition-settings-page.php
+#: admin/nutrition-settings-page-simple.php
+msgid "Short Code Length"
+msgstr "Kurzcode-Länge"
+
+msgid "Length affects uniqueness vs readability. Shorter codes may conflict more often."
+msgstr "Die Länge beeinflusst Einzigartigkeit vs. Lesbarkeit. Kürzere Codes können häufiger kollidieren."
+
+#: admin/nutrition-settings-page.php
+#: admin/nutrition-settings-page-simple.php
+msgid "Character Set"
+msgstr "Zeichensatz"
+
+msgid "Current URL Format"
+msgstr "Aktuelles URL-Format"
+
+#: admin/nutrition-settings-page.php
+#: admin/nutrition-settings-page-simple.php
+msgid "Information"
+msgstr "Informationen"
+
+# -----------------------------------------------
+# Settings page (admin/nutrition-settings-page-simple.php)
+# -----------------------------------------------
+
+msgid "Configure your nutrition labels plugin settings and manage QR code generation."
+msgstr "Plugin-Einstellungen für Nährwertkennzeichnungen konfigurieren und QR-Code-Generierung verwalten."
+
+msgid "URL Prefix"
+msgstr "URL-Präfix"
+
+msgid "Warning:"
+msgstr "Warnung:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Eine Änderung macht bestehende QR-Codes ungültig!"
+
+msgid "Minimum is 4 characters. Shorter codes may conflict more often."
+msgstr "Minimum 4 Zeichen. Kürzere Codes können häufiger kollidieren."
+
+msgid "Choose allowed characters for short codes."
+msgstr "Erlaubte Zeichen für Kurzcodes festlegen."
+
+msgid "Current Entries:"
+msgstr "Aktuelle Einträge:"
+
+#. translators: %d: number of active nutrition labels
+msgid "%d nutrition labels active"
+msgstr "%d Nährwertkennzeichnung(en) aktiv"
+
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
