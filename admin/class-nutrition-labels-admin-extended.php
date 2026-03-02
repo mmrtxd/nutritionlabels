@@ -180,13 +180,27 @@ class NutritionLabels_Admin_Extended
       wp_send_json_error('Invalid product ID');
     }
 
+    // Validate optional language code against the whitelist
+    $lang_code = '';
+    $raw_lang  = isset($_POST['lang_code']) ? sanitize_text_field($_POST['lang_code']) : '';
+    if ($raw_lang !== '' && preg_match('/^[a-z]{2}$/', $raw_lang)) {
+      $lang_map = NutritionLabels_URL::get_lang_map();
+      if (isset($lang_map[$raw_lang])) {
+        $lang_code = $raw_lang;
+      }
+    }
+
     $nutrition_data = $this->db->get_complete_nutrition_data($product_id);
     if (empty($nutrition_data['short_code'])) {
       wp_send_json_error('No short URL for this product');
     }
 
-    $prefix    = get_option('url_prefix', 'l');
-    $short_url = home_url("/{$prefix}/{$nutrition_data['short_code']}");
+    $prefix = get_option('url_prefix', 'l');
+    $slug   = $nutrition_data['short_code'];
+    if ($lang_code !== '') {
+      $slug .= '-' . $lang_code;
+    }
+    $short_url = home_url("/{$prefix}/{$slug}");
 
     $data_uri = NutritionLabels_QR::generate_qr_code_base64($short_url);
     if ($data_uri === false) {
@@ -195,10 +209,11 @@ class NutritionLabels_Admin_Extended
 
     $product      = get_post($product_id);
     $product_name = sanitize_file_name($product->post_title);
+    $filename     = $product_name . '-nutrition-qr' . ($lang_code !== '' ? '-' . $lang_code : '') . '.png';
 
     wp_send_json_success(array(
       'url'      => $data_uri,
-      'filename' => $product_name . '-nutrition-qr.png',
+      'filename' => $filename,
     ));
   }
 

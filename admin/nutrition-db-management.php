@@ -47,10 +47,10 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                 <label class="screen-reader-text" for="cb-select-all-1"><?php esc_html_e('Select All', 'nutrition-labels'); ?></label>
               </td>
               <th class="manage-column column-primary"><?php esc_html_e('Product', 'nutrition-labels'); ?></th>
-              <th><?php esc_html_e('Prefix', 'nutrition-labels'); ?></th>
               <th><?php esc_html_e('Short Code', 'nutrition-labels'); ?></th>
               <th><?php esc_html_e('Created', 'nutrition-labels'); ?></th>
               <th class="column-actions"><?php esc_html_e('Actions', 'nutrition-labels'); ?></th>
+              <th><?php esc_html_e('Export Codes', 'nutrition-labels'); ?></th>
             </tr>
           </thead>
           <tbody>
@@ -66,16 +66,14 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                   <small>ID: <?php echo $entry->product_id; ?></small>
                 </td>
                 <td>
-                  <code><?php echo esc_html($entry->url_prefix); ?></code>
-                </td>
-                <td>
                   <code>/<?php echo esc_html(get_option('url_prefix', 'l')) . '/' . esc_html($entry->short_code); ?></code>
                 </td>
                 <td>
-                  <?php echo date('Y-m-d H:i', strtotime($entry->created_at)); ?>
+                  <?php echo esc_html(date('Y-m-d H:i', strtotime($entry->created_at))); ?>
                 </td>
                 <td>
-                  <button type="button" class="button" onclick="viewNutritionLabel(<?php echo $entry->product_id; ?>)">
+                  <?php $label_url = esc_js(home_url('/' . get_option('url_prefix', 'l') . '/' . $entry->short_code)); ?>
+                  <button type="button" class="button" onclick="viewNutritionLabel('<?php echo $label_url; ?>')">
                     <?php esc_html_e('View Label', 'nutrition-labels'); ?>
                   </button>
                   <button type="button" class="button" onclick="downloadQrCode(<?php echo $entry->product_id; ?>, this)">
@@ -84,6 +82,14 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                   <button type="button" class="button" onclick="deleteEntry(<?php echo $entry->product_id; ?>)">
                     <?php esc_html_e('Delete', 'nutrition-labels'); ?>
                   </button>
+                </td>
+                <td>
+                  <select onchange="exportQrCode(<?php echo $entry->product_id; ?>, this)">
+                    <option value="">— <?php esc_html_e('Select', 'nutrition-labels'); ?> —</option>
+                    <?php foreach (NutritionLabels_URL::get_lang_names() as $code => $name): ?>
+                      <option value="<?php echo esc_attr($code); ?>"><?php echo esc_html($name); ?></option>
+                    <?php endforeach; ?>
+                  </select>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -136,22 +142,8 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
       }
     }
 
-    function viewNutritionLabel(productId) {
-      // Get the short code from the table
-      var shortCode = '';
-      jQuery('input[name="product_ids[]"]').each(function() {
-        if (this.value == productId) {
-          var row = jQuery(this).closest('tr');
-          shortCode = row.find('td:nth-child(3) code').text().replace('/l/', '').trim();
-        }
-      });
-
-      if (!shortCode) {
-        shortCode = prompt('Enter short code for product ID ' + productId + ':');
-        if (!shortCode) return;
-      }
-
-      window.open('<?php echo home_url('/l/'); ?>' + shortCode);
+    function viewNutritionLabel(url) {
+      window.open(url);
     }
 
     function deleteEntry(productId) {
@@ -181,22 +173,15 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
       }
     }
 
-    function viewNutritionLabel(productId) {
-      // Get the short code from the current row
-      var row = document.querySelector('tr:has(input[value="' + productId + '"])');
-      var shortCodeCell = row.querySelector('td:nth-child(4) code');
-      var shortCode = shortCodeCell.textContent.replace('/l/', '');
-      window.open('<?php echo home_url('/l/'); ?>' + shortCode);
-    }
-
-
-
     var nutritionQrNonce = '<?php echo esc_js(wp_create_nonce('nutrition_qr_download')); ?>';
 
-    function downloadQrCode(productId, button) {
-      var originalText = button.textContent;
-      button.disabled = true;
-      button.textContent = '<?php echo esc_js(esc_html__('Generating...', 'nutrition-labels')); ?>';
+    function downloadQrCode(productId, button, langCode) {
+      langCode = langCode || '';
+      var originalText = button ? button.textContent : '';
+      if (button) {
+        button.disabled = true;
+        button.textContent = '<?php echo esc_js(esc_html__('Generating...', 'nutrition-labels')); ?>';
+      }
 
       jQuery.ajax({
         url: ajaxurl,
@@ -204,6 +189,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
         data: {
           action: 'nutrition_qr_download',
           product_id: productId,
+          lang_code: langCode,
           nonce: nutritionQrNonce
         },
         success: function(response) {
@@ -222,10 +208,19 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
           alert('<?php echo esc_js(esc_html__('Error: Could not generate QR code', 'nutrition-labels')); ?>');
         },
         complete: function() {
-          button.disabled = false;
-          button.textContent = originalText;
+          if (button) {
+            button.disabled = false;
+            button.textContent = originalText;
+          }
         }
       });
+    }
+
+    function exportQrCode(productId, select) {
+      var langCode = select.value;
+      if (!langCode) return;
+      select.value = '';
+      downloadQrCode(productId, null, langCode);
     }
 
     jQuery(document).ready(function($) {

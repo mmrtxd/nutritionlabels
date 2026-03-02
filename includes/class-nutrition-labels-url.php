@@ -38,6 +38,41 @@ class NutritionLabels_URL
     'sv' => 'sv_SE',
   ];
 
+  /** Returns the code → locale map for validation use. */
+  public static function get_lang_map(): array
+  {
+    return self::$lang_map;
+  }
+
+  /** Returns code → English display name pairs for UI dropdowns. */
+  public static function get_lang_names(): array
+  {
+    return [
+      'bg' => 'Bulgarian',
+      'cs' => 'Czech',
+      'da' => 'Danish',
+      'de' => 'German',
+      'el' => 'Greek',
+      'en' => 'English',
+      'es' => 'Spanish',
+      'et' => 'Estonian',
+      'fi' => 'Finnish',
+      'fr' => 'French',
+      'hr' => 'Croatian',
+      'hu' => 'Hungarian',
+      'it' => 'Italian',
+      'lt' => 'Lithuanian',
+      'lv' => 'Latvian',
+      'nl' => 'Dutch',
+      'pl' => 'Polish',
+      'pt' => 'Portuguese',
+      'ro' => 'Romanian',
+      'sk' => 'Slovak',
+      'sl' => 'Slovenian',
+      'sv' => 'Swedish',
+    ];
+  }
+
   public static function init()
   {
     if (!function_exists('add_action') || !function_exists('add_filter')) {
