@@ -19,6 +19,8 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
+require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
+
 define('NUTRITION_LABELS_VERSION', '1.1.0');
 define('NUTRITION_LABELS_DB_VERSION', '1.1.0');
 

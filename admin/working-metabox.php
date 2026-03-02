@@ -261,15 +261,19 @@ class Working_NutritionLabels_MetaBox
       wp_send_json_error('No short URL for this product');
     }
 
-    $prefix = get_option('url_prefix', 'l');
+    $prefix    = get_option('url_prefix', 'l');
     $short_url = home_url("/{$prefix}/{$nutrition_data['short_code']}");
-    $qr_url = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&format=png&data=" . urlencode($short_url);
 
-    $product = get_post($product_id);
+    $data_uri = NutritionLabels_QR::generate_qr_code_base64($short_url);
+    if ($data_uri === false) {
+      wp_send_json_error('QR code generation failed');
+    }
+
+    $product      = get_post($product_id);
     $product_name = sanitize_file_name($product->post_title);
 
     wp_send_json_success([
-      'url'       => $qr_url,
+      'url'       => $data_uri,
       'filename'  => $product_name . '-nutrition-qr.png',
       'short_url' => $short_url,
     ]);
