@@ -27,6 +27,7 @@ if (isset($_POST['submit-nutrition-settings']) && class_exists('NutritionLabels_
 // Get current settings
 $current_prefix = get_option('url_prefix', 'l');
 $current_length = get_option('short_code_length', 5);
+$current_qr_size = get_option('qr_size', '500x500');
 $db = new NutritionLabels_DB_Extended();
 $active_count = $db->count_all_entries();
 ?>
@@ -61,15 +62,28 @@ $active_count = $db->count_all_entries();
 
         <tr>
           <th scope="row">
+            <label for="qr_size"><?php esc_html_e('QR Code Size', 'nutrition-labels'); ?></label>
+          </th>
+          <td>
+            <?php require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/settings-functions.php'; ?>
+            <select name="nutrition_labels[qr_size]" id="qr_size">
+              <?php echo qr_size_options($current_qr_size); ?>
+            </select>
+            <p class="description"><?php esc_html_e('Choose QR code size for download. Smaller sizes are better for small labels, larger for posters.', 'nutrition-labels'); ?></p>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">
             <label for="short_code_length"><?php esc_html_e('Short Code Length', 'nutrition-labels'); ?></label>
           </th>
           <td>
             <select name="nutrition_labels[short_code_length]" id="short_code_length">
-              <option value="4" <?php nutrition_selected($current_length, 4); ?>>4 characters</option>
-              <option value="5" <?php nutrition_selected($current_length, 5); ?>>5 characters (Default)</option>
-              <option value="6" <?php nutrition_selected($current_length, 6); ?>>6 characters</option>
-              <option value="7" <?php nutrition_selected($current_length, 7); ?>>7 characters</option>
-              <option value="8" <?php nutrition_selected($current_length, 8); ?>>8 characters</option>
+              <option value="4" <?php echo nutrition_selected($current_length, 4); ?>>4 characters</option>
+              <option value="5" <?php echo nutrition_selected($current_length, 5); ?>>5 characters (Default)</option>
+              <option value="6" <?php echo nutrition_selected($current_length, 6); ?>>6 characters</option>
+              <option value="7" <?php echo nutrition_selected($current_length, 7); ?>>7 characters</option>
+              <option value="8" <?php echo nutrition_selected($current_length, 8); ?>>8 characters</option>
             </select>
             <p class="description">
               <?php esc_html_e('Minimum is 4 characters. Shorter codes may conflict more often.', 'nutrition-labels'); ?>

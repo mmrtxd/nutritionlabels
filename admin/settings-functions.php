@@ -9,7 +9,7 @@ function nutrition_submit_button($text = 'Save Changes', $type = 'primary', $nam
 
 if (!function_exists('nutrition_selected')) {
     function nutrition_selected($value, $current) {
-        return $value === $current ? 'selected="selected"' : '';
+        return (string) $value === (string) $current ? 'selected="selected"' : '';
     }
 }
 

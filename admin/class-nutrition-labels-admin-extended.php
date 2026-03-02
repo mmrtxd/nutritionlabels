@@ -47,16 +47,6 @@ class NutritionLabels_Admin_Extended
       80  // Position just below Settings (menu 80)
     );
 
-    // Add Configuration submenu
-    add_submenu_page(
-      'nutrition_labels_main',
-      __('Configuration', 'nutrition-labels'),
-      __('Configuration', 'nutrition-labels'),
-      'manage_options',
-      'nutrition_labels_config',
-      array($this, 'render_config_page')
-    );
-
     // Add Database Management submenu
     add_submenu_page(
       'nutrition_labels_main',
@@ -257,11 +247,6 @@ class NutritionLabels_Admin_Extended
     require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/nutrition-settings-page-simple.php';
   }
 
-  public function render_config_page()
-  {
-    require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/nutrition-settings-page.php';
-  }
-
   public function render_db_management_page()
   {
     // Ensure WordPress functions are available
@@ -297,6 +282,11 @@ class NutritionLabels_Admin_Extended
       // Save individual options
       if (isset($_POST['nutrition_labels']['url_prefix'])) {
         update_option('url_prefix', sanitize_text_field($_POST['nutrition_labels']['url_prefix']));
+      }
+      if (isset($_POST['nutrition_labels']['qr_size'])) {
+        $allowed_qr_sizes = array('300x300', '500x500', '800x800');
+        $qr_size = sanitize_text_field($_POST['nutrition_labels']['qr_size']);
+        update_option('qr_size', in_array($qr_size, $allowed_qr_sizes) ? $qr_size : '500x500');
       }
       if (isset($_POST['nutrition_labels']['short_code_length'])) {
         update_option('short_code_length', absint($_POST['nutrition_labels']['short_code_length']));

@@ -37,11 +37,11 @@ $character_set = get_option('character_set', 'alphanumeric');
           </th>
           <td>
             <select name="short_code_length" id="short_code_length">
-              <option value="4" <?php nutrition_selected($short_code_length, 4); ?>>4 characters (More unique)</option>
-              <option value="5" <?php nutrition_selected($short_code_length, 5); ?>>5 characters (Default)</option>
-              <option value="6" <?php nutrition_selected($short_code_length, 6); ?>>6 characters (More collisions)</option>
-              <option value="7" <?php nutrition_selected($short_code_length, 7); ?>>7 characters (Less collisions)</option>
-              <option value="8" <?php nutrition_selected($short_code_length, 8); ?>>8 characters (Very readable)</option>
+              <option value="4" <?php echo nutrition_selected($short_code_length, 4); ?>>4 characters (More unique)</option>
+              <option value="5" <?php echo nutrition_selected($short_code_length, 5); ?>>5 characters (Default)</option>
+              <option value="6" <?php echo nutrition_selected($short_code_length, 6); ?>>6 characters (More collisions)</option>
+              <option value="7" <?php echo nutrition_selected($short_code_length, 7); ?>>7 characters (Less collisions)</option>
+              <option value="8" <?php echo nutrition_selected($short_code_length, 8); ?>>8 characters (Very readable)</option>
             </select>
             <p class="description"><?php esc_html_e('Length affects uniqueness vs readability. Shorter codes may conflict more often.', 'nutrition-labels'); ?></p>
           </td>
