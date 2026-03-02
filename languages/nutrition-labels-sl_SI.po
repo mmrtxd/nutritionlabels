@@ -1,0 +1,280 @@
+# Slovenian translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Slovenian <sl@li.org>\n"
+"Language: sl_SI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Prehranske nalepke"
+
+msgid "Grapes"
+msgstr "Grozdje"
+
+msgid "Organic Grapes"
+msgstr "Ekološko grozdje"
+
+msgid "Sucrose"
+msgstr "Saharoza"
+
+msgid "Grape Concentrate"
+msgstr "Grozdni koncentrat"
+
+msgid "Sulfur Dioxide"
+msgstr "Žveplov dioksid"
+
+msgid "Potassium Bisulfite"
+msgstr "Kalijev hidrogensulfit"
+
+msgid "Potassium Metabisulfite"
+msgstr "Kalijev metabisulfit"
+
+msgid "Potassium Sorbate"
+msgstr "Kalijev sorbat"
+
+msgid "Lysozyme"
+msgstr "Lizocim"
+
+msgid "Ascorbic Acid"
+msgstr "Askorbinska kislina"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetildikarbonaat"
+
+msgid "Tartaric Acid"
+msgstr "Vinska kislina"
+
+msgid "Malic Acid"
+msgstr "Jabolčna kislina"
+
+msgid "Lactic Acid"
+msgstr "Mlečna kislina"
+
+msgid "Calcium Sulfate"
+msgstr "Kalcijev sulfat"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Citronska kislina"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Citronska kislina"
+
+msgid "Metatartaric Acid"
+msgstr "Metavinska kislina"
+
+msgid "Gum Arabic"
+msgstr "Arabska guma"
+
+msgid "Yeast Mannoproteins"
+msgstr "Kvasovkini mannoproteini"
+
+msgid "Carboxymethylcellulose"
+msgstr "Karboksimetilceluloza"
+
+msgid "Potassium Polyaspartate"
+msgstr "Kalijev poliaspartat"
+
+msgid "Fumaric Acid"
+msgstr "Fumarna kislina"
+
+msgid "Argon"
+msgstr "Argon"
+
+msgid "Nitrogen"
+msgstr "Dušik"
+
+msgid "Carbon Dioxide"
+msgstr "Ogljikov dioksid"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Pakirano v zaščitni atmosferi"
+
+msgid "Preservatives"
+msgstr "Konzervansi"
+
+msgid "Acid Regulators"
+msgstr "Regulatorji kislosti"
+
+msgid "Stabilizers"
+msgstr "Stabilizatorji"
+
+msgid "Base Ingredients"
+msgstr "Osnovne sestavine"
+
+msgid "Gases"
+msgstr "Plini"
+
+msgid "Nutrition Label"
+msgstr "Prehranska nalepka"
+
+msgid "Ingredients:"
+msgstr "Sestavine:"
+
+msgid "Nutritional Information"
+msgstr "Prehranska vrednost"
+
+msgid "Per 100ml"
+msgstr "Na 100 ml"
+
+msgid "Energy"
+msgstr "Energija"
+
+msgid "Carbohydrates"
+msgstr "Ogljikovi hidrati"
+
+msgid "of which Sugars"
+msgstr "od tega Sladkorji"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Lahko vsebuje zanemarljive količine beljakovin in soli."
+
+msgid "Nutrition Information"
+msgstr "Prehranske informacije"
+
+msgid "Calories (kcal):"
+msgstr "Kalorije (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilodžulov (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Ogljikovi hidrati (g):"
+
+msgid "Sugar (g):"
+msgstr "Sladkorji (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL prehranske nalepke:"
+
+msgid "Download QR Code"
+msgstr "Prenesi QR kodo"
+
+msgid "Save product to generate short URL first."
+msgstr "Najprej shranite izdelek za generiranje kratke URL-je."
+
+msgid "Text"
+msgstr "Besedilo"
+
+msgid "Nil"
+msgstr "Nič"
+
+msgid "Nutrition Labels Settings"
+msgstr "Nastavitve prehranskih nalepk"
+
+msgid "Database Management"
+msgstr "Upravljanje zbirke podatkov"
+
+msgid "Settings saved successfully!"
+msgstr "Nastavitve so bile uspešno shranjene!"
+
+msgid "Invalid nonce"
+msgstr "Neveljaven varnostni žeton"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "Uspešno izbrisanih %d prehranskih nalepk"
+msgstr[1] "Uspešno izbrisana %d prehranska nalepka"
+msgstr[2] "Uspešno izbrisani %d prehranski nalepki"
+msgstr[3] "Uspešno izbrisane %d prehranske nalepke"
+
+msgid "Search product name or short code..."
+msgstr "Poiščite ime izdelka ali kratko kodo…"
+
+msgid "Search"
+msgstr "Išči"
+
+msgid "Clear Search"
+msgstr "Počisti iskanje"
+
+msgid "No nutrition label entries found."
+msgstr "Ni najdenih prehranskih nalepk."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Prikazano %1$d od %2$d vnosov"
+
+msgid "Select All"
+msgstr "Izberi vse"
+
+msgid "Select"
+msgstr "Izberi"
+
+msgid "Product"
+msgstr "Izdelek"
+
+msgid "Prefix"
+msgstr "Predpona"
+
+msgid "Short Code"
+msgstr "Kratka koda"
+
+msgid "Created"
+msgstr "Ustvarjeno"
+
+msgid "Actions"
+msgstr "Dejanja"
+
+msgid "View Label"
+msgstr "Prikaži nalepko"
+
+msgid "Download QR"
+msgstr "Prenesi QR"
+
+msgid "Delete"
+msgstr "Izbriši"
+
+msgid "Delete Selected"
+msgstr "Izbriši izbrane"
+
+msgid "Export to CSV"
+msgstr "Izvozi v CSV"
+
+msgid "QR Code Size"
+msgstr "Velikost QR kode"
+
+msgid "Short Code Length"
+msgstr "Dolžina kratke kode"
+
+msgid "Character Set"
+msgstr "Nabor znakov"
+
+msgid "Information"
+msgstr "Informacije"
+
+msgid "URL Prefix"
+msgstr "URL predpona"
+
+msgid "Warning:"
+msgstr "Opozorilo:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Ta sprememba bo povzročila, da obstoječe QR kode ne bodo več delovale!"
+
+msgid "Current Entries:"
+msgstr "Trenutni vnosi:"
+
+msgid "%d nutrition labels active"
+msgstr "%d aktivna prehranska nalepka"
+
+msgid "Save Settings"
+msgstr "Shrani nastavitve"
+
+msgid "Generating..."
+msgstr "Generiranje…"
+
+msgid "E-Label not found"
+msgstr "E-nalepka ni bila najdena"

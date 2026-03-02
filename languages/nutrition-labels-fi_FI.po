@@ -1,0 +1,278 @@
+# Finnish translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Finnish <fi@li.org>\n"
+"Language: fi_FI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Ravintoarvoetikettejä"
+
+msgid "Grapes"
+msgstr "Viinirypäleet"
+
+msgid "Organic Grapes"
+msgstr "Luomuviinirypäleet"
+
+msgid "Sucrose"
+msgstr "Sakkaroosi"
+
+msgid "Grape Concentrate"
+msgstr "Rypäletiiviste"
+
+msgid "Sulfur Dioxide"
+msgstr "Rikkidioksidi"
+
+msgid "Potassium Bisulfite"
+msgstr "Kaliumvetysulfiitti"
+
+msgid "Potassium Metabisulfite"
+msgstr "Kaliumdisulfiitti"
+
+msgid "Potassium Sorbate"
+msgstr "Kaliumsorbaatti"
+
+msgid "Lysozyme"
+msgstr "Lysotsyymi"
+
+msgid "Ascorbic Acid"
+msgstr "Askorbiinihappo"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetyylidikarbonaatti"
+
+msgid "Tartaric Acid"
+msgstr "Viinihappo"
+
+msgid "Malic Acid"
+msgstr "Omenahappo"
+
+msgid "Lactic Acid"
+msgstr "Maitohappo"
+
+msgid "Calcium Sulfate"
+msgstr "Kalsiumsulfaatti"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Sitruunahappo"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Sitruunahappo"
+
+msgid "Metatartaric Acid"
+msgstr "Metaviinihappo"
+
+msgid "Gum Arabic"
+msgstr "Arabiankumi"
+
+msgid "Yeast Mannoproteins"
+msgstr "Hiivan mannoproteiinit"
+
+msgid "Carboxymethylcellulose"
+msgstr "Karboksimetyyliselluloosa"
+
+msgid "Potassium Polyaspartate"
+msgstr "Kaliumpolyaspartaatti"
+
+msgid "Fumaric Acid"
+msgstr "Fumaarihappo"
+
+msgid "Argon"
+msgstr "Argon"
+
+msgid "Nitrogen"
+msgstr "Typpi"
+
+msgid "Carbon Dioxide"
+msgstr "Hiilidioksidi"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Pakattu suojakaasuun"
+
+msgid "Preservatives"
+msgstr "Säilöntäaineet"
+
+msgid "Acid Regulators"
+msgstr "Happamuudensäätöaineet"
+
+msgid "Stabilizers"
+msgstr "Stabilointiaineet"
+
+msgid "Base Ingredients"
+msgstr "Perusainesosat"
+
+msgid "Gases"
+msgstr "Kaasut"
+
+msgid "Nutrition Label"
+msgstr "Ravintoarvoetikett"
+
+msgid "Ingredients:"
+msgstr "Ainesosat:"
+
+msgid "Nutritional Information"
+msgstr "Ravintoarvo"
+
+msgid "Per 100ml"
+msgstr "Per 100 ml"
+
+msgid "Energy"
+msgstr "Energia"
+
+msgid "Carbohydrates"
+msgstr "Hiilihydraatit"
+
+msgid "of which Sugars"
+msgstr "josta Sokereita"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Voi sisältää merkityksettömiä määriä proteiinia ja suolaa."
+
+msgid "Nutrition Information"
+msgstr "Ravintoarvotiedot"
+
+msgid "Calories (kcal):"
+msgstr "Kalorit (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilojoulea (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Hiilihydraatit (g):"
+
+msgid "Sugar (g):"
+msgstr "Sokereita (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "Ravintoarvoetiketti URL:"
+
+msgid "Download QR Code"
+msgstr "Lataa QR-koodi"
+
+msgid "Save product to generate short URL first."
+msgstr "Tallenna tuote ensin lyhyen URL:n luomiseksi."
+
+msgid "Text"
+msgstr "Teksti"
+
+msgid "Nil"
+msgstr "Ei mitään"
+
+msgid "Nutrition Labels Settings"
+msgstr "Ravintoarvoetikettien asetukset"
+
+msgid "Database Management"
+msgstr "Tietokannan hallinta"
+
+msgid "Settings saved successfully!"
+msgstr "Asetukset tallennettu!"
+
+msgid "Invalid nonce"
+msgstr "Virheellinen suojaustunnus"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "%d ravintoarvoetikett poistettu"
+msgstr[1] "%d ravintoarvoetikettejä poistettu"
+
+msgid "Search product name or short code..."
+msgstr "Etsi tuotenimeä tai lyhyttä koodia…"
+
+msgid "Search"
+msgstr "Hae"
+
+msgid "Clear Search"
+msgstr "Tyhjennä haku"
+
+msgid "No nutrition label entries found."
+msgstr "Ravintoarvoetikettejä ei löydy."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Näytetään %1$d / %2$d merkintää"
+
+msgid "Select All"
+msgstr "Valitse kaikki"
+
+msgid "Select"
+msgstr "Valitse"
+
+msgid "Product"
+msgstr "Tuote"
+
+msgid "Prefix"
+msgstr "Etuliite"
+
+msgid "Short Code"
+msgstr "Lyhyt koodi"
+
+msgid "Created"
+msgstr "Luotu"
+
+msgid "Actions"
+msgstr "Toiminnot"
+
+msgid "View Label"
+msgstr "Näytä etikett"
+
+msgid "Download QR"
+msgstr "Lataa QR"
+
+msgid "Delete"
+msgstr "Poista"
+
+msgid "Delete Selected"
+msgstr "Poista valitut"
+
+msgid "Export to CSV"
+msgstr "Vie CSV:hen"
+
+msgid "QR Code Size"
+msgstr "QR-koodin koko"
+
+msgid "Short Code Length"
+msgstr "Lyhyen koodin pituus"
+
+msgid "Character Set"
+msgstr "Merkistö"
+
+msgid "Information"
+msgstr "Tiedot"
+
+msgid "URL Prefix"
+msgstr "URL-etuliite"
+
+msgid "Warning:"
+msgstr "Varoitus:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Tämän muuttaminen tekee olemassa olevista QR-koodeista käyttökelvottomia!"
+
+msgid "Current Entries:"
+msgstr "Nykyiset merkinnät:"
+
+msgid "%d nutrition labels active"
+msgstr "%d ravintoarvoetikett(ejä) aktiivinen/aktiivisena"
+
+msgid "Save Settings"
+msgstr "Tallenna asetukset"
+
+msgid "Generating..."
+msgstr "Luodaan…"
+
+msgid "E-Label not found"
+msgstr "E-etikettiä ei löydy"

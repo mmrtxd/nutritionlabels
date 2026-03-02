@@ -1,0 +1,287 @@
+# Portuguese translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Portuguese <pt@li.org>\n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Rótulos nutricionais"
+
+msgid "Adds nutrition label management, shortcodes, and QR code generation for products."
+msgstr "Adiciona gestão de rótulos nutricionais, códigos curtos e geração de códigos QR para produtos."
+
+msgid "Grapes"
+msgstr "Uvas"
+
+msgid "Organic Grapes"
+msgstr "Uvas biológicas"
+
+msgid "Sucrose"
+msgstr "Sacarose"
+
+msgid "Grape Concentrate"
+msgstr "Concentrado de uvas"
+
+msgid "Sulfur Dioxide"
+msgstr "Dióxido de enxofre"
+
+msgid "Potassium Bisulfite"
+msgstr "Bissulfito de potássio"
+
+msgid "Potassium Metabisulfite"
+msgstr "Metabissulfito de potássio"
+
+msgid "Potassium Sorbate"
+msgstr "Sorbato de potássio"
+
+msgid "Lysozyme"
+msgstr "Lisozima"
+
+msgid "Ascorbic Acid"
+msgstr "Ácido ascórbico"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetildicarbonato"
+
+msgid "Tartaric Acid"
+msgstr "Ácido tartárico"
+
+msgid "Malic Acid"
+msgstr "Ácido málico"
+
+msgid "Lactic Acid"
+msgstr "Ácido láctico"
+
+msgid "Calcium Sulfate"
+msgstr "Sulfato de cálcio"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Ácido cítrico"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Ácido cítrico"
+
+msgid "Metatartaric Acid"
+msgstr "Ácido metatartárico"
+
+msgid "Gum Arabic"
+msgstr "Goma arábica"
+
+msgid "Yeast Mannoproteins"
+msgstr "Manoproteínas de levedura"
+
+msgid "Carboxymethylcellulose"
+msgstr "Carboximetilcelulose"
+
+msgid "Potassium Polyaspartate"
+msgstr "Poliaspartato de potássio"
+
+msgid "Fumaric Acid"
+msgstr "Ácido fumárico"
+
+msgid "Argon"
+msgstr "Árgon"
+
+msgid "Nitrogen"
+msgstr "Azoto"
+
+msgid "Carbon Dioxide"
+msgstr "Dióxido de carbono"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Embalado em atmosfera protetora"
+
+msgid "Preservatives"
+msgstr "Conservantes"
+
+msgid "Acid Regulators"
+msgstr "Corretores de acidez"
+
+msgid "Stabilizers"
+msgstr "Estabilizantes"
+
+msgid "Base Ingredients"
+msgstr "Ingredientes base"
+
+msgid "Gases"
+msgstr "Gases"
+
+msgid "Nutrition Label"
+msgstr "Rótulo nutricional"
+
+msgid "Ingredients:"
+msgstr "Ingredientes:"
+
+msgid "Nutritional Information"
+msgstr "Informação nutricional"
+
+msgid "Per 100ml"
+msgstr "Por 100 ml"
+
+msgid "Energy"
+msgstr "Energia"
+
+msgid "Carbohydrates"
+msgstr "Hidratos de carbono"
+
+msgid "of which Sugars"
+msgstr "dos quais Açúcares"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Pode conter quantidades negligenciáveis de proteínas e sal."
+
+msgid "Nutrition Information"
+msgstr "Informação nutricional"
+
+msgid "Calories (kcal):"
+msgstr "Calorias (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Quilojoules (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Hidratos de carbono (g):"
+
+msgid "Sugar (g):"
+msgstr "Açúcares (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL do rótulo nutricional:"
+
+msgid "Download QR Code"
+msgstr "Transferir código QR"
+
+msgid "Save product to generate short URL first."
+msgstr "Guarde o produto primeiro para gerar um URL curto."
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Nil"
+msgstr "Nenhum"
+
+msgid "Nutrition Labels Settings"
+msgstr "Definições de rótulos nutricionais"
+
+msgid "Configuration"
+msgstr "Configuração"
+
+msgid "Database Management"
+msgstr "Gestão da base de dados"
+
+msgid "Settings saved successfully!"
+msgstr "Definições guardadas com sucesso!"
+
+msgid "Invalid nonce"
+msgstr "Token de segurança inválido"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "%d rótulo nutricional eliminado com sucesso"
+msgstr[1] "%d rótulos nutricionais eliminados com sucesso"
+
+msgid "Nutrition Labels - Database Management"
+msgstr "Rótulos nutricionais – Gestão de base de dados"
+
+msgid "Search product name or short code..."
+msgstr "Pesquisar nome de produto ou código curto…"
+
+msgid "Search"
+msgstr "Pesquisar"
+
+msgid "Clear Search"
+msgstr "Limpar pesquisa"
+
+msgid "No nutrition label entries found."
+msgstr "Nenhum rótulo nutricional encontrado."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "A mostrar %1$d de %2$d entradas"
+
+msgid "Select All"
+msgstr "Selecionar tudo"
+
+msgid "Select"
+msgstr "Selecionar"
+
+msgid "Product"
+msgstr "Produto"
+
+msgid "Prefix"
+msgstr "Prefixo"
+
+msgid "Short Code"
+msgstr "Código curto"
+
+msgid "Created"
+msgstr "Criado"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "View Label"
+msgstr "Ver rótulo"
+
+msgid "Download QR"
+msgstr "Transferir QR"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Delete Selected"
+msgstr "Eliminar selecionados"
+
+msgid "Export to CSV"
+msgstr "Exportar para CSV"
+
+msgid "QR Code Size"
+msgstr "Tamanho do código QR"
+
+msgid "Short Code Length"
+msgstr "Comprimento do código curto"
+
+msgid "Character Set"
+msgstr "Conjunto de caracteres"
+
+msgid "Information"
+msgstr "Informações"
+
+msgid "URL Prefix"
+msgstr "Prefixo de URL"
+
+msgid "Warning:"
+msgstr "Aviso:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Alterar isto irá fazer com que os códigos QR existentes deixem de funcionar!"
+
+msgid "Current Entries:"
+msgstr "Entradas atuais:"
+
+msgid "%d nutrition labels active"
+msgstr "%d rótulo(s) nutricional(is) ativo(s)"
+
+msgid "Save Settings"
+msgstr "Guardar definições"
+
+msgid "Generating..."
+msgstr "A gerar…"
+
+msgid "E-Label not found"
+msgstr "E-rótulo não encontrado"

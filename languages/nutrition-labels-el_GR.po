@@ -1,0 +1,278 @@
+# Greek translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Greek <el@li.org>\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Διατροφικές ετικέτες"
+
+msgid "Grapes"
+msgstr "Σταφύλια"
+
+msgid "Organic Grapes"
+msgstr "Βιολογικά σταφύλια"
+
+msgid "Sucrose"
+msgstr "Σακχαρόζη"
+
+msgid "Grape Concentrate"
+msgstr "Συμπυκνωμένος χυμός σταφυλιών"
+
+msgid "Sulfur Dioxide"
+msgstr "Διοξείδιο του θείου"
+
+msgid "Potassium Bisulfite"
+msgstr "Όξινο θειώδες κάλιο"
+
+msgid "Potassium Metabisulfite"
+msgstr "Μεταδιθειώδες κάλιο"
+
+msgid "Potassium Sorbate"
+msgstr "Σορβικό κάλιο"
+
+msgid "Lysozyme"
+msgstr "Λυσοζύμη"
+
+msgid "Ascorbic Acid"
+msgstr "Ασκορβικό οξύ"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Διμεθυλοδιανθρακικός εστέρας"
+
+msgid "Tartaric Acid"
+msgstr "Τρυγικό οξύ"
+
+msgid "Malic Acid"
+msgstr "Μηλικό οξύ"
+
+msgid "Lactic Acid"
+msgstr "Γαλακτικό οξύ"
+
+msgid "Calcium Sulfate"
+msgstr "Θειικό ασβέστιο"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Κιτρικό οξύ"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Κιτρικό οξύ"
+
+msgid "Metatartaric Acid"
+msgstr "Μετατρυγικό οξύ"
+
+msgid "Gum Arabic"
+msgstr "Αραβικό κόμμι"
+
+msgid "Yeast Mannoproteins"
+msgstr "Μαννοπρωτεΐνες ζύμης"
+
+msgid "Carboxymethylcellulose"
+msgstr "Καρβοξυμεθυλοκυτταρίνη"
+
+msgid "Potassium Polyaspartate"
+msgstr "Πολυασπαρτικό κάλιο"
+
+msgid "Fumaric Acid"
+msgstr "Φουμαρικό οξύ"
+
+msgid "Argon"
+msgstr "Αργόν"
+
+msgid "Nitrogen"
+msgstr "Άζωτο"
+
+msgid "Carbon Dioxide"
+msgstr "Διοξείδιο του άνθρακα"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Συσκευασμένο σε προστατευτική ατμόσφαιρα"
+
+msgid "Preservatives"
+msgstr "Συντηρητικά"
+
+msgid "Acid Regulators"
+msgstr "Ρυθμιστές οξύτητας"
+
+msgid "Stabilizers"
+msgstr "Σταθεροποιητές"
+
+msgid "Base Ingredients"
+msgstr "Βασικά συστατικά"
+
+msgid "Gases"
+msgstr "Αέρια"
+
+msgid "Nutrition Label"
+msgstr "Διατροφική ετικέτα"
+
+msgid "Ingredients:"
+msgstr "Συστατικά:"
+
+msgid "Nutritional Information"
+msgstr "Διατροφικές πληροφορίες"
+
+msgid "Per 100ml"
+msgstr "Ανά 100 ml"
+
+msgid "Energy"
+msgstr "Ενέργεια"
+
+msgid "Carbohydrates"
+msgstr "Υδατάνθρακες"
+
+msgid "of which Sugars"
+msgstr "εκ των οποίων Σάκχαρα"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Μπορεί να περιέχει αμελητέες ποσότητες πρωτεΐνης και αλατιού."
+
+msgid "Nutrition Information"
+msgstr "Διατροφικά στοιχεία"
+
+msgid "Calories (kcal):"
+msgstr "Θερμίδες (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Κιλοτζάουλ (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Υδατάνθρακες (g):"
+
+msgid "Sugar (g):"
+msgstr "Σάκχαρα (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL διατροφικής ετικέτας:"
+
+msgid "Download QR Code"
+msgstr "Λήψη κωδικού QR"
+
+msgid "Save product to generate short URL first."
+msgstr "Αποθηκεύστε πρώτα το προϊόν για τη δημιουργία σύντομης URL."
+
+msgid "Text"
+msgstr "Κείμενο"
+
+msgid "Nil"
+msgstr "Κανένα"
+
+msgid "Nutrition Labels Settings"
+msgstr "Ρυθμίσεις διατροφικών ετικετών"
+
+msgid "Database Management"
+msgstr "Διαχείριση βάσης δεδομένων"
+
+msgid "Settings saved successfully!"
+msgstr "Οι ρυθμίσεις αποθηκεύτηκαν!"
+
+msgid "Invalid nonce"
+msgstr "Μη έγκυρο διακριτικό ασφαλείας"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "Διαγράφηκε %d διατροφική ετικέτα"
+msgstr[1] "Διαγράφηκαν %d διατροφικές ετικέτες"
+
+msgid "Search product name or short code..."
+msgstr "Αναζήτηση ονόματος προϊόντος ή σύντομου κωδικού…"
+
+msgid "Search"
+msgstr "Αναζήτηση"
+
+msgid "Clear Search"
+msgstr "Εκκαθάριση αναζήτησης"
+
+msgid "No nutrition label entries found."
+msgstr "Δεν βρέθηκαν διατροφικές ετικέτες."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Εμφάνιση %1$d από %2$d εγγραφές"
+
+msgid "Select All"
+msgstr "Επιλογή όλων"
+
+msgid "Select"
+msgstr "Επιλογή"
+
+msgid "Product"
+msgstr "Προϊόν"
+
+msgid "Prefix"
+msgstr "Πρόθεμα"
+
+msgid "Short Code"
+msgstr "Σύντομος κωδικός"
+
+msgid "Created"
+msgstr "Δημιουργήθηκε"
+
+msgid "Actions"
+msgstr "Ενέργειες"
+
+msgid "View Label"
+msgstr "Προβολή ετικέτας"
+
+msgid "Download QR"
+msgstr "Λήψη QR"
+
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgid "Delete Selected"
+msgstr "Διαγραφή επιλεγμένων"
+
+msgid "Export to CSV"
+msgstr "Εξαγωγή σε CSV"
+
+msgid "QR Code Size"
+msgstr "Μέγεθος κωδικού QR"
+
+msgid "Short Code Length"
+msgstr "Μήκος σύντομου κωδικού"
+
+msgid "Character Set"
+msgstr "Σύνολο χαρακτήρων"
+
+msgid "Information"
+msgstr "Πληροφορίες"
+
+msgid "URL Prefix"
+msgstr "Πρόθεμα URL"
+
+msgid "Warning:"
+msgstr "Προειδοποίηση:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Η αλλαγή αυτή θα κάνει τους υπάρχοντες κωδικούς QR να σταματήσουν να λειτουργούν!"
+
+msgid "Current Entries:"
+msgstr "Τρέχουσες εγγραφές:"
+
+msgid "%d nutrition labels active"
+msgstr "%d ενεργή/ές διατροφική/ές ετικέτα/ες"
+
+msgid "Save Settings"
+msgstr "Αποθήκευση ρυθμίσεων"
+
+msgid "Generating..."
+msgstr "Δημιουργία…"
+
+msgid "E-Label not found"
+msgstr "Η ε-ετικέτα δεν βρέθηκε"

@@ -1,0 +1,279 @@
+# Romanian translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Etichete nutriționale"
+
+msgid "Grapes"
+msgstr "Struguri"
+
+msgid "Organic Grapes"
+msgstr "Struguri ecologici"
+
+msgid "Sucrose"
+msgstr "Zaharoză"
+
+msgid "Grape Concentrate"
+msgstr "Concentrat de struguri"
+
+msgid "Sulfur Dioxide"
+msgstr "Dioxid de sulf"
+
+msgid "Potassium Bisulfite"
+msgstr "Bisulfit de potasiu"
+
+msgid "Potassium Metabisulfite"
+msgstr "Metabisulfit de potasiu"
+
+msgid "Potassium Sorbate"
+msgstr "Sorbat de potasiu"
+
+msgid "Lysozyme"
+msgstr "Lizozimă"
+
+msgid "Ascorbic Acid"
+msgstr "Acid ascorbic"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetildicarbonat"
+
+msgid "Tartaric Acid"
+msgstr "Acid tartric"
+
+msgid "Malic Acid"
+msgstr "Acid malic"
+
+msgid "Lactic Acid"
+msgstr "Acid lactic"
+
+msgid "Calcium Sulfate"
+msgstr "Sulfat de calciu"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Acid citric"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Acid citric"
+
+msgid "Metatartaric Acid"
+msgstr "Acid metatartric"
+
+msgid "Gum Arabic"
+msgstr "Gumă arabică"
+
+msgid "Yeast Mannoproteins"
+msgstr "Mannoproteine de drojdie"
+
+msgid "Carboxymethylcellulose"
+msgstr "Carboximetilceluloză"
+
+msgid "Potassium Polyaspartate"
+msgstr "Poliaspartat de potasiu"
+
+msgid "Fumaric Acid"
+msgstr "Acid fumaric"
+
+msgid "Argon"
+msgstr "Argon"
+
+msgid "Nitrogen"
+msgstr "Azot"
+
+msgid "Carbon Dioxide"
+msgstr "Dioxid de carbon"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Ambalat în atmosferă protectoare"
+
+msgid "Preservatives"
+msgstr "Conservanți"
+
+msgid "Acid Regulators"
+msgstr "Corectori de aciditate"
+
+msgid "Stabilizers"
+msgstr "Stabilizatori"
+
+msgid "Base Ingredients"
+msgstr "Ingrediente de bază"
+
+msgid "Gases"
+msgstr "Gaze"
+
+msgid "Nutrition Label"
+msgstr "Etichetă nutrițională"
+
+msgid "Ingredients:"
+msgstr "Ingrediente:"
+
+msgid "Nutritional Information"
+msgstr "Informații nutriționale"
+
+msgid "Per 100ml"
+msgstr "La 100 ml"
+
+msgid "Energy"
+msgstr "Energie"
+
+msgid "Carbohydrates"
+msgstr "Carbohidrați"
+
+msgid "of which Sugars"
+msgstr "din care Zaharuri"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Poate conține cantități neglijabile de proteine și sare."
+
+msgid "Nutrition Information"
+msgstr "Informații nutriționale"
+
+msgid "Calories (kcal):"
+msgstr "Calorii (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilojouli (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Carbohidrați (g):"
+
+msgid "Sugar (g):"
+msgstr "Zaharuri (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL etichetă nutrițională:"
+
+msgid "Download QR Code"
+msgstr "Descărcați codul QR"
+
+msgid "Save product to generate short URL first."
+msgstr "Salvați mai întâi produsul pentru a genera un URL scurt."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Nil"
+msgstr "Niciunul"
+
+msgid "Nutrition Labels Settings"
+msgstr "Setări etichete nutriționale"
+
+msgid "Database Management"
+msgstr "Gestionarea bazei de date"
+
+msgid "Settings saved successfully!"
+msgstr "Setările au fost salvate cu succes!"
+
+msgid "Invalid nonce"
+msgstr "Token de securitate invalid"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "%d etichetă nutrițională ștearsă cu succes"
+msgstr[1] "%d etichete nutriționale șterse cu succes"
+msgstr[2] "%d de etichete nutriționale șterse cu succes"
+
+msgid "Search product name or short code..."
+msgstr "Căutați numele produsului sau codul scurt…"
+
+msgid "Search"
+msgstr "Căutare"
+
+msgid "Clear Search"
+msgstr "Ștergeți căutarea"
+
+msgid "No nutrition label entries found."
+msgstr "Nu s-au găsit etichete nutriționale."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Se afișează %1$d din %2$d intrări"
+
+msgid "Select All"
+msgstr "Selectați tot"
+
+msgid "Select"
+msgstr "Selectați"
+
+msgid "Product"
+msgstr "Produs"
+
+msgid "Prefix"
+msgstr "Prefix"
+
+msgid "Short Code"
+msgstr "Cod scurt"
+
+msgid "Created"
+msgstr "Creat"
+
+msgid "Actions"
+msgstr "Acțiuni"
+
+msgid "View Label"
+msgstr "Vizualizați eticheta"
+
+msgid "Download QR"
+msgstr "Descărcați QR"
+
+msgid "Delete"
+msgstr "Ștergeți"
+
+msgid "Delete Selected"
+msgstr "Ștergeți selectate"
+
+msgid "Export to CSV"
+msgstr "Exportați în CSV"
+
+msgid "QR Code Size"
+msgstr "Dimensiunea codului QR"
+
+msgid "Short Code Length"
+msgstr "Lungimea codului scurt"
+
+msgid "Character Set"
+msgstr "Set de caractere"
+
+msgid "Information"
+msgstr "Informații"
+
+msgid "URL Prefix"
+msgstr "Prefix URL"
+
+msgid "Warning:"
+msgstr "Avertisment:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Modificarea acestuia va face ca codurile QR existente să nu mai funcționeze!"
+
+msgid "Current Entries:"
+msgstr "Intrări curente:"
+
+msgid "%d nutrition labels active"
+msgstr "%d etichetă/etichete nutriționale active"
+
+msgid "Save Settings"
+msgstr "Salvați setările"
+
+msgid "Generating..."
+msgstr "Se generează…"
+
+msgid "E-Label not found"
+msgstr "E-eticheta nu a fost găsită"

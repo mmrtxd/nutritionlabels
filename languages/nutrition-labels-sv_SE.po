@@ -1,0 +1,278 @@
+# Swedish translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Näringsetiketter"
+
+msgid "Grapes"
+msgstr "Druvor"
+
+msgid "Organic Grapes"
+msgstr "Ekologiska druvor"
+
+msgid "Sucrose"
+msgstr "Sackaros"
+
+msgid "Grape Concentrate"
+msgstr "Druvkoncentrat"
+
+msgid "Sulfur Dioxide"
+msgstr "Svaveldioxid"
+
+msgid "Potassium Bisulfite"
+msgstr "Kaliumvätesulfit"
+
+msgid "Potassium Metabisulfite"
+msgstr "Kaliumdisulfit"
+
+msgid "Potassium Sorbate"
+msgstr "Kaliumsorbat"
+
+msgid "Lysozyme"
+msgstr "Lysozym"
+
+msgid "Ascorbic Acid"
+msgstr "Askorbinsyra"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetyldikarbonat"
+
+msgid "Tartaric Acid"
+msgstr "Vinsyra"
+
+msgid "Malic Acid"
+msgstr "Äppelsyra"
+
+msgid "Lactic Acid"
+msgstr "Mjölksyra"
+
+msgid "Calcium Sulfate"
+msgstr "Kalciumsulfat"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Citronsyra"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Citronsyra"
+
+msgid "Metatartaric Acid"
+msgstr "Metavinsyra"
+
+msgid "Gum Arabic"
+msgstr "Arabiskt gummi"
+
+msgid "Yeast Mannoproteins"
+msgstr "Jästmannoproteiner"
+
+msgid "Carboxymethylcellulose"
+msgstr "Karboximetylcellulosa"
+
+msgid "Potassium Polyaspartate"
+msgstr "Kaliumpolyaspartat"
+
+msgid "Fumaric Acid"
+msgstr "Fumarsyra"
+
+msgid "Argon"
+msgstr "Argon"
+
+msgid "Nitrogen"
+msgstr "Kväve"
+
+msgid "Carbon Dioxide"
+msgstr "Koldioxid"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Förpackad under skyddsgas"
+
+msgid "Preservatives"
+msgstr "Konserveringsmedel"
+
+msgid "Acid Regulators"
+msgstr "Surhetsreglerande medel"
+
+msgid "Stabilizers"
+msgstr "Stabiliseringsmedel"
+
+msgid "Base Ingredients"
+msgstr "Basisingredienser"
+
+msgid "Gases"
+msgstr "Gaser"
+
+msgid "Nutrition Label"
+msgstr "Näringsetikett"
+
+msgid "Ingredients:"
+msgstr "Ingredienser:"
+
+msgid "Nutritional Information"
+msgstr "Näringsinformation"
+
+msgid "Per 100ml"
+msgstr "Per 100 ml"
+
+msgid "Energy"
+msgstr "Energi"
+
+msgid "Carbohydrates"
+msgstr "Kolhydrater"
+
+msgid "of which Sugars"
+msgstr "varav Socker"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Kan innehålla försumbara mängder protein och salt."
+
+msgid "Nutrition Information"
+msgstr "Näringsinformation"
+
+msgid "Calories (kcal):"
+msgstr "Kalorier (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilojoule (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Kolhydrater (g):"
+
+msgid "Sugar (g):"
+msgstr "Socker (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL för näringsetikett:"
+
+msgid "Download QR Code"
+msgstr "Ladda ner QR-kod"
+
+msgid "Save product to generate short URL first."
+msgstr "Spara produkten först för att generera en kort URL."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Nil"
+msgstr "Ingen"
+
+msgid "Nutrition Labels Settings"
+msgstr "Inställningar för näringsetiketter"
+
+msgid "Database Management"
+msgstr "Databashantering"
+
+msgid "Settings saved successfully!"
+msgstr "Inställningarna sparades!"
+
+msgid "Invalid nonce"
+msgstr "Ogiltigt säkerhetstoken"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "%d näringsetikett raderades"
+msgstr[1] "%d näringsetiketter raderades"
+
+msgid "Search product name or short code..."
+msgstr "Sök produktnamn eller kortkod…"
+
+msgid "Search"
+msgstr "Sök"
+
+msgid "Clear Search"
+msgstr "Rensa sökning"
+
+msgid "No nutrition label entries found."
+msgstr "Inga näringsetiketter hittades."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Visar %1$d av %2$d poster"
+
+msgid "Select All"
+msgstr "Markera alla"
+
+msgid "Select"
+msgstr "Markera"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Prefix"
+msgstr "Prefix"
+
+msgid "Short Code"
+msgstr "Kortkod"
+
+msgid "Created"
+msgstr "Skapad"
+
+msgid "Actions"
+msgstr "Åtgärder"
+
+msgid "View Label"
+msgstr "Visa etikett"
+
+msgid "Download QR"
+msgstr "Ladda ner QR"
+
+msgid "Delete"
+msgstr "Radera"
+
+msgid "Delete Selected"
+msgstr "Radera valda"
+
+msgid "Export to CSV"
+msgstr "Exportera till CSV"
+
+msgid "QR Code Size"
+msgstr "QR-kodstorlek"
+
+msgid "Short Code Length"
+msgstr "Kortkodslängd"
+
+msgid "Character Set"
+msgstr "Teckenuppsättning"
+
+msgid "Information"
+msgstr "Information"
+
+msgid "URL Prefix"
+msgstr "URL-prefix"
+
+msgid "Warning:"
+msgstr "Varning:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Om du ändrar detta slutar befintliga QR-koder att fungera!"
+
+msgid "Current Entries:"
+msgstr "Aktuella poster:"
+
+msgid "%d nutrition labels active"
+msgstr "%d näringsetikett(er) aktiv(a)"
+
+msgid "Save Settings"
+msgstr "Spara inställningar"
+
+msgid "Generating..."
+msgstr "Genererar…"
+
+msgid "E-Label not found"
+msgstr "E-etikett hittades inte"

@@ -1,0 +1,308 @@
+# Spanish translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Etiquetas nutricionales"
+
+msgid "Adds nutrition label management, shortcodes, and QR code generation for products."
+msgstr "Añade gestión de etiquetas nutricionales, códigos cortos y generación de códigos QR para productos."
+
+msgid "Grapes"
+msgstr "Uvas"
+
+msgid "Organic Grapes"
+msgstr "Uvas ecológicas"
+
+msgid "Sucrose"
+msgstr "Sacarosa"
+
+msgid "Grape Concentrate"
+msgstr "Mosto concentrado"
+
+msgid "Sulfur Dioxide"
+msgstr "Dióxido de azufre"
+
+msgid "Potassium Bisulfite"
+msgstr "Bisulfito de potasio"
+
+msgid "Potassium Metabisulfite"
+msgstr "Metabisulfito de potasio"
+
+msgid "Potassium Sorbate"
+msgstr "Sorbato de potasio"
+
+msgid "Lysozyme"
+msgstr "Lisozima"
+
+msgid "Ascorbic Acid"
+msgstr "Ácido ascórbico"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetildicarbonato"
+
+msgid "Tartaric Acid"
+msgstr "Ácido tartárico"
+
+msgid "Malic Acid"
+msgstr "Ácido málico"
+
+msgid "Lactic Acid"
+msgstr "Ácido láctico"
+
+msgid "Calcium Sulfate"
+msgstr "Sulfato de calcio"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Ácido cítrico"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Ácido cítrico"
+
+msgid "Metatartaric Acid"
+msgstr "Ácido metatartárico"
+
+msgid "Gum Arabic"
+msgstr "Goma arábiga"
+
+msgid "Yeast Mannoproteins"
+msgstr "Manoproteínas de levadura"
+
+msgid "Carboxymethylcellulose"
+msgstr "Carboximetilcelulosa"
+
+msgid "Potassium Polyaspartate"
+msgstr "Poliaspartato de potasio"
+
+msgid "Fumaric Acid"
+msgstr "Ácido fumárico"
+
+msgid "Argon"
+msgstr "Argón"
+
+msgid "Nitrogen"
+msgstr "Nitrógeno"
+
+msgid "Carbon Dioxide"
+msgstr "Dióxido de carbono"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Envasado en atmósfera protectora"
+
+msgid "Preservatives"
+msgstr "Conservantes"
+
+msgid "Acid Regulators"
+msgstr "Correctores de acidez"
+
+msgid "Stabilizers"
+msgstr "Estabilizantes"
+
+msgid "Base Ingredients"
+msgstr "Ingredientes base"
+
+msgid "Gases"
+msgstr "Gases"
+
+msgid "Nutrition Label"
+msgstr "Etiqueta nutricional"
+
+msgid "Ingredients:"
+msgstr "Ingredientes:"
+
+msgid "Nutritional Information"
+msgstr "Información nutricional"
+
+msgid "Per 100ml"
+msgstr "Por 100 ml"
+
+msgid "Energy"
+msgstr "Energía"
+
+msgid "Carbohydrates"
+msgstr "Hidratos de carbono"
+
+msgid "of which Sugars"
+msgstr "de los cuales Azúcares"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Puede contener cantidades insignificantes de proteínas y sal."
+
+msgid "Nutrition Information"
+msgstr "Información nutricional"
+
+msgid "Calories (kcal):"
+msgstr "Calorías (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilojulios (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Hidratos de carbono (g):"
+
+msgid "Sugar (g):"
+msgstr "Azúcares (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL de la etiqueta nutricional:"
+
+msgid "Download QR Code"
+msgstr "Descargar código QR"
+
+msgid "Save product to generate short URL first."
+msgstr "Guarde el producto primero para generar una URL corta."
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Nil"
+msgstr "Ninguno"
+
+msgid "Nutrition Labels Settings"
+msgstr "Configuración de etiquetas nutricionales"
+
+msgid "Configuration"
+msgstr "Configuración"
+
+msgid "Database Management"
+msgstr "Gestión de la base de datos"
+
+msgid "Settings saved successfully!"
+msgstr "¡Configuración guardada correctamente!"
+
+msgid "Invalid nonce"
+msgstr "Token de seguridad no válido"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "%d etiqueta nutricional eliminada correctamente"
+msgstr[1] "%d etiquetas nutricionales eliminadas correctamente"
+
+msgid "Nutrition Labels - Database Management"
+msgstr "Etiquetas nutricionales – Gestión de base de datos"
+
+msgid "Search product name or short code..."
+msgstr "Buscar nombre de producto o código corto…"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Clear Search"
+msgstr "Borrar búsqueda"
+
+msgid "No nutrition label entries found."
+msgstr "No se encontraron etiquetas nutricionales."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Mostrando %1$d de %2$d entradas"
+
+msgid "Select All"
+msgstr "Seleccionar todo"
+
+msgid "Select"
+msgstr "Seleccionar"
+
+msgid "Product"
+msgstr "Producto"
+
+msgid "Prefix"
+msgstr "Prefijo"
+
+msgid "Short Code"
+msgstr "Código corto"
+
+msgid "Created"
+msgstr "Creado"
+
+msgid "Actions"
+msgstr "Acciones"
+
+msgid "View Label"
+msgstr "Ver etiqueta"
+
+msgid "Download QR"
+msgstr "Descargar QR"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Delete Selected"
+msgstr "Eliminar seleccionados"
+
+msgid "Export to CSV"
+msgstr "Exportar a CSV"
+
+msgid "Nutrition Labels - Configuration"
+msgstr "Etiquetas nutricionales – Configuración"
+
+msgid "QR Code Size"
+msgstr "Tamaño del código QR"
+
+msgid "Choose QR code size for download. Smaller sizes are better for small labels, larger for posters."
+msgstr "Elija el tamaño del código QR para descargar. Los tamaños más pequeños son mejores para etiquetas pequeñas, los más grandes para carteles."
+
+msgid "Short Code Length"
+msgstr "Longitud del código corto"
+
+msgid "Length affects uniqueness vs readability. Shorter codes may conflict more often."
+msgstr "La longitud afecta a la unicidad frente a la legibilidad. Los códigos más cortos pueden entrar en conflicto con más frecuencia."
+
+msgid "Character Set"
+msgstr "Juego de caracteres"
+
+msgid "Current URL Format"
+msgstr "Formato de URL actual"
+
+msgid "Information"
+msgstr "Información"
+
+msgid "Configure your nutrition labels plugin settings and manage QR code generation."
+msgstr "Configure los ajustes del plugin de etiquetas nutricionales y gestione la generación de códigos QR."
+
+msgid "URL Prefix"
+msgstr "Prefijo de URL"
+
+msgid "Warning:"
+msgstr "Advertencia:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "¡Cambiar esto hará que los códigos QR existentes dejen de funcionar!"
+
+msgid "Minimum is 4 characters. Shorter codes may conflict more often."
+msgstr "El mínimo es 4 caracteres. Los códigos más cortos pueden entrar en conflicto con más frecuencia."
+
+msgid "Choose allowed characters for short codes."
+msgstr "Elija los caracteres permitidos para los códigos cortos."
+
+msgid "Current Entries:"
+msgstr "Entradas actuales:"
+
+msgid "%d nutrition labels active"
+msgstr "%d etiqueta(s) nutricional(es) activa(s)"
+
+msgid "Save Settings"
+msgstr "Guardar configuración"
+
+msgid "Generating..."
+msgstr "Generando…"
+
+msgid "E-Label not found"
+msgstr "E-etiqueta no encontrada"

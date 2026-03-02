@@ -1,0 +1,278 @@
+# Hungarian translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Hungarian <hu@li.org>\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Tápértékcímkék"
+
+msgid "Grapes"
+msgstr "Szőlő"
+
+msgid "Organic Grapes"
+msgstr "Bio szőlő"
+
+msgid "Sucrose"
+msgstr "Szacharóz"
+
+msgid "Grape Concentrate"
+msgstr "Szőlőkoncentrátum"
+
+msgid "Sulfur Dioxide"
+msgstr "Kén-dioxid"
+
+msgid "Potassium Bisulfite"
+msgstr "Kálium-hidrogén-szulfit"
+
+msgid "Potassium Metabisulfite"
+msgstr "Kálium-metabiszulfit"
+
+msgid "Potassium Sorbate"
+msgstr "Kálium-szorbát"
+
+msgid "Lysozyme"
+msgstr "Lizozim"
+
+msgid "Ascorbic Acid"
+msgstr "Aszkorbinsav"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetil-dikarbonát"
+
+msgid "Tartaric Acid"
+msgstr "Borkősav"
+
+msgid "Malic Acid"
+msgstr "Almasav"
+
+msgid "Lactic Acid"
+msgstr "Tejsav"
+
+msgid "Calcium Sulfate"
+msgstr "Kalcium-szulfát"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Citromsav"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Citromsav"
+
+msgid "Metatartaric Acid"
+msgstr "Metaborkősav"
+
+msgid "Gum Arabic"
+msgstr "Arabmézga"
+
+msgid "Yeast Mannoproteins"
+msgstr "Élesztő-mannoproteinek"
+
+msgid "Carboxymethylcellulose"
+msgstr "Karboximetil-cellulóz"
+
+msgid "Potassium Polyaspartate"
+msgstr "Kálium-poliaszpartát"
+
+msgid "Fumaric Acid"
+msgstr "Fumársav"
+
+msgid "Argon"
+msgstr "Argon"
+
+msgid "Nitrogen"
+msgstr "Nitrogén"
+
+msgid "Carbon Dioxide"
+msgstr "Szén-dioxid"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Védőgáz alatt csomagolva"
+
+msgid "Preservatives"
+msgstr "Tartósítószerek"
+
+msgid "Acid Regulators"
+msgstr "Savanyúságot szabályozó anyagok"
+
+msgid "Stabilizers"
+msgstr "Stabilizátorok"
+
+msgid "Base Ingredients"
+msgstr "Alapanyagok"
+
+msgid "Gases"
+msgstr "Gázok"
+
+msgid "Nutrition Label"
+msgstr "Tápértékcímke"
+
+msgid "Ingredients:"
+msgstr "Összetevők:"
+
+msgid "Nutritional Information"
+msgstr "Tápérték-információ"
+
+msgid "Per 100ml"
+msgstr "100 ml-enként"
+
+msgid "Energy"
+msgstr "Energia"
+
+msgid "Carbohydrates"
+msgstr "Szénhidrát"
+
+msgid "of which Sugars"
+msgstr "ebből Cukrok"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Elhanyagolható mennyiségű fehérjét és sót tartalmazhat."
+
+msgid "Nutrition Information"
+msgstr "Tápértékadatok"
+
+msgid "Calories (kcal):"
+msgstr "Kalória (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilojoule (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Szénhidrát (g):"
+
+msgid "Sugar (g):"
+msgstr "Cukrok (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "Tápértékcímke URL:"
+
+msgid "Download QR Code"
+msgstr "QR-kód letöltése"
+
+msgid "Save product to generate short URL first."
+msgstr "Először mentse el a terméket a rövid URL generálásához."
+
+msgid "Text"
+msgstr "Szöveg"
+
+msgid "Nil"
+msgstr "Egyik sem"
+
+msgid "Nutrition Labels Settings"
+msgstr "Tápértékcímke beállítások"
+
+msgid "Database Management"
+msgstr "Adatbázis-kezelés"
+
+msgid "Settings saved successfully!"
+msgstr "A beállítások sikeresen mentve!"
+
+msgid "Invalid nonce"
+msgstr "Érvénytelen biztonsági token"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "%d tápértékcímke sikeresen törölve"
+msgstr[1] "%d tápértékcímke sikeresen törölve"
+
+msgid "Search product name or short code..."
+msgstr "Keressen terméknévre vagy rövid kódra…"
+
+msgid "Search"
+msgstr "Keresés"
+
+msgid "Clear Search"
+msgstr "Keresés törlése"
+
+msgid "No nutrition label entries found."
+msgstr "Nem találhatók tápértékcímkék."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "%2$d bejegyzésből %1$d látható"
+
+msgid "Select All"
+msgstr "Összes kijelölése"
+
+msgid "Select"
+msgstr "Kijelölés"
+
+msgid "Product"
+msgstr "Termék"
+
+msgid "Prefix"
+msgstr "Előtag"
+
+msgid "Short Code"
+msgstr "Rövid kód"
+
+msgid "Created"
+msgstr "Létrehozva"
+
+msgid "Actions"
+msgstr "Műveletek"
+
+msgid "View Label"
+msgstr "Címke megtekintése"
+
+msgid "Download QR"
+msgstr "QR letöltése"
+
+msgid "Delete"
+msgstr "Törlés"
+
+msgid "Delete Selected"
+msgstr "Kijelöltek törlése"
+
+msgid "Export to CSV"
+msgstr "Exportálás CSV-be"
+
+msgid "QR Code Size"
+msgstr "QR-kód mérete"
+
+msgid "Short Code Length"
+msgstr "Rövid kód hossza"
+
+msgid "Character Set"
+msgstr "Karakterkészlet"
+
+msgid "Information"
+msgstr "Információ"
+
+msgid "URL Prefix"
+msgstr "URL előtag"
+
+msgid "Warning:"
+msgstr "Figyelmeztetés:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Ennek módosítása a meglévő QR-kódokat érvényteleníti!"
+
+msgid "Current Entries:"
+msgstr "Jelenlegi bejegyzések:"
+
+msgid "%d nutrition labels active"
+msgstr "%d aktív tápértékcímke"
+
+msgid "Save Settings"
+msgstr "Beállítások mentése"
+
+msgid "Generating..."
+msgstr "Generálás…"
+
+msgid "E-Label not found"
+msgstr "Az e-címke nem található"

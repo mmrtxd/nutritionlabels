@@ -1,0 +1,278 @@
+# Danish translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Danish <da@li.org>\n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Ernæringsmærkater"
+
+msgid "Grapes"
+msgstr "Druer"
+
+msgid "Organic Grapes"
+msgstr "Økologiske druer"
+
+msgid "Sucrose"
+msgstr "Saccharose"
+
+msgid "Grape Concentrate"
+msgstr "Druekoncentrat"
+
+msgid "Sulfur Dioxide"
+msgstr "Svovldioxid"
+
+msgid "Potassium Bisulfite"
+msgstr "Kaliumhydrogensulfit"
+
+msgid "Potassium Metabisulfite"
+msgstr "Kaliumdisulfit"
+
+msgid "Potassium Sorbate"
+msgstr "Kaliumsorbat"
+
+msgid "Lysozyme"
+msgstr "Lysozym"
+
+msgid "Ascorbic Acid"
+msgstr "Ascorbinsyre"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimethyldicarbonat"
+
+msgid "Tartaric Acid"
+msgstr "Vinsyre"
+
+msgid "Malic Acid"
+msgstr "Æblesyre"
+
+msgid "Lactic Acid"
+msgstr "Mælkesyre"
+
+msgid "Calcium Sulfate"
+msgstr "Calciumsulfat"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Citronsyre"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Citronsyre"
+
+msgid "Metatartaric Acid"
+msgstr "Metatartrinsyre"
+
+msgid "Gum Arabic"
+msgstr "Arabisk gummi"
+
+msgid "Yeast Mannoproteins"
+msgstr "Gærmannoprotein"
+
+msgid "Carboxymethylcellulose"
+msgstr "Carboxymethylcellulose"
+
+msgid "Potassium Polyaspartate"
+msgstr "Kaliumpolyaspartat"
+
+msgid "Fumaric Acid"
+msgstr "Fumarsyre"
+
+msgid "Argon"
+msgstr "Argon"
+
+msgid "Nitrogen"
+msgstr "Kvælstof"
+
+msgid "Carbon Dioxide"
+msgstr "Kuldioxid"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Pakket under beskyttende atmosfære"
+
+msgid "Preservatives"
+msgstr "Konserveringsmidler"
+
+msgid "Acid Regulators"
+msgstr "Syrereguleringsmidler"
+
+msgid "Stabilizers"
+msgstr "Stabilisatorer"
+
+msgid "Base Ingredients"
+msgstr "Basisingredienser"
+
+msgid "Gases"
+msgstr "Gasser"
+
+msgid "Nutrition Label"
+msgstr "Ernæringsmærkat"
+
+msgid "Ingredients:"
+msgstr "Ingredienser:"
+
+msgid "Nutritional Information"
+msgstr "Næringsoplysninger"
+
+msgid "Per 100ml"
+msgstr "Per 100 ml"
+
+msgid "Energy"
+msgstr "Energi"
+
+msgid "Carbohydrates"
+msgstr "Kulhydrater"
+
+msgid "of which Sugars"
+msgstr "heraf Sukkerarter"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Kan indeholde ubetydelige mængder protein og salt."
+
+msgid "Nutrition Information"
+msgstr "Ernæringsinformation"
+
+msgid "Calories (kcal):"
+msgstr "Kalorier (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilojoule (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Kulhydrater (g):"
+
+msgid "Sugar (g):"
+msgstr "Sukkerarter (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL for ernæringsmærkat:"
+
+msgid "Download QR Code"
+msgstr "Download QR-kode"
+
+msgid "Save product to generate short URL first."
+msgstr "Gem produktet først for at generere en kort URL."
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Nil"
+msgstr "Ingen"
+
+msgid "Nutrition Labels Settings"
+msgstr "Indstillinger for ernæringsmærkater"
+
+msgid "Database Management"
+msgstr "Databaseadministration"
+
+msgid "Settings saved successfully!"
+msgstr "Indstillinger gemt!"
+
+msgid "Invalid nonce"
+msgstr "Ugyldigt sikkerhedstoken"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "%d ernæringsmærkat slettet"
+msgstr[1] "%d ernæringsmærkater slettet"
+
+msgid "Search product name or short code..."
+msgstr "Søg efter produktnavn eller kortkode…"
+
+msgid "Search"
+msgstr "Søg"
+
+msgid "Clear Search"
+msgstr "Ryd søgning"
+
+msgid "No nutrition label entries found."
+msgstr "Ingen ernæringsmærkater fundet."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Viser %1$d af %2$d poster"
+
+msgid "Select All"
+msgstr "Vælg alle"
+
+msgid "Select"
+msgstr "Vælg"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Prefix"
+msgstr "Præfiks"
+
+msgid "Short Code"
+msgstr "Kortkode"
+
+msgid "Created"
+msgstr "Oprettet"
+
+msgid "Actions"
+msgstr "Handlinger"
+
+msgid "View Label"
+msgstr "Se mærkat"
+
+msgid "Download QR"
+msgstr "Download QR"
+
+msgid "Delete"
+msgstr "Slet"
+
+msgid "Delete Selected"
+msgstr "Slet valgte"
+
+msgid "Export to CSV"
+msgstr "Eksporter til CSV"
+
+msgid "QR Code Size"
+msgstr "QR-kodestørrelse"
+
+msgid "Short Code Length"
+msgstr "Kortkodeslængde"
+
+msgid "Character Set"
+msgstr "Tegnsæt"
+
+msgid "Information"
+msgstr "Information"
+
+msgid "URL Prefix"
+msgstr "URL-præfiks"
+
+msgid "Warning:"
+msgstr "Advarsel:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Ændring af dette vil gøre eksisterende QR-koder ubrugelige!"
+
+msgid "Current Entries:"
+msgstr "Aktuelle poster:"
+
+msgid "%d nutrition labels active"
+msgstr "%d ernæringsmærkat(er) aktiv(e)"
+
+msgid "Save Settings"
+msgstr "Gem indstillinger"
+
+msgid "Generating..."
+msgstr "Genererer…"
+
+msgid "E-Label not found"
+msgstr "E-mærkat ikke fundet"

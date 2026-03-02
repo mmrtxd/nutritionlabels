@@ -1,0 +1,280 @@
+# Slovak translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Slovak <sk@li.org>\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : (n%1!=0) ? 2 : 3;\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Nutričné štítky"
+
+msgid "Grapes"
+msgstr "Hrozno"
+
+msgid "Organic Grapes"
+msgstr "Bio hrozno"
+
+msgid "Sucrose"
+msgstr "Sacharóza"
+
+msgid "Grape Concentrate"
+msgstr "Hroznový koncentrát"
+
+msgid "Sulfur Dioxide"
+msgstr "Oxid siričitý"
+
+msgid "Potassium Bisulfite"
+msgstr "Hydrogensulfit draselný"
+
+msgid "Potassium Metabisulfite"
+msgstr "Metabisulfit draselný"
+
+msgid "Potassium Sorbate"
+msgstr "Sorbát draselný"
+
+msgid "Lysozyme"
+msgstr "Lyzozým"
+
+msgid "Ascorbic Acid"
+msgstr "Kyselina askorbová"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetyldiuhličitan"
+
+msgid "Tartaric Acid"
+msgstr "Kyselina vínna"
+
+msgid "Malic Acid"
+msgstr "Kyselina jablčná"
+
+msgid "Lactic Acid"
+msgstr "Kyselina mliečna"
+
+msgid "Calcium Sulfate"
+msgstr "Síran vápenatý"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Kyselina citrónová"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Kyselina citrónová"
+
+msgid "Metatartaric Acid"
+msgstr "Kyselina metatartarová"
+
+msgid "Gum Arabic"
+msgstr "Arabská guma"
+
+msgid "Yeast Mannoproteins"
+msgstr "Kvasinkové mannoproteíny"
+
+msgid "Carboxymethylcellulose"
+msgstr "Karboxymetylcelulóza"
+
+msgid "Potassium Polyaspartate"
+msgstr "Polyaspartát draselný"
+
+msgid "Fumaric Acid"
+msgstr "Kyselina fumarová"
+
+msgid "Argon"
+msgstr "Argón"
+
+msgid "Nitrogen"
+msgstr "Dusík"
+
+msgid "Carbon Dioxide"
+msgstr "Oxid uhličitý"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Balené v ochrannej atmosfére"
+
+msgid "Preservatives"
+msgstr "Konzervačné látky"
+
+msgid "Acid Regulators"
+msgstr "Regulátory kyslosti"
+
+msgid "Stabilizers"
+msgstr "Stabilizátory"
+
+msgid "Base Ingredients"
+msgstr "Základné suroviny"
+
+msgid "Gases"
+msgstr "Plyny"
+
+msgid "Nutrition Label"
+msgstr "Nutričný štítok"
+
+msgid "Ingredients:"
+msgstr "Zloženie:"
+
+msgid "Nutritional Information"
+msgstr "Nutričné hodnoty"
+
+msgid "Per 100ml"
+msgstr "Na 100 ml"
+
+msgid "Energy"
+msgstr "Energia"
+
+msgid "Carbohydrates"
+msgstr "Sacharidy"
+
+msgid "of which Sugars"
+msgstr "z toho Cukry"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Môže obsahovať zanedbateľné množstvo bielkovín a soli."
+
+msgid "Nutrition Information"
+msgstr "Nutričné informácie"
+
+msgid "Calories (kcal):"
+msgstr "Kalórie (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilojoulov (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Sacharidy (g):"
+
+msgid "Sugar (g):"
+msgstr "Cukry (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL nutričného štítku:"
+
+msgid "Download QR Code"
+msgstr "Stiahnuť QR kód"
+
+msgid "Save product to generate short URL first."
+msgstr "Najprv produkt uložte, aby sa vygenerovala krátka URL."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Nil"
+msgstr "Žiadny"
+
+msgid "Nutrition Labels Settings"
+msgstr "Nastavenia nutričných štítkov"
+
+msgid "Database Management"
+msgstr "Správa databázy"
+
+msgid "Settings saved successfully!"
+msgstr "Nastavenia boli úspešne uložené!"
+
+msgid "Invalid nonce"
+msgstr "Neplatný bezpečnostný token"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "Úspešne odstránený %d nutričný štítok"
+msgstr[1] "Úspešne odstránené %d nutričné štítky"
+msgstr[2] "Úspešne odstránených %d nutričných štítkov"
+msgstr[3] "Úspešne odstránený %d nutričný štítok"
+
+msgid "Search product name or short code..."
+msgstr "Hľadať názov produktu alebo krátky kód…"
+
+msgid "Search"
+msgstr "Hľadať"
+
+msgid "Clear Search"
+msgstr "Vymazať hľadanie"
+
+msgid "No nutrition label entries found."
+msgstr "Neboli nájdené žiadne nutričné štítky."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Zobrazených %1$d z %2$d záznamov"
+
+msgid "Select All"
+msgstr "Vybrať všetko"
+
+msgid "Select"
+msgstr "Vybrať"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Prefix"
+msgstr "Predpona"
+
+msgid "Short Code"
+msgstr "Krátky kód"
+
+msgid "Created"
+msgstr "Vytvorené"
+
+msgid "Actions"
+msgstr "Akcie"
+
+msgid "View Label"
+msgstr "Zobraziť štítok"
+
+msgid "Download QR"
+msgstr "Stiahnuť QR"
+
+msgid "Delete"
+msgstr "Zmazať"
+
+msgid "Delete Selected"
+msgstr "Zmazať vybrané"
+
+msgid "Export to CSV"
+msgstr "Exportovať do CSV"
+
+msgid "QR Code Size"
+msgstr "Veľkosť QR kódu"
+
+msgid "Short Code Length"
+msgstr "Dĺžka krátkeho kódu"
+
+msgid "Character Set"
+msgstr "Sada znakov"
+
+msgid "Information"
+msgstr "Informácie"
+
+msgid "URL Prefix"
+msgstr "Predpona URL"
+
+msgid "Warning:"
+msgstr "Upozornenie:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Táto zmena spôsobí, že existujúce QR kódy prestanú fungovať!"
+
+msgid "Current Entries:"
+msgstr "Aktuálne záznamy:"
+
+msgid "%d nutrition labels active"
+msgstr "%d aktívny nutričný štítok"
+
+msgid "Save Settings"
+msgstr "Uložiť nastavenia"
+
+msgid "Generating..."
+msgstr "Generovanie…"
+
+msgid "E-Label not found"
+msgstr "E-štítok nebol nájdený"

@@ -1,0 +1,289 @@
+# Polish translation for Nutrition Labels WordPress Plugin
+# Copyright (C) 2025 Markus Hammer
+# This file is distributed under the GPLv2 or later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Nutrition Labels 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/example/nutrition-labels/issues\n"
+"POT-Creation-Date: 2026-03-02T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-03-02T00:00:00+00:00\n"
+"Last-Translator: Auto-translated\n"
+"Language-Team: Polish <pl@li.org>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Manually crafted\n"
+"X-Domain: nutrition-labels\n"
+
+msgid "Nutrition Labels"
+msgstr "Etykiety wartości odżywczych"
+
+msgid "Adds nutrition label management, shortcodes, and QR code generation for products."
+msgstr "Dodaje zarządzanie etykietami wartości odżywczych, krótkie kody i generowanie kodów QR dla produktów."
+
+msgid "Grapes"
+msgstr "Winogrona"
+
+msgid "Organic Grapes"
+msgstr "Winogrona ekologiczne"
+
+msgid "Sucrose"
+msgstr "Sacharoza"
+
+msgid "Grape Concentrate"
+msgstr "Koncentrat winogronowy"
+
+msgid "Sulfur Dioxide"
+msgstr "Dwutlenek siarki"
+
+msgid "Potassium Bisulfite"
+msgstr "Wodorosiarczyn potasu"
+
+msgid "Potassium Metabisulfite"
+msgstr "Pirosiarczyn potasu"
+
+msgid "Potassium Sorbate"
+msgstr "Sorbinian potasu"
+
+msgid "Lysozyme"
+msgstr "Lizozym"
+
+msgid "Ascorbic Acid"
+msgstr "Kwas askorbinowy"
+
+msgid "Dimethyl Dicarbonate"
+msgstr "Dimetylodikarbonian"
+
+msgid "Tartaric Acid"
+msgstr "Kwas winowy"
+
+msgid "Malic Acid"
+msgstr "Kwas jabłkowy"
+
+msgid "Lactic Acid"
+msgstr "Kwas mlekowy"
+
+msgid "Calcium Sulfate"
+msgstr "Siarczan wapnia"
+
+msgctxt "acid regulator"
+msgid "Citric Acid"
+msgstr "Kwas cytrynowy"
+
+msgctxt "stabilizer"
+msgid "Citric Acid"
+msgstr "Kwas cytrynowy"
+
+msgid "Metatartaric Acid"
+msgstr "Kwas metatartarowy"
+
+msgid "Gum Arabic"
+msgstr "Guma arabska"
+
+msgid "Yeast Mannoproteins"
+msgstr "Mannoproteiny drożdżowe"
+
+msgid "Carboxymethylcellulose"
+msgstr "Karboksymetyloceluloza"
+
+msgid "Potassium Polyaspartate"
+msgstr "Poliasparaginian potasu"
+
+msgid "Fumaric Acid"
+msgstr "Kwas fumarowy"
+
+msgid "Argon"
+msgstr "Argon"
+
+msgid "Nitrogen"
+msgstr "Azot"
+
+msgid "Carbon Dioxide"
+msgstr "Dwutlenek węgla"
+
+msgid "Packaged under protective atmosphere"
+msgstr "Pakowane w atmosferze ochronnej"
+
+msgid "Preservatives"
+msgstr "Substancje konserwujące"
+
+msgid "Acid Regulators"
+msgstr "Regulatory kwasowości"
+
+msgid "Stabilizers"
+msgstr "Stabilizatory"
+
+msgid "Base Ingredients"
+msgstr "Składniki podstawowe"
+
+msgid "Gases"
+msgstr "Gazy"
+
+msgid "Nutrition Label"
+msgstr "Etykieta wartości odżywczych"
+
+msgid "Ingredients:"
+msgstr "Składniki:"
+
+msgid "Nutritional Information"
+msgstr "Informacja o wartości odżywczej"
+
+msgid "Per 100ml"
+msgstr "Na 100 ml"
+
+msgid "Energy"
+msgstr "Energia"
+
+msgid "Carbohydrates"
+msgstr "Węglowodany"
+
+msgid "of which Sugars"
+msgstr "w tym Cukry"
+
+msgid "May contain negligible amounts of protein and salt."
+msgstr "Może zawierać nieznaczne ilości białka i soli."
+
+msgid "Nutrition Information"
+msgstr "Informacja żywieniowa"
+
+msgid "Calories (kcal):"
+msgstr "Kalorie (kcal):"
+
+msgid "Kilojoules (kJ):"
+msgstr "Kilodżule (kJ):"
+
+msgid "Carbohydrates (g):"
+msgstr "Węglowodany (g):"
+
+msgid "Sugar (g):"
+msgstr "Cukry (g):"
+
+msgid "Nutrition Label URL:"
+msgstr "URL etykiety wartości odżywczych:"
+
+msgid "Download QR Code"
+msgstr "Pobierz kod QR"
+
+msgid "Save product to generate short URL first."
+msgstr "Najpierw zapisz produkt, aby wygenerować krótki URL."
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Nil"
+msgstr "Brak"
+
+msgid "Nutrition Labels Settings"
+msgstr "Ustawienia etykiet wartości odżywczych"
+
+msgid "Configuration"
+msgstr "Konfiguracja"
+
+msgid "Database Management"
+msgstr "Zarządzanie bazą danych"
+
+msgid "Settings saved successfully!"
+msgstr "Ustawienia zostały pomyślnie zapisane!"
+
+msgid "Invalid nonce"
+msgstr "Nieprawidłowy token bezpieczeństwa"
+
+msgid "Successfully deleted %d nutrition label entry"
+msgid_plural "Successfully deleted %d nutrition label entries"
+msgstr[0] "Pomyślnie usunięto %d etykietę wartości odżywczych"
+msgstr[1] "Pomyślnie usunięto %d etykiety wartości odżywczych"
+msgstr[2] "Pomyślnie usunięto %d etykiet wartości odżywczych"
+msgstr[3] "Pomyślnie usunięto %d etykiety wartości odżywczych"
+
+msgid "Nutrition Labels - Database Management"
+msgstr "Etykiety wartości odżywczych – Zarządzanie bazą danych"
+
+msgid "Search product name or short code..."
+msgstr "Wyszukaj nazwę produktu lub krótki kod…"
+
+msgid "Search"
+msgstr "Szukaj"
+
+msgid "Clear Search"
+msgstr "Wyczyść wyszukiwanie"
+
+msgid "No nutrition label entries found."
+msgstr "Nie znaleziono etykiet wartości odżywczych."
+
+msgid "Showing %1$d of %2$d entries"
+msgstr "Wyświetlanie %1$d z %2$d wpisów"
+
+msgid "Select All"
+msgstr "Zaznacz wszystko"
+
+msgid "Select"
+msgstr "Zaznacz"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Prefix"
+msgstr "Prefiks"
+
+msgid "Short Code"
+msgstr "Krótki kod"
+
+msgid "Created"
+msgstr "Utworzono"
+
+msgid "Actions"
+msgstr "Akcje"
+
+msgid "View Label"
+msgstr "Wyświetl etykietę"
+
+msgid "Download QR"
+msgstr "Pobierz QR"
+
+msgid "Delete"
+msgstr "Usuń"
+
+msgid "Delete Selected"
+msgstr "Usuń zaznaczone"
+
+msgid "Export to CSV"
+msgstr "Eksportuj do CSV"
+
+msgid "QR Code Size"
+msgstr "Rozmiar kodu QR"
+
+msgid "Short Code Length"
+msgstr "Długość krótkiego kodu"
+
+msgid "Character Set"
+msgstr "Zestaw znaków"
+
+msgid "Information"
+msgstr "Informacje"
+
+msgid "URL Prefix"
+msgstr "Prefiks URL"
+
+msgid "Warning:"
+msgstr "Ostrzeżenie:"
+
+msgid "Changing this will make existing QR codes stop working!"
+msgstr "Zmiana tego spowoduje, że istniejące kody QR przestaną działać!"
+
+msgid "Current Entries:"
+msgstr "Bieżące wpisy:"
+
+msgid "%d nutrition labels active"
+msgstr "%d aktywna etykieta wartości odżywczych"
+
+msgid "Save Settings"
+msgstr "Zapisz ustawienia"
+
+msgid "Generating..."
+msgstr "Generowanie…"
+
+msgid "E-Label not found"
+msgstr "E-etykieta nie znaleziona"
