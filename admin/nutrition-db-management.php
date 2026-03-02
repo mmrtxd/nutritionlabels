@@ -50,7 +50,8 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
               <th><?php esc_html_e('Short Code', 'nutrition-labels'); ?></th>
               <th><?php esc_html_e('Created', 'nutrition-labels'); ?></th>
               <th class="column-actions"><?php esc_html_e('Actions', 'nutrition-labels'); ?></th>
-              <th><?php esc_html_e('Export Codes', 'nutrition-labels'); ?></th>
+              <th class="export-action"><?php esc_html_e('Export Codes', 'nutrition-labels'); ?></th>
+              <th class="delete-action">&nbsp;</th>
             </tr>
           </thead>
           <tbody>
@@ -71,7 +72,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                 <td>
                   <?php echo esc_html(date('Y-m-d H:i', strtotime($entry->created_at))); ?>
                 </td>
-                <td>
+                <td class="column-actions">
                   <?php $label_url = esc_js(home_url('/' . get_option('url_prefix', 'l') . '/' . $entry->short_code)); ?>
                   <button type="button" class="button" onclick="viewNutritionLabel('<?php echo $label_url; ?>')">
                     <?php esc_html_e('View Label', 'nutrition-labels'); ?>
@@ -79,17 +80,19 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                   <button type="button" class="button" onclick="downloadQrCode(<?php echo $entry->product_id; ?>, this)">
                     <?php esc_html_e('Download QR', 'nutrition-labels'); ?>
                   </button>
-                  <button type="button" class="button" onclick="deleteEntry(<?php echo $entry->product_id; ?>)">
-                    <?php esc_html_e('Delete', 'nutrition-labels'); ?>
-                  </button>
                 </td>
-                <td>
+                <td class="export-action">
                   <select onchange="exportQrCode(<?php echo $entry->product_id; ?>, this)">
                     <option value="">— <?php esc_html_e('Select', 'nutrition-labels'); ?> —</option>
                     <?php foreach (NutritionLabels_URL::get_lang_names() as $code => $name): ?>
                       <option value="<?php echo esc_attr($code); ?>"><?php echo esc_html($name); ?></option>
                     <?php endforeach; ?>
                   </select>
+                </td>
+                <td class="delete-action">
+                  <button type="button" class="button" onclick="deleteEntry(<?php echo $entry->product_id; ?>)">
+                    <?php esc_html_e('Delete', 'nutrition-labels'); ?>
+                  </button>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -306,6 +309,25 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
     border-top: 1px solid #ddd;
   }
 
+  th.column-actions,
+  td.column-actions {
+    width: 230px;
+  }
+
+  th.export-action {
+    width: 150px;
+  }
+
+  th.delete-action {
+    width: 75px;
+  }
+
+  td.column-actions,
+  td.export-action,
+  td.delete-action {
+    vertical-align: middle;
+  }
+
   .nutrition-labels-actions button {
     margin-right: 5px;
     font-size: 12px;
@@ -323,5 +345,6 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
   .nutrition-labels-table-wrapper .wp-list-table td.check-column {
     width: 2.2em;
     padding: 8px 10px;
+    vertical-align: middle;
   }
 </style>
