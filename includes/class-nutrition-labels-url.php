@@ -17,7 +17,7 @@ class NutritionLabels_URL
     }
 
     self::$db = new NutritionLabels_DB_Extended();
-    add_action('init', array(__CLASS__, 'add_rewrite_rules'));
+    self::add_rewrite_rules();
     add_filter('query_vars', array(__CLASS__, 'add_query_vars'));
     add_action('template_redirect', array(__CLASS__, 'handle_short_url'));
   }
