@@ -81,7 +81,7 @@ $character_set = get_option('character_set', 'alphanumeric');
                                             $db = new NutritionLabels_DB_Extended();
                                             echo $db->count_all_entries(); ?> nutrition labels active
         ?></li>
-      <li><strong>URL Format:</strong> <code><?php echo home_url('/l/[shortcode]'); ?></code></li>
+      <li><strong>URL Format:</strong> <code><?php echo esc_url(home_url('/l/[shortcode]')); ?></code></li>
       <li><strong>QR Code Default:</strong> <code><?php echo esc_html(get_option('qr_size', '500x500')); ?></code></li>
       <li><strong>Database Table:</strong> <code>wp_nutrition_short_urls</code></li>
     </ul>

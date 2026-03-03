@@ -166,8 +166,8 @@ class Working_NutritionLabels_MetaBox
             <div class="nutrition-ing-radios">
               <label>
                 <input type="radio"
-                  name="<?php echo $field_name; ?>"
-                  id="<?php echo $id_base; ?>_text"
+                  name="<?php echo esc_attr($field_name); ?>"
+                  id="<?php echo esc_attr($id_base); ?>_text"
                   value="<?php echo esc_attr(IngredientType::Text->value); ?>"
                   <?php checked($current_value, IngredientType::Text->value); ?>>
                 <?php esc_html_e('Text', 'nutrition-labels'); ?>
@@ -175,8 +175,8 @@ class Working_NutritionLabels_MetaBox
               <?php if ($enumber !== ''): ?>
               <label>
                 <input type="radio"
-                  name="<?php echo $field_name; ?>"
-                  id="<?php echo $id_base; ?>_code"
+                  name="<?php echo esc_attr($field_name); ?>"
+                  id="<?php echo esc_attr($id_base); ?>_code"
                   value="<?php echo esc_attr(IngredientType::Code->value); ?>"
                   <?php checked($current_value, IngredientType::Code->value); ?>>
                 <?php echo esc_html($code_label); ?>
@@ -184,8 +184,8 @@ class Working_NutritionLabels_MetaBox
               <?php endif; ?>
               <label>
                 <input type="radio"
-                  name="<?php echo $field_name; ?>"
-                  id="<?php echo $id_base; ?>_nil"
+                  name="<?php echo esc_attr($field_name); ?>"
+                  id="<?php echo esc_attr($id_base); ?>_nil"
                   value="<?php echo esc_attr(IngredientType::Nil->value); ?>"
                   <?php checked($current_value, IngredientType::Nil->value); ?>>
                 <?php esc_html_e('Nil', 'nutrition-labels'); ?>
@@ -250,7 +250,7 @@ class Working_NutritionLabels_MetaBox
   public function download_qr_code()
   {
     check_ajax_referer('nutrition_labels_nonce', 'nonce');
-    if (!current_user_can('edit_products')) wp_die('Unauthorized');
+    if (!current_user_can('edit_posts')) wp_die('Unauthorized');
 
     $product_id = absint($_POST['product_id']);
     if (!$product_id) wp_send_json_error('Invalid product ID');
@@ -302,8 +302,3 @@ class Working_NutritionLabels_MetaBox
   }
 }
 
-// Initialize
-if (is_admin()) {
-  $db = new NutritionLabels_DB_Extended();
-  new Working_NutritionLabels_MetaBox($db);
-}

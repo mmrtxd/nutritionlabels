@@ -53,7 +53,7 @@ $active_count = $db->count_all_entries();
           <td>
             <input type="text" name="nutrition_labels[url_prefix]" id="url_prefix" value="<?php echo esc_attr($current_prefix); ?>" class="regular-text">
             <p class="description">
-              <strong>Current:</strong> <code><?php echo home_url($current_prefix . '/[shortcode]'); ?></code>
+              <strong>Current:</strong> <code><?php echo esc_url(home_url($current_prefix . '/[shortcode]')); ?></code>
               <br>
               <strong><?php esc_html_e('Warning:', 'nutrition-labels'); ?></strong> <?php esc_html_e('Changing this will make existing QR codes stop working!', 'nutrition-labels'); ?>
             </p>

@@ -6,15 +6,9 @@ jQuery(document).ready(function($) {
         var button = $(this);
         var productId = button.data('product-id');
         
-        console.log('QR Code button clicked');
-        console.log('Product ID:', productId);
-        console.log('AJAX URL:', nutritionLabels.ajaxUrl);
-        console.log('Nonce:', nutritionLabels.nonce);
-        
         // Force refresh of nutrition data before generating QR code
         var buttonHtml = button.html();
-        console.log('Current button HTML:', buttonHtml);
-        
+
         if (!productId) {
             console.error('Product ID not found');
             alert('Product ID not found');

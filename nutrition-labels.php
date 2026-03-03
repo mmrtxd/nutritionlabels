@@ -31,7 +31,6 @@ define('NUTRITION_LABELS_PLUGIN_URL', plugin_dir_url(__FILE__));
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-ingredients.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-db-extended.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-url.php';
-require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/working-metabox.php';
 
 
 class NutritionLabels
@@ -76,6 +75,8 @@ class NutritionLabels
       require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/working-metabox.php';
       require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/class-nutrition-labels-admin-extended.php';
       require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-qr.php';
+      $db = new NutritionLabels_DB_Extended();
+      new Working_NutritionLabels_MetaBox($db);
       new NutritionLabels_Admin_Extended();
     }
   }
@@ -104,10 +105,10 @@ class NutritionLabels
             ");
 
         $prefix = get_option('url_prefix', 'l');
-        $wpdb->query("
-                UPDATE {$table}
-                SET url_prefix = '{$prefix}'
-            ");
+        $wpdb->query($wpdb->prepare(
+          "UPDATE {$table} SET url_prefix = %s",
+          $prefix
+        ));
       }
 
       // Update DB version

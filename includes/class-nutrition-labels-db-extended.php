@@ -223,8 +223,9 @@ class NutritionLabels_DB_Extended
     $length = absint(get_option('short_code_length', 5));
     $charset = get_option('character_set', 'alphanumeric');
 
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     if ($charset == 'alphanumeric') {
-      $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      // default charset already set above
     }
 
     do {

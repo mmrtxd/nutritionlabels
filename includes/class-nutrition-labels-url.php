@@ -214,7 +214,7 @@ class NutritionLabels_URL
    */
   public static function get_short_url(int $product_id, string $lang_code = ''): string|false
   {
-    $db   = new NutritionLabels_DB_Extended();
+    $db   = self::get_db();
     $data = $db->get_complete_nutrition_data($product_id);
 
     if (empty($data['short_code'])) {

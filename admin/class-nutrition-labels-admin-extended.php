@@ -242,7 +242,7 @@ class NutritionLabels_Admin_Extended
       foreach ($entries as $entry) {
         fputcsv($output, [
           $entry->product_id,
-          get_the_title($entry->product_id),
+          ltrim(get_the_title($entry->product_id), '=+-@'),
           $entry->short_code,
           $entry->url_prefix,
           $entry->calories,
