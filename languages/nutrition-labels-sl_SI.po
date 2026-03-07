@@ -83,6 +83,9 @@ msgstr "Arabska guma"
 msgid "Yeast Mannoproteins"
 msgstr "Kvasovkini mannoproteini"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Karboksimetilceluloza"
 
@@ -172,6 +175,12 @@ msgstr "Besedilo"
 
 msgid "Nil"
 msgstr "Nič"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Nastavitve prehranskih nalepk"

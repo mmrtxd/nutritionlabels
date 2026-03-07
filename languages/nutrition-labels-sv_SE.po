@@ -83,6 +83,9 @@ msgstr "Arabiskt gummi"
 msgid "Yeast Mannoproteins"
 msgstr "Jästmannoproteiner"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Karboximetylcellulosa"
 
@@ -172,6 +175,12 @@ msgstr "Text"
 
 msgid "Nil"
 msgstr "Ingen"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Inställningar för näringsetiketter"

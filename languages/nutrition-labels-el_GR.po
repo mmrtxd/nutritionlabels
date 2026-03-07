@@ -83,6 +83,9 @@ msgstr "Αραβικό κόμμι"
 msgid "Yeast Mannoproteins"
 msgstr "Μαννοπρωτεΐνες ζύμης"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Καρβοξυμεθυλοκυτταρίνη"
 
@@ -172,6 +175,12 @@ msgstr "Κείμενο"
 
 msgid "Nil"
 msgstr "Κανένα"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Ρυθμίσεις διατροφικών ετικετών"

@@ -86,6 +86,9 @@ msgstr "Arabische gom"
 msgid "Yeast Mannoproteins"
 msgstr "Gistmannoproteine"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Carboxymethylcellulose"
 
@@ -175,6 +178,12 @@ msgstr "Tekst"
 
 msgid "Nil"
 msgstr "Geen"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Instellingen voedingsetiketten"

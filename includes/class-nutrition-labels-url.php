@@ -155,43 +155,53 @@ class NutritionLabels_URL
 
   private static function display_nutrition_label(int $product_id, string $locale = '')
   {
-    // Switch locale first so that toDisplayString() and all __() calls below
-    // use the requested language.
-    $switched = false;
+    // Switch locale so all __() calls use the requested language.
+    //
+    // WP 6.5+ uses WP_Translation_Controller with locale-keyed JIT loading.
+    // Manually calling unload_textdomain() + load_textdomain() clears the
+    // $l10n_unloaded guard, allowing the JIT registry (still pointing at the
+    // site-default locale) to fire on the next __() call and overwrite our
+    // manually loaded .mo with German.
+    //
+    // Fix: override get_locale() via the locale filter BEFORE unloading, then
+    // let WP's JIT mechanism load the correct locale's .mo on the first __()
+    // call. No manual load_textdomain() needed. We never call switch_to_locale()
+    // because it registers reload callbacks that undo the switch.
+    $locale_filter_fn = null;
     if ($locale !== '') {
-      // Bypass switch_to_locale() entirely — in WP 5.5+ it registers reload
-      // callbacks that re-load the site-default .mo after our unload, undoing
-      // the switch. Directly loading the specific .mo file is simpler and
-      // fully predictable.
-      $mo_file = NUTRITION_LABELS_PLUGIN_DIR . 'languages/nutrition-labels-' . $locale . '.mo';
-      if (file_exists($mo_file)) {
-        unload_textdomain('nutrition-labels');
-        load_textdomain('nutrition-labels', $mo_file);
-        $switched = true;
-      }
+      $locale_filter_fn = static function() use ($locale) { return $locale; };
+      add_filter('locale', $locale_filter_fn, PHP_INT_MAX);
+      unload_textdomain('nutrition-labels');
+      // JIT will load the correct locale's .mo on the first __() call.
     }
 
     $db                   = self::get_db();
     $nutrition_table_data = $db->get_complete_nutrition_data($product_id);
 
     if (!$nutrition_table_data) {
-      if ($switched) {
-        restore_current_locale();
+      if ($locale_filter_fn !== null) {
+        remove_filter('locale', $locale_filter_fn, PHP_INT_MAX);
       }
       wp_die(__('E-Label not found', 'nutrition-labels'));
     }
 
     $product_title = get_the_title($product_id);
 
-    // toDisplayString() calls __() internally — must run after switch_to_locale()
-    $ingredients_obj   = $nutrition_table_data['ingredients'];
-    $ingredient_display = ($ingredients_obj instanceof NutritionLabelIngredientList)
-      ? esc_html($ingredients_obj->toDisplayString())
-      : '';
+    // toHtml() calls __() internally — must run after locale switch
+    $ingredients_obj = $nutrition_table_data['ingredients'];
+    if ($ingredients_obj instanceof NutritionLabelIngredientList) {
+      $html_result         = $ingredients_obj->toHtml();
+      $ingredient_display  = $html_result['html'];
+      $ingredient_footnote = $html_result['footnote'];
+    } else {
+      $ingredient_display  = '';
+      $ingredient_footnote = '';
+    }
 
     $nutrition_data = array(
-      'product_title'   => sanitize_text_field($product_title),
-      'ingredient_list' => $ingredient_display,
+      'product_title'       => sanitize_text_field($product_title),
+      'ingredient_list'     => $ingredient_display,
+      'ingredient_footnote' => $ingredient_footnote,
       'calories'        => $nutrition_table_data['calories'],
       'kilojoules'      => $nutrition_table_data['kilojoules'],
       'carbohydrates'   => $nutrition_table_data['carbohydrates'],

@@ -182,6 +182,16 @@ class Working_NutritionLabels_MetaBox
                 <?php echo esc_html($code_label); ?>
               </label>
               <?php endif; ?>
+              <?php if (NutritionLabelIngredientList::isOrganicEligible($group_key, $ing_key)): ?>
+              <label>
+                <input type="radio"
+                  name="<?php echo esc_attr($field_name); ?>"
+                  id="<?php echo esc_attr($id_base); ?>_orgtext"
+                  value="<?php echo esc_attr(IngredientType::OrgText->value); ?>"
+                  <?php checked($current_value, IngredientType::OrgText->value); ?>>
+                <?php esc_html_e('Bio', 'nutrition-labels'); ?>
+              </label>
+              <?php endif; ?>
               <label>
                 <input type="radio"
                   name="<?php echo esc_attr($field_name); ?>"

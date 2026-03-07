@@ -83,6 +83,9 @@ msgstr "Gumă arabică"
 msgid "Yeast Mannoproteins"
 msgstr "Mannoproteine de drojdie"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Carboximetilceluloză"
 
@@ -172,6 +175,12 @@ msgstr "Text"
 
 msgid "Nil"
 msgstr "Niciunul"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Setări etichete nutriționale"

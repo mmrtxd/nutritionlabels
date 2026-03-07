@@ -83,6 +83,9 @@ msgstr "Arabmézga"
 msgid "Yeast Mannoproteins"
 msgstr "Élesztő-mannoproteinek"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Karboximetil-cellulóz"
 
@@ -172,6 +175,12 @@ msgstr "Szöveg"
 
 msgid "Nil"
 msgstr "Egyik sem"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Tápértékcímke beállítások"

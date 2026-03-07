@@ -86,6 +86,9 @@ msgstr "Goma arábica"
 msgid "Yeast Mannoproteins"
 msgstr "Manoproteínas de levedura"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Carboximetilcelulose"
 
@@ -175,6 +178,12 @@ msgstr "Texto"
 
 msgid "Nil"
 msgstr "Nenhum"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Definições de rótulos nutricionais"

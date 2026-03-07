@@ -83,6 +83,9 @@ msgstr "Arabiankumi"
 msgid "Yeast Mannoproteins"
 msgstr "Hiivan mannoproteiinit"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Karboksimetyyliselluloosa"
 
@@ -172,6 +175,12 @@ msgstr "Teksti"
 
 msgid "Nil"
 msgstr "Ei mitään"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Ravintoarvoetikettien asetukset"

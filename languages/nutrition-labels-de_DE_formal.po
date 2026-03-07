@@ -97,6 +97,9 @@ msgstr "Gummi arabicum"
 msgid "Yeast Mannoproteins"
 msgstr "Hefemannoproteine"
 
+msgid "Egg White"
+msgstr "Eiweiß"
+
 msgid "Carboxymethylcellulose"
 msgstr "Carboxymethylcellulose"
 
@@ -200,6 +203,12 @@ msgstr "Text"
 
 msgid "Nil"
 msgstr "Nein"
+
+msgid "Bio"
+msgstr "Bio"
+
+msgid "* from organic farming"
+msgstr "* aus biologischem Anbau"
 
 # -----------------------------------------------
 # Admin menu + messages  (class-nutrition-labels-admin-extended.php)

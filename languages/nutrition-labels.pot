@@ -113,6 +113,10 @@ msgid "Yeast Mannoproteins"
 msgstr ""
 
 #: includes/class-ingredients.php
+msgid "Egg White"
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Carboxymethylcellulose"
 msgstr ""
 
@@ -238,6 +242,14 @@ msgstr ""
 
 #: admin/working-metabox.php
 msgid "Nil"
+msgstr ""
+
+#: admin/working-metabox.php
+msgid "Bio"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "* from organic farming"
 msgstr ""
 
 # --- admin/class-nutrition-labels-admin-extended.php ---

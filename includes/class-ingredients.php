@@ -2,9 +2,10 @@
 
 enum IngredientType: string implements \JsonSerializable
 {
-  case Text = 'text';
-  case Code = 'code';
-  case Nil  = 'nil';
+  case Text    = 'text';
+  case Code    = 'code';
+  case Nil     = 'nil';
+  case OrgText = 'orgtext';
 
   public function jsonSerialize(): mixed
   {
@@ -62,6 +63,7 @@ class IngStabilizers implements \JsonSerializable
   public IngredientType $metawine     = IngredientType::Nil; // metatartaric acid
   public IngredientType $gumarabic    = IngredientType::Nil; // gum arabic
   public IngredientType $yeastprotein = IngredientType::Nil; // yeast mannoproteins
+  public IngredientType $eggwhite     = IngredientType::Nil; // egg white (fining agent)
   public IngredientType $carboexy     = IngredientType::Nil; // carboxymethylcellulose
   public IngredientType $potpoly      = IngredientType::Nil; // potassium polyaspartate
   public IngredientType $fumar        = IngredientType::Nil; // fumaric acid
@@ -122,6 +124,7 @@ class NutritionLabelIngredientList implements \JsonSerializable
       'metawine'     => 'Metatartaric Acid',
       'gumarabic'    => 'Gum Arabic',
       'yeastprotein' => 'Yeast Mannoproteins',
+      'eggwhite'     => 'Egg White',
       'carboexy'     => 'Carboxymethylcellulose',
       'potpoly'      => 'Potassium Polyaspartate',
       'fumar'        => 'Fumaric Acid',
@@ -163,6 +166,7 @@ class NutritionLabelIngredientList implements \JsonSerializable
       'metawine'     => 'E353',
       'gumarabic'    => 'E414',
       'yeastprotein' => '',
+      'eggwhite'     => '',
       'carboexy'     => 'E466',
       'potpoly'      => '',
       'fumar'        => 'E297',
@@ -242,6 +246,28 @@ class NutritionLabelIngredientList implements \JsonSerializable
     return self::$enumbers[$group][$key] ?? '';
   }
 
+  // Allergens (EU Reg. 1169/2011 Annex II) — bold display required regardless of display mode
+  private static array $allergens = [
+    'conservants' => ['sulfur', 'potbi', 'potmetabi', 'lysozyme'],
+    'stabilizers' => ['eggwhite'],
+  ];
+
+  // Ingredients eligible for the OrgText (bio *) display mode
+  private static array $organic_eligible = [
+    'ingredients' => ['sacharose', 'gconcentrate'],
+    'regulators'  => ['tacid'],
+  ];
+
+  public static function isAllergen(string $group, string $key): bool
+  {
+    return in_array($key, self::$allergens[$group] ?? [], true);
+  }
+
+  public static function isOrganicEligible(string $group, string $key): bool
+  {
+    return in_array($key, self::$organic_eligible[$group] ?? [], true);
+  }
+
   // Group headings shown on the e-label (English msgids; empty string = no heading)
   private static array $groupHeadings = [
     'ingredients' => '',
@@ -273,6 +299,7 @@ class NutritionLabelIngredientList implements \JsonSerializable
           $enumber = self::getENumber($group, $key);
           $items[] = $enumber !== '' ? $enumber : self::getLabel($group, $key);
         } else {
+          // Text and OrgText both display as translated name
           $items[] = self::getLabel($group, $key);
         }
       }
@@ -287,5 +314,59 @@ class NutritionLabelIngredientList implements \JsonSerializable
     }
 
     return implode(', ', $segments);
+  }
+
+  /**
+   * Returns an HTML-safe ingredient string with allergens wrapped in <strong> and
+   * organic-origin items marked with *.
+   * Returns ['html' => string, 'footnote' => string].
+   * Each text piece is individually escaped; structural markup (strong, commas) is not.
+   */
+  public function toHtml(): array
+  {
+    $segments    = [];
+    $has_organic = false;
+    $groups      = ['ingredients', 'conservants', 'regulators', 'stabilizers', 'gases'];
+
+    foreach ($groups as $group) {
+      $groupObj = $this->$group;
+      $items    = [];
+
+      foreach (get_object_vars($groupObj) as $key => $type) {
+        if ($type === IngredientType::Nil) continue;
+
+        if ($type === IngredientType::Code) {
+          $enumber = self::getENumber($group, $key);
+          $text    = esc_html($enumber !== '' ? $enumber : self::getLabel($group, $key));
+        } else {
+          $text = esc_html(self::getLabel($group, $key));
+        }
+
+        if (self::isAllergen($group, $key)) {
+          $text = '<strong>' . $text . '</strong>';
+        }
+
+        if ($type === IngredientType::OrgText) {
+          $text        .= '*';
+          $has_organic  = true;
+        }
+
+        $items[] = $text;
+      }
+
+      if (empty($items)) continue;
+
+      $headingMsgid = self::$groupHeadings[$group] ?? '';
+      $heading      = $headingMsgid !== '' ? esc_html(__($headingMsgid, 'nutrition-labels')) : '';
+      $segments[]   = $heading !== ''
+        ? $heading . ': ' . implode(', ', $items)
+        : implode(', ', $items);
+    }
+
+    $footnote = $has_organic
+      ? esc_html__('* from organic farming', 'nutrition-labels')
+      : '';
+
+    return ['html' => implode(', ', $segments), 'footnote' => $footnote];
   }
 }

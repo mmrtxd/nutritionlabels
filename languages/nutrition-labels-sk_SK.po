@@ -83,6 +83,9 @@ msgstr "Arabská guma"
 msgid "Yeast Mannoproteins"
 msgstr "Kvasinkové mannoproteíny"
 
+msgid "Egg White"
+msgstr ""
+
 msgid "Carboxymethylcellulose"
 msgstr "Karboxymetylcelulóza"
 
@@ -172,6 +175,12 @@ msgstr "Text"
 
 msgid "Nil"
 msgstr "Žiadny"
+
+msgid "Bio"
+msgstr ""
+
+msgid "* from organic farming"
+msgstr ""
 
 msgid "Nutrition Labels Settings"
 msgstr "Nastavenia nutričných štítkov"

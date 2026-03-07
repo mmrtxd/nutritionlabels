@@ -22,8 +22,13 @@
 
       <div id="elabel-ingredientslist" class="m-2 p-6 pt-0 pb-5">
         <p class="text-lg">
-          <?php echo $nutrition_data['ingredient_list']; ?>
+          <?php echo wp_kses($nutrition_data['ingredient_list'], ['strong' => []]); ?>
         </p>
+        <?php if (!empty($nutrition_data['ingredient_footnote'])): ?>
+          <p class="text-sm text-gray-600 mt-1">
+            <?php echo esc_html($nutrition_data['ingredient_footnote']); ?>
+          </p>
+        <?php endif; ?>
       </div>
     <?php endif; ?>
     <div id="nutrtiontable" class="border outline-double m-2 p-1">
