@@ -274,6 +274,9 @@ class NutritionLabels_Admin_Extended
 
   public static function handle_settings_submission()
   {
+    if (!current_user_can('manage_options')) {
+      wp_die(__('You do not have permission to change settings.', 'nutrition-labels'));
+    }
     if (function_exists('wp_verify_nonce') && wp_verify_nonce($_POST['_wpnonce'] ?? '', 'update-options')) {
       if (isset($_POST['nutrition_labels']['qr_size'])) {
         $allowed_qr_sizes = array('300x300', '500x500', '800x800');
@@ -288,6 +291,11 @@ class NutritionLabels_Admin_Extended
         $ec = sanitize_text_field($_POST['nutrition_labels']['qr_error_correction']);
         update_option('qr_error_correction', in_array($ec, ['low', 'medium', 'quartile', 'high'], true) ? $ec : 'low');
       }
+      // Checkbox: only present in POST when checked; absence means unchecked.
+      update_option(
+        'nutrition_labels_delete_data_on_uninstall',
+        isset($_POST['nutrition_labels']['delete_data_on_uninstall']) ? 'yes' : 'no'
+      );
 
       echo '<div class="notice notice-success"><p>' . esc_html__('Settings saved successfully!', 'nutrition-labels') . '</p></div>';
     }

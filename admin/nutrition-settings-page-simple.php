@@ -92,6 +92,22 @@ $active_count = $db->count_all_entries();
             </select>
           </td>
         </tr>
+
+        <tr>
+          <th scope="row">
+            <?php esc_html_e('Delete Data on Uninstall', 'nutrition-labels'); ?>
+          </th>
+          <td>
+            <label>
+              <input type="checkbox" name="nutrition_labels[delete_data_on_uninstall]" id="delete_data_on_uninstall" value="1"
+                <?php checked('yes', get_option('nutrition_labels_delete_data_on_uninstall', 'no')); ?>>
+              <?php esc_html_e('Permanently delete all nutrition label data when the plugin is uninstalled', 'nutrition-labels'); ?>
+            </label>
+            <p class="description" style="color:#d63638;font-weight:500;">
+              <?php esc_html_e('Warning: enabling this will drop the database table and all nutrition label records when the plugin is deleted. This cannot be undone.', 'nutrition-labels'); ?>
+            </p>
+          </td>
+        </tr>
       </tbody>
     </table>
 
