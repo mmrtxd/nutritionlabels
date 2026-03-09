@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 /**
  * Refactored Nutrition Meta Box - UI only
  */
@@ -14,7 +18,6 @@ class Working_NutritionLabels_MetaBox
 
     add_action('add_meta_boxes', [$this, 'register_metabox']);
     add_action('save_post', [$this, 'save_data'], 10, 2);
-    add_action('wp_ajax_download_qr_code', [$this, 'download_qr_code']);
     add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
   }
 
@@ -43,10 +46,7 @@ class Working_NutritionLabels_MetaBox
     // Use the DB class to fetch data
     $nutrition_data = $this->db->get_complete_nutrition_data($product_id);
 
-    $current_prefix = get_option('url_prefix', 'l');
-    $short_url = !empty($nutrition_data['short_code'])
-      ? home_url("/{$current_prefix}/{$nutrition_data['short_code']}")
-      : '';
+    $short_url = NutritionLabels_URL::get_short_url($product_id) ?: '';
 
     // Resolve current ingredient list (empty list for new/old-text rows)
     $ingredient_list = ($nutrition_data && $nutrition_data['ingredients'] instanceof NutritionLabelIngredientList)
@@ -255,41 +255,6 @@ class Working_NutritionLabels_MetaBox
   }
 
   /**
-   * AJAX: download QR code for product
-   */
-  public function download_qr_code()
-  {
-    check_ajax_referer('nutrition_labels_nonce', 'nonce');
-    if (!current_user_can('edit_posts')) wp_die('Unauthorized');
-
-    $product_id = absint($_POST['product_id']);
-    if (!$product_id) wp_send_json_error('Invalid product ID');
-
-    $nutrition_data = $this->db->get_complete_nutrition_data($product_id);
-
-    if (empty($nutrition_data['short_code'])) {
-      wp_send_json_error('No short URL for this product');
-    }
-
-    $prefix    = get_option('url_prefix', 'l');
-    $short_url = home_url("/{$prefix}/{$nutrition_data['short_code']}");
-
-    $data_uri = NutritionLabels_QR::generate_qr_code_base64($short_url);
-    if ($data_uri === false) {
-      wp_send_json_error('QR code generation failed');
-    }
-
-    $product      = get_post($product_id);
-    $product_name = sanitize_file_name($product->post_title);
-
-    wp_send_json_success([
-      'url'       => $data_uri,
-      'filename'  => $product_name . '-nutrition-qr.png',
-      'short_url' => $short_url,
-    ]);
-  }
-
-  /**
    * Enqueue admin scripts
    */
   public function enqueue_scripts($hook)
@@ -307,7 +272,7 @@ class Working_NutritionLabels_MetaBox
 
     wp_localize_script('nutrition-labels-admin', 'nutritionLabels', [
       'ajaxUrl' => admin_url('admin-ajax.php'),
-      'nonce'   => wp_create_nonce('nutrition_labels_nonce'),
+      'nonce'   => wp_create_nonce('nutrition_qr_download'),
     ]);
   }
 }

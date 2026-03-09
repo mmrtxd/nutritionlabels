@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 /**
  * URL handling for nutrition labels
  */
@@ -95,8 +99,8 @@ class NutritionLabels_URL
 
   public static function add_rewrite_rules()
   {
-    $prefix  = get_option('url_prefix', 'l');
-    $charset = get_option('charset', 'alphanumeric');
+    $prefix  = NUTRITION_LABELS_URL_PREFIX;
+    $charset = NUTRITION_LABELS_CHARACTER_SET;
     $preg    = '[a-zA-Z0-9]'; // default / only supported set
 
     add_rewrite_rule(
@@ -231,7 +235,7 @@ class NutritionLabels_URL
       return false;
     }
 
-    $prefix = get_option('url_prefix', 'l');
+    $prefix = NUTRITION_LABELS_URL_PREFIX;
     $slug   = $data['short_code'];
 
     if ($lang_code !== '' && preg_match('/^[a-z]{2}$/', $lang_code) && isset(self::$lang_map[$lang_code])) {

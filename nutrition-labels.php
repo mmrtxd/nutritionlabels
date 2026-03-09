@@ -4,7 +4,7 @@
  * Plugin Name: Nutrition Labels
  * Plugin URI:  https://example.com/nutrition-labels
  * Description: Adds nutrition label management, shortcodes, and QR code generation for products.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      Markus Hammer 
  * Author URI:  https://hammerwein.at
  * Text Domain: nutrition-labels
@@ -26,6 +26,16 @@ define('NUTRITION_LABELS_DB_VERSION', '1.1.0');
 
 define('NUTRITION_LABELS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NUTRITION_LABELS_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+if (!defined('NUTRITION_LABELS_URL_PREFIX')) {
+  define('NUTRITION_LABELS_URL_PREFIX', 'l');
+}
+if (!defined('NUTRITION_LABELS_SHORTCODE_LENGTH')) {
+  define('NUTRITION_LABELS_SHORTCODE_LENGTH', 5);
+}
+if (!defined('NUTRITION_LABELS_CHARACTER_SET')) {
+  define('NUTRITION_LABELS_CHARACTER_SET', 'alphanumeric');
+}
 
 // Include required files
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-ingredients.php';
@@ -104,7 +114,7 @@ class NutritionLabels
                 ADD COLUMN url_prefix VARCHAR(10) NOT NULL DEFAULT 'l'
             ");
 
-        $prefix = get_option('url_prefix', 'l');
+        $prefix = NUTRITION_LABELS_URL_PREFIX;
         $wpdb->query($wpdb->prepare(
           "UPDATE {$table} SET url_prefix = %s",
           $prefix

@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 enum IngredientType: string implements \JsonSerializable
 {
   case Text    = 'text';

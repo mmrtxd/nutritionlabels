@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 /**
  * Extended admin class with settings backend functionality
  */
@@ -66,47 +70,23 @@ class NutritionLabels_Admin_Extended
       'sanitize_callback' => array($this, 'sanitize_qr_size')
     ));
 
-    register_setting('nutrition_labels_group', 'short_code_length', array(
-      'type' => 'integer',
-      'default' => 5,
-      'sanitize_callback' => 'absint'
+    register_setting('nutrition_labels_group', 'qr_format', array(
+      'type'              => 'string',
+      'default'           => 'png',
+      'sanitize_callback' => fn($v) => in_array($v, ['png', 'svg'], true) ? $v : 'png',
     ));
 
-    register_setting('nutrition_labels_group', 'character_set', array(
-      'type' => 'string',
-      'default' => 'alphanumeric',
-      'sanitize_callback' => array($this, 'sanitize_character_set')
+    register_setting('nutrition_labels_group', 'qr_error_correction', array(
+      'type'              => 'string',
+      'default'           => 'low',
+      'sanitize_callback' => fn($v) => in_array($v, ['low', 'medium', 'quartile', 'high'], true) ? $v : 'low',
     ));
-
-    register_setting('nutrition_labels_group', 'url_prefix', array(
-      'type' => 'string',
-      'default' => 'l',
-      'sanitize_callback' => array($this, 'sanitize_url_prefix')
-    ));
-  }
-
-  public function sanitize_url_prefix($input)
-  {
-    $input = sanitize_text_field($input);
-    // Remove slashes and ensure valid prefix
-    $input = rtrim(ltrim($input, '/'), '/');
-    // Ensure it's not empty and contains only valid characters
-    if (empty($input) || !preg_match('/^[a-zA-Z0-9_-]+$/', $input)) {
-      return 'l'; // default fallback
-    }
-    return $input;
   }
 
   public function sanitize_qr_size($input)
   {
     $allowed = array('300x300', '500x500', '800x800');
     return in_array($input, $allowed) ? $input : '500x500';
-  }
-
-  public function sanitize_character_set($input)
-  {
-    $allowed = array('alphanumeric');
-    return in_array($input, $allowed) ? $input : 'alphanumeric';
   }
 
   public function ajax_search()
@@ -171,13 +151,14 @@ class NutritionLabels_Admin_Extended
   public function ajax_download_qr()
   {
     check_ajax_referer('nutrition_qr_download', 'nonce');
-    if (!current_user_can('manage_options')) {
-      wp_die('Unauthorized');
-    }
 
     $product_id = absint($_POST['product_id']);
     if (!$product_id) {
       wp_send_json_error('Invalid product ID');
+    }
+
+    if (!current_user_can('edit_post', $product_id)) {
+      wp_die('Unauthorized');
     }
 
     // Validate optional language code against the whitelist
@@ -195,21 +176,21 @@ class NutritionLabels_Admin_Extended
       wp_send_json_error('No short URL for this product');
     }
 
-    $prefix = get_option('url_prefix', 'l');
-    $slug   = $nutrition_data['short_code'];
-    if ($lang_code !== '') {
-      $slug .= '-' . $lang_code;
+    $short_url = NutritionLabels_URL::get_short_url($product_id, $lang_code);
+    if (!$short_url) {
+      wp_send_json_error('Could not build short URL for this product');
     }
-    $short_url = home_url("/{$prefix}/{$slug}");
 
-    $data_uri = NutritionLabels_QR::generate_qr_code_base64($short_url);
+    $format   = get_option('qr_format', 'png');
+    $data_uri = NutritionLabels_QR::generate_qr_code_base64($short_url, $format);
     if ($data_uri === false) {
       wp_send_json_error('QR code generation failed');
     }
 
     $product      = get_post($product_id);
     $product_name = sanitize_file_name($product->post_title);
-    $filename     = $product_name . '-nutrition-qr' . ($lang_code !== '' ? '-' . $lang_code : '') . '.png';
+    $lang_suffix  = $lang_code !== '' ? '-' . $lang_code : '';
+    $filename     = $product_name . '-nutrition-qr' . $lang_suffix . '.' . $format;
 
     wp_send_json_success(array(
       'url'      => $data_uri,
@@ -294,25 +275,18 @@ class NutritionLabels_Admin_Extended
   public static function handle_settings_submission()
   {
     if (function_exists('wp_verify_nonce') && wp_verify_nonce($_POST['_wpnonce'] ?? '', 'update-options')) {
-      // Save individual options
-      if (isset($_POST['nutrition_labels']['url_prefix'])) {
-        update_option('url_prefix', sanitize_text_field($_POST['nutrition_labels']['url_prefix']));
-      }
       if (isset($_POST['nutrition_labels']['qr_size'])) {
         $allowed_qr_sizes = array('300x300', '500x500', '800x800');
         $qr_size = sanitize_text_field($_POST['nutrition_labels']['qr_size']);
         update_option('qr_size', in_array($qr_size, $allowed_qr_sizes) ? $qr_size : '500x500');
       }
-      if (isset($_POST['nutrition_labels']['short_code_length'])) {
-        update_option('short_code_length', absint($_POST['nutrition_labels']['short_code_length']));
+      if (isset($_POST['nutrition_labels']['qr_format'])) {
+        $qr_format = sanitize_text_field($_POST['nutrition_labels']['qr_format']);
+        update_option('qr_format', in_array($qr_format, ['png', 'svg'], true) ? $qr_format : 'png');
       }
-      if (isset($_POST['nutrition_labels']['character_set'])) {
-        update_option('character_set', sanitize_text_field($_POST['nutrition_labels']['character_set']));
-      }
-
-      // Flush rewrite rules when URL prefix changes
-      if (isset($_POST['nutrition_labels']['url_prefix'])) {
-        flush_rewrite_rules(false);
+      if (isset($_POST['nutrition_labels']['qr_error_correction'])) {
+        $ec = sanitize_text_field($_POST['nutrition_labels']['qr_error_correction']);
+        update_option('qr_error_correction', in_array($ec, ['low', 'medium', 'quartile', 'high'], true) ? $ec : 'low');
       }
 
       echo '<div class="notice notice-success"><p>' . esc_html__('Settings saved successfully!', 'nutrition-labels') . '</p></div>';

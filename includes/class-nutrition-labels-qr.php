@@ -1,7 +1,12 @@
 <?php
 
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Writer\SvgWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\RoundBlockSizeMode;
@@ -12,18 +17,23 @@ use Endroid\QrCode\RoundBlockSizeMode;
 class NutritionLabels_QR
 {
   /**
-   * Generates a QR code PNG and returns the raw binary string.
+   * Generates a QR code and returns the raw output string.
+   * Format is 'png' (default) or 'svg', falling back to the qr_format option.
    *
-   * @return string|false  Raw PNG bytes, or false on failure.
+   * @return string|false  Raw bytes (PNG) or SVG markup, or false on failure.
    */
-  public static function generate_qr_code(string $url): string|false
+  public static function generate_qr_code(string $url, string $format = null): string|false
   {
+    if ($format === null) {
+      $format = get_option('qr_format', 'png');
+    }
+
     try {
-      $writer = new PngWriter();
+      $writer = $format === 'svg' ? new SvgWriter() : new PngWriter();
       $qrCode = new QrCode(
         data: $url,
         encoding: new Encoding('UTF-8'),
-        errorCorrectionLevel: ErrorCorrectionLevel::High,
+        errorCorrectionLevel: self::configured_error_correction(),
         size: self::configured_size(),
         margin: 10,
         roundBlockSizeMode: RoundBlockSizeMode::Margin,
@@ -35,21 +45,28 @@ class NutritionLabels_QR
   }
 
   /**
-   * Generates a QR code and returns it as a data URI (data:image/png;base64,...).
+   * Generates a QR code and returns it as a data URI.
+   * PNG → data:image/png;base64,…  SVG → data:image/svg+xml;base64,…
    *
    * @return string|false  Data URI, or false on failure.
    */
-  public static function generate_qr_code_base64(string $url): string|false
+  public static function generate_qr_code_base64(string $url, string $format = null): string|false
   {
-    $png = self::generate_qr_code($url);
-    if ($png === false) {
+    if ($format === null) {
+      $format = get_option('qr_format', 'png');
+    }
+
+    $data = self::generate_qr_code($url, $format);
+    if ($data === false) {
       return false;
     }
-    return 'data:image/png;base64,' . base64_encode($png);
+
+    $mime = $format === 'svg' ? 'image/svg+xml' : 'image/png';
+    return 'data:' . $mime . ';base64,' . base64_encode($data);
   }
 
   /**
-   * Streams a QR code PNG directly to the browser as a file download.
+   * Streams a QR code directly to the browser as a file download.
    * For use as a direct download endpoint (non-AJAX).
    */
   public static function download_qr_code(int $product_id, string $product_name): void
@@ -68,17 +85,19 @@ class NutritionLabels_QR
       wp_die('Unable to generate short URL for QR code');
     }
 
-    $png = self::generate_qr_code($short_url);
-    if ($png === false) {
+    $format = get_option('qr_format', 'png');
+    $data   = self::generate_qr_code($short_url, $format);
+    if ($data === false) {
       wp_die('Error generating QR code.');
     }
 
-    header('Content-Type: image/png');
-    header('Content-Disposition: attachment; filename="' . sanitize_file_name($product_name) . '-nutrition-qr.png"');
+    $mime = $format === 'svg' ? 'image/svg+xml' : 'image/png';
+    header('Content-Type: ' . $mime);
+    header('Content-Disposition: attachment; filename="' . sanitize_file_name($product_name) . '-nutrition-qr.' . $format . '"');
     header('Cache-Control: private, max-age=3600');
     header('X-Content-Type-Options: nosniff');
 
-    echo $png;
+    echo $data;
     exit;
   }
 
@@ -91,5 +110,14 @@ class NutritionLabels_QR
     $parts    = explode('x', $size_str);
     $size     = (int) ($parts[0] ?? 500);
     return $size > 0 ? $size : 500;
+  }
+
+  /**
+   * Returns the configured ErrorCorrectionLevel from the qr_error_correction option.
+   */
+  private static function configured_error_correction(): ErrorCorrectionLevel
+  {
+    $value = get_option('qr_error_correction', 'low');
+    return ErrorCorrectionLevel::from($value);
   }
 }

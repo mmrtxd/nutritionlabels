@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+  exit;
+}
+
 class NutritionLabels_DB_Extended
 {
 
@@ -107,7 +111,7 @@ class NutritionLabels_DB_Extended
       $this->table_name,
       array(
         'product_id' => (int) $product_id,
-        'url_prefix' => get_option('url_prefix', 'l'),
+        'url_prefix' => NUTRITION_LABELS_URL_PREFIX,
         'short_code' => $shortcode,
         'created_at' => current_time('mysql'),
         'updated_at' => current_time('mysql'),
@@ -161,24 +165,30 @@ class NutritionLabels_DB_Extended
     );
 
     if ($exists > 0) {
-      return $this->wpdb->update(
+      $result = $this->wpdb->update(
         $this->table_name,
         $payload,
         array('product_id' => (int) $product_id),
         array('%s', '%d', '%d', '%f', '%f', '%s'),
         array('%d')
       );
+    } else {
+      // INSERT path — created_at is guaranteed
+      $payload['product_id'] = (int) $product_id;
+      $payload['created_at'] = $now;
+
+      $result = $this->wpdb->insert(
+        $this->table_name,
+        $payload,
+        array('%s', '%d', '%d', '%f', '%f', '%s', '%d', '%s')
+      );
     }
 
-    // INSERT path — created_at is guaranteed
-    $payload['product_id'] = (int) $product_id;
-    $payload['created_at'] = $now;
+    if ($result !== false) {
+      do_action('nutrition_labels_saved', $product_id, $data);
+    }
 
-    return $this->wpdb->insert(
-      $this->table_name,
-      $payload,
-      array('%s', '%d', '%d', '%f', '%f', '%s', '%d', '%s')
-    );
+    return $result;
   }
 
 
@@ -188,11 +198,17 @@ class NutritionLabels_DB_Extended
       return false;
     }
 
-    return $this->wpdb->delete(
+    $result = $this->wpdb->delete(
       $this->table_name,
       array('product_id' => (int) $product_id),
       array('%d')
     );
+
+    if ($result !== false) {
+      do_action('nutrition_labels_deleted', $product_id);
+    }
+
+    return $result;
   }
 
   /**
@@ -220,8 +236,8 @@ class NutritionLabels_DB_Extended
     // short_code_length
     // character_set
 
-    $length = absint(get_option('short_code_length', 5));
-    $charset = get_option('character_set', 'alphanumeric');
+    $length = NUTRITION_LABELS_SHORTCODE_LENGTH;
+    $charset = NUTRITION_LABELS_CHARACTER_SET;
 
     $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     if ($charset == 'alphanumeric') {
@@ -238,6 +254,8 @@ class NutritionLabels_DB_Extended
       }
     } while ($this->shortcode_exists($new_code) && $tries < 50);
 
+    $new_code = apply_filters('nutrition_labels_shortcode', $new_code, $product_id);
+
     if ($tries >= 50) {
       // Failed to generate a unique code
       return new WP_Error(
@@ -249,7 +267,7 @@ class NutritionLabels_DB_Extended
     // Insert the new shortcode into the existing row
     $updated = $this->wpdb->update(
       $this->table_name,
-      ['url_prefix' => get_option('url_prefix', 'l'), 'short_code' => $new_code, 'updated_at' => current_time('mysql')],
+      ['url_prefix' => NUTRITION_LABELS_URL_PREFIX, 'short_code' => $new_code, 'updated_at' => current_time('mysql')],
       ['product_id' => $product_id],
       ['%s', '%s', '%s'],
       ['%d']
@@ -336,11 +354,17 @@ class NutritionLabels_DB_Extended
       return false;
     }
 
-    return $this->wpdb->delete(
+    $result = $this->wpdb->delete(
       $this->table_name,
       array('product_id' => (int) $product_id),
       array('%d')
     );
+
+    if ($result !== false) {
+      do_action('nutrition_labels_deleted', $product_id);
+    }
+
+    return $result;
   }
 
   public function count_search_results($search = '')
@@ -412,7 +436,7 @@ class NutritionLabels_DB_Extended
 
   private function is_valid_shortcode($shortcode)
   {
-    $charset = get_option('character_set', 'alphanumeric');
+    $charset = NUTRITION_LABELS_CHARACTER_SET;
 
     $pattern = '';
 

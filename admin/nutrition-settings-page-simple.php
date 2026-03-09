@@ -1,4 +1,8 @@
-<?php 
+<?php
+
+if (!defined('ABSPATH')) {
+  exit;
+}
 
 /**
  * Simple settings page with warning system
@@ -25,9 +29,9 @@ if (isset($_POST['submit-nutrition-settings']) && class_exists('NutritionLabels_
 }
 
 // Get current settings
-$current_prefix = get_option('url_prefix', 'l');
-$current_length = get_option('short_code_length', 5);
-$current_qr_size = get_option('qr_size', '500x500');
+$current_qr_size        = get_option('qr_size', '500x500');
+$current_qr_format      = get_option('qr_format', 'png');
+$current_qr_correction  = get_option('qr_error_correction', 'low');
 $db = new NutritionLabels_DB_Extended();
 $active_count = $db->count_all_entries();
 ?>
@@ -44,63 +48,48 @@ $active_count = $db->count_all_entries();
     }
     ?>
 
+    <?php require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/settings-functions.php'; ?>
     <table class="form-table" role="presentation">
       <tbody>
         <tr>
           <th scope="row">
-            <label for="url_prefix"><?php esc_html_e('URL Prefix', 'nutrition-labels'); ?></label>
+            <label for="qr_size">
+              <?php esc_html_e('QR Code Size', 'nutrition-labels'); ?>
+              <span class="nl-tooltip" data-tip="<?php esc_attr_e('Pixel dimensions of the downloaded QR image. For print use SVG format is recommended — it is resolution-independent and will be crisp at any size regardless of this setting.', 'nutrition-labels'); ?>">?</span>
+            </label>
           </th>
           <td>
-            <input type="text" name="nutrition_labels[url_prefix]" id="url_prefix" value="<?php echo esc_attr($current_prefix); ?>" class="regular-text">
-            <p class="description">
-              <strong>Current:</strong> <code><?php echo esc_url(home_url($current_prefix . '/[shortcode]')); ?></code>
-              <br>
-              <strong><?php esc_html_e('Warning:', 'nutrition-labels'); ?></strong> <?php esc_html_e('Changing this will make existing QR codes stop working!', 'nutrition-labels'); ?>
-            </p>
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">
-            <label for="qr_size"><?php esc_html_e('QR Code Size', 'nutrition-labels'); ?></label>
-          </th>
-          <td>
-            <?php require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/settings-functions.php'; ?>
             <select name="nutrition_labels[qr_size]" id="qr_size">
               <?php echo qr_size_options($current_qr_size); ?>
             </select>
-            <p class="description"><?php esc_html_e('Choose QR code size for download. Smaller sizes are better for small labels, larger for posters.', 'nutrition-labels'); ?></p>
           </td>
         </tr>
 
         <tr>
           <th scope="row">
-            <label for="short_code_length"><?php esc_html_e('Short Code Length', 'nutrition-labels'); ?></label>
+            <label for="qr_format">
+              <?php esc_html_e('QR Code Format', 'nutrition-labels'); ?>
+              <span class="nl-tooltip" data-tip="<?php esc_attr_e('SVG is a vector format — edges stay perfectly sharp at any print size and is recommended for wine labels. PNG is a pixel-based image; choose a large size if using PNG for print.', 'nutrition-labels'); ?>">?</span>
+            </label>
           </th>
           <td>
-            <select name="nutrition_labels[short_code_length]" id="short_code_length">
-              <option value="4" <?php echo nutrition_selected($current_length, 4); ?>>4 characters</option>
-              <option value="5" <?php echo nutrition_selected($current_length, 5); ?>>5 characters (Default)</option>
-              <option value="6" <?php echo nutrition_selected($current_length, 6); ?>>6 characters</option>
-              <option value="7" <?php echo nutrition_selected($current_length, 7); ?>>7 characters</option>
-              <option value="8" <?php echo nutrition_selected($current_length, 8); ?>>8 characters</option>
+            <select name="nutrition_labels[qr_format]" id="qr_format">
+              <?php echo qr_format_options($current_qr_format); ?>
             </select>
-            <p class="description">
-              <?php esc_html_e('Minimum is 4 characters. Shorter codes may conflict more often.', 'nutrition-labels'); ?>
-            </p>
           </td>
         </tr>
 
         <tr>
           <th scope="row">
-            <label for="character_set"><?php esc_html_e('Character Set', 'nutrition-labels'); ?></label>
+            <label for="qr_error_correction">
+              <?php esc_html_e('Error Correction', 'nutrition-labels'); ?>
+              <span class="nl-tooltip" data-tip="<?php esc_attr_e('Higher correction levels add redundant data so the code can still scan if partially damaged, but produce a denser, more complex pattern. For small clean wine labels (18 mm) Low is recommended — it produces the fewest modules and is easiest to scan.', 'nutrition-labels'); ?>">?</span>
+            </label>
           </th>
           <td>
-            <select name="nutrition_labels[character_set]" id="character_set">
-              <option value="alphanumeric" <?php nutrition_selected(get_option('character_set', 'alphanumeric'), 'alphanumeric'); ?>>Alphanumeric</option>
-              <option value="numeric">Numeric</option>
+            <select name="nutrition_labels[qr_error_correction]" id="qr_error_correction">
+              <?php echo qr_error_correction_options($current_qr_correction); ?>
             </select>
-            <p class="description"><?php esc_html_e('Choose allowed characters for short codes.', 'nutrition-labels'); ?></p>
           </td>
         </tr>
       </tbody>
@@ -155,33 +144,63 @@ if (function_exists('submit_button')) {
     <h3><?php esc_html_e('Information', 'nutrition-labels'); ?></h3>
     <ul>
       <li><strong><?php esc_html_e('Current Entries:', 'nutrition-labels'); ?></strong> <?php printf(esc_html__('%d nutrition labels active', 'nutrition-labels'), $active_count); ?></li>
-      <li><strong>URL Format:</strong> <code><?php echo home_url($current_prefix . '/[shortcode]'); ?></code></li>
-      <li><strong>QR Code Default:</strong> <code><?php echo get_option('qr_size', '500x500'); ?></code></li>
+      <li><strong>URL Format:</strong> <code><?php echo esc_html(home_url('/' . NUTRITION_LABELS_URL_PREFIX . '/[shortcode]')); ?></code></li>
+      <li><strong>QR Code Size:</strong> <code><?php echo esc_html(get_option('qr_size', '500x500')); ?></code></li>
+      <li><strong>QR Code Format:</strong> <code><?php echo esc_html(strtoupper(get_option('qr_format', 'png'))); ?></code></li>
+      <li><strong>Error Correction:</strong> <code><?php echo esc_html(ucfirst(get_option('qr_error_correction', 'low'))); ?></code></li>
       <li><strong>Database Table:</strong> <code>wp_nutrition_short_urls</code></li>
     </ul>
-
-    <?php if ($active_count > 0): ?>
-      <div class="notice notice-info">
-        <h4>⚠️ Important Notice About URL Prefix Changes</h4>
-        <p>If you change the URL prefix, <strong>all existing QR codes will stop working</strong>. This affects:</p>
-        <ul>
-          <li>📱 All printed QR codes on wine bottles</li>
-          <li>🏷️ Marketing materials with QR codes</li>
-          <li>📋 Customer information QR codes</li>
-          <li>🍷 Website QR code links</li>
-        </ul>
-        <p><strong>Before changing the prefix:</strong></p>
-        <ul>
-          <li>✅ Ensure you understand the impact</li>
-          <li>🔄 Consider if you really need to change it</li>
-          <li>📞 Have a plan to update any distributed materials</li>
-        </ul>
-      </div>
-    <?php endif; ?>
   </div>
 </div>
 
 <style>
+  .nl-tooltip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    background: #888;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: help;
+    position: relative;
+    margin-left: 4px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  .nl-tooltip::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #1d2327;
+    color: #f0f0f1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: normal;
+    white-space: normal;
+    width: 260px;
+    line-height: 1.5;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  }
+
+  .nl-tooltip:hover::after {
+    display: block;
+  }
+
+  .form-table th label {
+    display: flex;
+    align-items: center;
+  }
+
   .form-table {
     margin-top: 20px;
     background: #fff;

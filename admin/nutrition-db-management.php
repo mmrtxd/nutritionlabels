@@ -1,5 +1,13 @@
 <?php
 
+if (!defined('ABSPATH')) {
+  exit;
+}
+
+if (!current_user_can('manage_options')) {
+  wp_die(__('You do not have permission to access this page.', 'nutrition-labels'));
+}
+
 /**
  * Settings page for database management
  */
@@ -67,13 +75,13 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                   <small>ID: <?php echo $entry->product_id; ?></small>
                 </td>
                 <td>
-                  <code>/<?php echo esc_html(get_option('url_prefix', 'l')) . '/' . esc_html($entry->short_code); ?></code>
+                  <code>/<?php echo esc_html(NUTRITION_LABELS_URL_PREFIX) . '/' . esc_html($entry->short_code); ?></code>
                 </td>
                 <td>
                   <?php echo esc_html(date('Y-m-d H:i', strtotime($entry->created_at))); ?>
                 </td>
                 <td class="column-actions">
-                  <?php $label_url = esc_js(home_url('/' . get_option('url_prefix', 'l') . '/' . $entry->short_code)); ?>
+                  <?php $label_url = esc_js(home_url('/' . NUTRITION_LABELS_URL_PREFIX . '/' . $entry->short_code)); ?>
                   <button type="button" class="button" onclick="viewNutritionLabel('<?php echo $label_url; ?>')">
                     <?php esc_html_e('View Label', 'nutrition-labels'); ?>
                   </button>

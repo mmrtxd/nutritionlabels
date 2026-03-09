@@ -13,7 +13,7 @@ Nutrition Labels is a WordPress plugin that allows you to store and display nutr
 - **QR Code Generation**: Download QR codes that link directly to a product's nutrition label
 - **CSV Export**: Export all nutrition data to a CSV file
 - **Database Management**: Search, view, and manage nutrition entries from the admin dashboard
-- **Customizable Settings**: Configure QR code size, shortcode length, and character sets
+- **Customizable Settings**: Configure QR code size, format (PNG/SVG), and error correction level
 
 ## Installation
 
@@ -63,10 +63,17 @@ Adjust the following settings under **Nutrition Labels > Configuration**:
 
 | Setting | Description | Default |
 |---------|-------------|---------|
-| QR Code Size | Size of downloaded QR codes | 500x500 |
-| Short Code Length | Characters in short URLs (4-8) | 5 |
-| Character Set | Characters used in shortcodes | alphanumeric |
-| URL Prefix | Base path for nutrition URLs | /l/ |
+| QR Code Size | Pixel dimensions of downloaded PNG QR codes | 500×500 |
+| QR Code Format | PNG (raster) or SVG (vector, recommended for print) | PNG |
+| Error Correction | Module density vs. damage resilience trade-off | Low |
+
+The URL prefix, shortcode length, and character set are fixed deployment constants defined in `nutrition-labels.php`. Advanced users can override them before the plugin loads in `wp-config.php`:
+
+```php
+define('NUTRITION_LABELS_URL_PREFIX',       'n');   // changes /l/ to /n/
+define('NUTRITION_LABELS_SHORTCODE_LENGTH', 6);
+define('NUTRITION_LABELS_CHARACTER_SET',    'alphanumeric');
+```
 
 ### Database Management
 
@@ -129,21 +136,26 @@ Shortcodes are randomly generated alphanumeric strings (A-Z, 0-9) with a configu
 
 **Can I change the URL prefix?**
 
-Yes. Go to **Nutrition Labels > Configuration** and modify the URL Prefix setting. Note: Changing this will invalidate existing short URLs.
+Yes, by defining the `NUTRITION_LABELS_URL_PREFIX` constant in `wp-config.php` before the plugin loads. Note: changing it will invalidate any existing printed QR codes.
 
 **Where are QR codes generated?**
 
-QR codes are generated using the QRServer API. The QR code image is not stored locally but is created on-demand when downloaded.
+QR codes are generated locally on your server using the [endroid/qr-code](https://github.com/endroid/qr-code) library (MIT licence). No data is sent to any external service.
 
 ## Requirements
 
 - WordPress 5.0 or higher
-- PHP 7.2 or higher
+- PHP 8.1 or higher (required for enum support)
 - MySQL 5.6 or higher
 
 ## License
 
-GPLv2 or later - see LICENSE file.
+GPLv2 or later — see LICENSE file.
+
+## Dependencies
+
+- [endroid/qr-code](https://github.com/endroid/qr-code) — MIT License
+- [bacon/bacon-qr-code](https://github.com/Bacon/BaconQrCode) — BSD-2-Clause License
 
 ## Support
 
