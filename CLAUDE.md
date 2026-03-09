@@ -12,7 +12,7 @@ WordPress plugin ("Nutrition Labels" v1.1.0) that adds product nutrition label m
 - **Tailwind CSS** is pre-compiled to `templates/style.css` from `templates/input.css` (Tailwind v4.1.18)
 - **No test suite, linter, or package manager** — no `package.json` or `composer.json`
 - **Deploy** by copying the plugin folder to `wp-content/plugins/` and activating via WP admin
-- **Requires:** WordPress 5.0+, PHP 7.2+, MySQL 5.6+
+- **Requires:** WordPress 5.0+, PHP 8.4+, MySQL 5.6+
 
 ## Architecture
 
