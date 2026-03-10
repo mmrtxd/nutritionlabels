@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 - Markus Hammer - https://github.com/mmrtxd/
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 if (!defined('ABSPATH')) {
   exit;
 }
@@ -173,7 +190,9 @@ class NutritionLabels_URL
     // because it registers reload callbacks that undo the switch.
     $locale_filter_fn = null;
     if ($locale !== '') {
-      $locale_filter_fn = static function() use ($locale) { return $locale; };
+      $locale_filter_fn = static function () use ($locale) {
+        return $locale;
+      };
       add_filter('locale', $locale_filter_fn, PHP_INT_MAX);
       unload_textdomain('nutrition-labels');
       // JIT will load the correct locale's .mo on the first __() call.

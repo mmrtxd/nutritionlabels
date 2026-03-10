@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * Copyright (c) 2026 - Markus Hammer - https://github.com/mmrtxd/
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+
 if (!defined('ABSPATH')) {
   exit;
 }
@@ -41,7 +59,7 @@ $active_count = $db->count_all_entries();
   <p class="description"><?php esc_html_e('Configure your nutrition labels plugin settings and manage QR code generation.', 'nutrition-labels'); ?></p>
 
   <form method="post" action="">
-    <?php 
+    <?php
     // Use safe nonce generation through admin class
     if (class_exists('NutritionLabels_Admin_Extended')) {
       echo '<input type="hidden" name="_wpnonce" value="' . esc_attr(NutritionLabels_Admin_Extended::get_settings_nonce()) . '">';
@@ -111,15 +129,15 @@ $active_count = $db->count_all_entries();
       </tbody>
     </table>
 
-    <?php 
-if (function_exists('submit_button')) {
-  submit_button('Save Settings', 'primary', 'submit-nutrition-settings'); 
-} else {
-  echo '<input type="submit" name="submit-nutrition-settings" value="Save Settings" class="button button-primary">';
-}
-?>
+    <?php
+    if (function_exists('submit_button')) {
+      submit_button('Save Settings', 'primary', 'submit-nutrition-settings');
+    } else {
+      echo '<input type="submit" name="submit-nutrition-settings" value="Save Settings" class="button button-primary">';
+    }
+    ?>
   </form>
-  
+
   <div class="nutrition-labels-actions">
     <form method="post" action="">
       <?php wp_nonce_field('flush_rewrite_rules', '_wpnonce_flush'); ?>
@@ -131,28 +149,28 @@ if (function_exists('submit_button')) {
 
   <script>
     jQuery(document).ready(function($) {
-        $('form input[name="action"][value="flush_rewrite_rules"]').closest('form').submit(function(e) {
-            e.preventDefault();
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flush_rewrite_rules',
-                    _wpnonce_flush: $('input[name="_wpnonce_flush"]').val()
-                },
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.message);
-                    } else {
-                        alert('Error: ' + (response.data || 'Unknown error'));
-                    }
-                },
-                error: function() {
-                    alert('Error: Could not flush rewrite rules');
-                }
-            });
+      $('form input[name="action"][value="flush_rewrite_rules"]').closest('form').submit(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+          url: ajaxurl,
+          type: 'POST',
+          data: {
+            action: 'flush_rewrite_rules',
+            _wpnonce_flush: $('input[name="_wpnonce_flush"]').val()
+          },
+          success: function(response) {
+            if (response.success) {
+              alert(response.message);
+            } else {
+              alert('Error: ' + (response.data || 'Unknown error'));
+            }
+          },
+          error: function() {
+            alert('Error: Could not flush rewrite rules');
+          }
         });
+      });
     });
   </script>
 
@@ -205,7 +223,7 @@ if (function_exists('submit_button')) {
     line-height: 1.5;
     display: none;
     z-index: 9999;
-    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
   }
 
   .nl-tooltip:hover::after {

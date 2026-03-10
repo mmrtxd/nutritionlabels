@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * Copyright (c) 2026 - Markus Hammer - https://github.com/mmrtxd/
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+
 if (!defined('ABSPATH')) {
   exit;
 }
@@ -64,17 +82,63 @@ class Working_NutritionLabels_MetaBox
 ?>
 
     <style>
-      .nutrition-ing-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
-      .nutrition-ing-full-width { grid-column: 1 / -1; }
-      .nutrition-ing-group { margin-bottom: 16px; }
-      .nutrition-ing-group legend { font-weight: 600; font-size: 13px; padding: 0 4px; }
-      .nutrition-ing-group fieldset { border: 1px solid #ddd; padding: 8px 12px; border-radius: 3px; }
-      .nutrition-ing-row { display: flex; align-items: center; padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
-      .nutrition-ing-row:last-child { border-bottom: none; }
-      .nutrition-ing-label { flex: 0 0 180px; font-size: 13px; }
-      .nutrition-ing-radios { display: flex; gap: 12px; flex-wrap: wrap; }
-      .nutrition-ing-radios label { font-size: 12px; cursor: pointer; white-space: nowrap; }
-      .nutrition-ing-radios input[type="radio"] { margin-right: 3px; }
+      .nutrition-ing-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 20px;
+      }
+
+      .nutrition-ing-full-width {
+        grid-column: 1 / -1;
+      }
+
+      .nutrition-ing-group {
+        margin-bottom: 16px;
+      }
+
+      .nutrition-ing-group legend {
+        font-weight: 600;
+        font-size: 13px;
+        padding: 0 4px;
+      }
+
+      .nutrition-ing-group fieldset {
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+        border-radius: 3px;
+      }
+
+      .nutrition-ing-row {
+        display: flex;
+        align-items: center;
+        padding: 4px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .nutrition-ing-row:last-child {
+        border-bottom: none;
+      }
+
+      .nutrition-ing-label {
+        flex: 0 0 180px;
+        font-size: 13px;
+      }
+
+      .nutrition-ing-radios {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .nutrition-ing-radios label {
+        font-size: 12px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .nutrition-ing-radios input[type="radio"] {
+        margin-right: 3px;
+      }
     </style>
 
     <div class="nutrition-fields">
@@ -132,7 +196,7 @@ class Working_NutritionLabels_MetaBox
 
       <?php wp_nonce_field('nutrition_labels_save', 'nutrition_labels_nonce'); ?>
     </div>
-<?php
+  <?php
   }
 
   /**
@@ -148,7 +212,7 @@ class Working_NutritionLabels_MetaBox
     NutritionLabelIngredientList $ingredient_list
   ): void {
     $group_obj = $ingredient_list->$group_key;
-?>
+  ?>
     <div class="nutrition-ing-group">
       <fieldset>
         <legend><?php echo esc_html($group_label); ?></legend>
@@ -173,24 +237,24 @@ class Working_NutritionLabels_MetaBox
                 <?php esc_html_e('Text', 'nutrition-labels'); ?>
               </label>
               <?php if ($enumber !== ''): ?>
-              <label>
-                <input type="radio"
-                  name="<?php echo esc_attr($field_name); ?>"
-                  id="<?php echo esc_attr($id_base); ?>_code"
-                  value="<?php echo esc_attr(IngredientType::Code->value); ?>"
-                  <?php checked($current_value, IngredientType::Code->value); ?>>
-                <?php echo esc_html($code_label); ?>
-              </label>
+                <label>
+                  <input type="radio"
+                    name="<?php echo esc_attr($field_name); ?>"
+                    id="<?php echo esc_attr($id_base); ?>_code"
+                    value="<?php echo esc_attr(IngredientType::Code->value); ?>"
+                    <?php checked($current_value, IngredientType::Code->value); ?>>
+                  <?php echo esc_html($code_label); ?>
+                </label>
               <?php endif; ?>
               <?php if (NutritionLabelIngredientList::isOrganicEligible($group_key, $ing_key)): ?>
-              <label>
-                <input type="radio"
-                  name="<?php echo esc_attr($field_name); ?>"
-                  id="<?php echo esc_attr($id_base); ?>_orgtext"
-                  value="<?php echo esc_attr(IngredientType::OrgText->value); ?>"
-                  <?php checked($current_value, IngredientType::OrgText->value); ?>>
-                <?php esc_html_e('Bio', 'nutrition-labels'); ?>
-              </label>
+                <label>
+                  <input type="radio"
+                    name="<?php echo esc_attr($field_name); ?>"
+                    id="<?php echo esc_attr($id_base); ?>_orgtext"
+                    value="<?php echo esc_attr(IngredientType::OrgText->value); ?>"
+                    <?php checked($current_value, IngredientType::OrgText->value); ?>>
+                  <?php esc_html_e('Bio', 'nutrition-labels'); ?>
+                </label>
               <?php endif; ?>
               <label>
                 <input type="radio"
@@ -276,4 +340,3 @@ class Working_NutritionLabels_MetaBox
     ]);
   }
 }
-
