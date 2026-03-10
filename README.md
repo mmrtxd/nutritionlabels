@@ -185,12 +185,24 @@ No. Deactivating the plugin does not touch the database. Data is only deleted on
 
 ## License
 
-GPLv2 or later — see LICENSE file.
+Copyright (c) 2026 - Markus Hammer - https://github.com/mmrtxd/
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## Dependencies
 
 - [endroid/qr-code](https://github.com/endroid/qr-code) — MIT License
-- [bacon/bacon-qr-code](https://github.com/Bacon/BaconQrCode) — BSD-2-Clause License
 
 ## Support
 
