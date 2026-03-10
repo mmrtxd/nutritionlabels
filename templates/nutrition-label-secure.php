@@ -9,7 +9,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo esc_html($nutrition_data['product_title']); ?> - <?php esc_html_e('Nutrition Label', 'nutrition-labels'); ?></title>
-  <link rel="stylesheet" href="<?php echo plugins_url('nutrition-labels/assets/css/style.css');  ?>">
+  <link rel="stylesheet" href="<?php echo esc_url(plugin_dir_url(__FILE__) . 'style.css'); ?>">
 </head>
 
 <body class="bg-stone-300 p-5">
