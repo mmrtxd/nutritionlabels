@@ -44,7 +44,7 @@
           <td class="p-5 align-top">
             <?php esc_html_e('Energy', 'nutrition-labels'); ?>
           </td>
-          <td class="p-5 text-right"><?php echo esc_html(number_format($nutrition_data['kilojoules'])); ?> kj<br><?php echo esc_html(number_format($nutrition_data['calories'])); ?>kCal</td>
+          <td class="p-5 text-right"><?php echo esc_html(number_format($nutrition_data['kilojoules'])); ?> kj / <php echo esc_html(number_format($nutrition_data['calories'])); ?> kCal</td>
         </tr>
         <tr class="border">
           <td class="p-5">
