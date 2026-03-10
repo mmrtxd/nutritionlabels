@@ -22,7 +22,7 @@ class NutritionLabels_QR
    *
    * @return string|false  Raw bytes (PNG) or SVG markup, or false on failure.
    */
-  public static function generate_qr_code(string $url, string $format = null): string|false
+  public static function generate_qr_code(string $url, ?string $format = null): string|false
   {
     if ($format === null) {
       $format = get_option('qr_format', 'png');
@@ -50,7 +50,7 @@ class NutritionLabels_QR
    *
    * @return string|false  Data URI, or false on failure.
    */
-  public static function generate_qr_code_base64(string $url, string $format = null): string|false
+  public static function generate_qr_code_base64(string $url, ?string $format = null): string|false
   {
     if ($format === null) {
       $format = get_option('qr_format', 'png');
