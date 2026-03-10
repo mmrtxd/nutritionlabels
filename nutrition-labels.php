@@ -9,8 +9,8 @@
  * Author URI:  https://hammerwein.at
  * Text Domain: nutrition-labels
  * Domain Path: /languages
- * License:     GPLv2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * License:     GPLv3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Requires PHP: 8.1
  * Requires at least: 5.0
  */
