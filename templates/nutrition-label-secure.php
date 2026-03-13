@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2026 - Markus Hammer - https://github.com/mmrtxd/
  *
@@ -62,7 +63,7 @@ if (!defined('ABSPATH')) {
           <td class="p-5 align-top">
             <?php esc_html_e('Energy', 'nutrition-labels'); ?>
           </td>
-          <td class="p-5 text-right"><?php echo esc_html(number_format($nutrition_data['kilojoules'])); ?> kj / <?php echo esc_html(number_format($nutrition_data['calories'])); ?> kCal</td>
+          <td class="p-5 text-right"><?php echo esc_html(number_format($nutrition_data['kilojoules'])); ?> kJ / <?php echo esc_html(number_format($nutrition_data['calories'])); ?> kcal</td>
         </tr>
         <tr class="border">
           <td class="p-5">
