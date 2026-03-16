@@ -309,6 +309,20 @@ class Working_NutritionLabels_MetaBox
       'sugar'         => max(0, floatval($_POST['nutrition_sugar'] ?? 0.0)),
     ];
 
+    // Only insert a new row when there is actual data to store.
+    // Saving an empty row leaves short_code = '' in the DB (violates UNIQUE
+    // on the next save and produces broken /l/ URLs).
+    $existing = $this->db->get_nutrition_by_product_id($post_id);
+    $has_data = $ingredient_list->toDisplayString() !== ''
+      || ($data['calories'] > 0)
+      || ($data['kilojoules'] > 0)
+      || ($data['carbohydrates'] > 0)
+      || ($data['sugar'] > 0);
+
+    if (!$existing && !$has_data) {
+      return;
+    }
+
     // Save via DB class
     $this->db->save_nutrition_data($post_id, $data);
 
