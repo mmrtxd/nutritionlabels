@@ -314,6 +314,20 @@ class NutritionLabels_Admin_Extended
         isset($_POST['nutrition_labels']['delete_data_on_uninstall']) ? 'yes' : 'no'
       );
 
+      // Subdomain e-label URL settings
+      update_option(
+        'nutrition_labels_use_subdomain',
+        isset($_POST['nutrition_labels']['use_subdomain']) ? 'yes' : 'no'
+      );
+      if (isset($_POST['nutrition_labels']['subdomain'])) {
+        $raw = sanitize_text_field($_POST['nutrition_labels']['subdomain']);
+        // Strip scheme/path if user accidentally pastes a full URL
+        $raw = preg_replace('#^https?://|/.*$#', '', $raw);
+        update_option('nutrition_labels_subdomain', strtolower($raw));
+      }
+      $scheme = sanitize_text_field($_POST['nutrition_labels']['subdomain_scheme'] ?? 'https');
+      update_option('nutrition_labels_subdomain_scheme', in_array($scheme, ['https', 'http'], true) ? $scheme : 'https');
+
       echo '<div class="notice notice-success"><p>' . esc_html__('Settings saved successfully!', 'nutrition-labels') . '</p></div>';
     }
   }

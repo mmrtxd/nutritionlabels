@@ -103,6 +103,7 @@ class NutritionLabels_URL
     self::$db = new NutritionLabels_DB_Extended();
     self::add_rewrite_rules();
     add_filter('query_vars', array(__CLASS__, 'add_query_vars'));
+    add_action('template_redirect', array(__CLASS__, 'enforce_subdomain_restriction'), 1);
     add_action('template_redirect', array(__CLASS__, 'handle_short_url'));
   }
 
@@ -132,6 +133,57 @@ class NutritionLabels_URL
     $query_vars[] = 'nutrition_shortcode';
     $query_vars[] = 'nutrition_lang';
     return $query_vars;
+  }
+
+  /**
+   * Blocks all non-shortcode requests when the request arrives on the
+   * configured e-label subdomain. Must run before handle_short_url() (priority 1).
+   *
+   * Valid shortcode URLs (with or without language suffix) pass through;
+   * everything else — the WP homepage, product pages, admin, etc. — gets a 404.
+   */
+  public static function enforce_subdomain_restriction()
+  {
+    if (is_admin()) {
+      return;
+    }
+
+    $use_subdomain = get_option('nutrition_labels_use_subdomain', 'no') === 'yes';
+    if (!$use_subdomain) {
+      return;
+    }
+
+    $subdomain_val = trim(get_option('nutrition_labels_subdomain', ''));
+    if ($subdomain_val === '') {
+      return;
+    }
+
+    // Build expected host the same way as build_label_url()
+    if (str_contains($subdomain_val, '.')) {
+      $expected_host = strtolower($subdomain_val);
+    } else {
+      $site_host     = parse_url(home_url(), PHP_URL_HOST);
+      $expected_host = strtolower($subdomain_val . '.' . $site_host);
+    }
+
+    // Strip port from HTTP_HOST before comparing
+    $request_host = strtolower(sanitize_text_field($_SERVER['HTTP_HOST'] ?? ''));
+    $request_host = preg_replace('/:\d+$/', '', $request_host);
+
+    if ($request_host !== $expected_host) {
+      return; // Not the e-label subdomain — no restriction
+    }
+
+    // On the e-label subdomain: only valid shortcode paths are permitted.
+    // nutrition_lang is a separate query var and remains untouched.
+    $shortcode = get_query_var('nutrition_shortcode');
+    if (empty($shortcode) || !ctype_alnum($shortcode)) {
+      wp_die(
+        esc_html__('Not found', 'nutrition-labels'),
+        esc_html__('Not found', 'nutrition-labels'),
+        ['response' => 404]
+      );
+    }
   }
 
   public static function handle_short_url()
@@ -259,6 +311,25 @@ class NutritionLabels_URL
 
     if ($lang_code !== '' && preg_match('/^[a-z]{2}$/', $lang_code) && isset(self::$lang_map[$lang_code])) {
       $slug .= '-' . $lang_code;
+    }
+
+    return self::build_label_url($prefix, $slug);
+  }
+
+  private static function build_label_url(string $prefix, string $slug): string
+  {
+    $use_subdomain = get_option('nutrition_labels_use_subdomain', 'no') === 'yes';
+    $subdomain_val = trim(get_option('nutrition_labels_subdomain', ''));
+
+    if ($use_subdomain && $subdomain_val !== '') {
+      if (str_contains($subdomain_val, '.')) {
+        $host = $subdomain_val;
+      } else {
+        $site_host = parse_url(home_url(), PHP_URL_HOST);
+        $host = $subdomain_val . '.' . $site_host;
+      }
+      $scheme = get_option('nutrition_labels_subdomain_scheme', 'https') === 'http' ? 'http' : 'https';
+      return "{$scheme}://{$host}/{$prefix}/{$slug}";
     }
 
     return home_url("/{$prefix}/{$slug}");

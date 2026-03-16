@@ -113,6 +113,60 @@ $active_count = $db->count_all_entries();
 
         <tr>
           <th scope="row">
+            <label for="use_subdomain">
+              <?php esc_html_e('Subdomain E-Label URLs', 'nutrition-labels'); ?>
+            </label>
+          </th>
+          <td>
+            <label>
+              <input type="checkbox" name="nutrition_labels[use_subdomain]" id="use_subdomain" value="1"
+                <?php checked('yes', get_option('nutrition_labels_use_subdomain', 'no')); ?>>
+              <?php esc_html_e('Enable subdomain e-label URLs', 'nutrition-labels'); ?>
+            </label>
+            <p class="description">
+              <?php esc_html_e('Serve e-labels from a dedicated subdomain as recommended by EU e-labelling regulations.', 'nutrition-labels'); ?>
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">
+            <label for="subdomain">
+              <?php esc_html_e('Subdomain', 'nutrition-labels'); ?>
+            </label>
+          </th>
+          <td>
+            <input type="text" name="nutrition_labels[subdomain]" id="subdomain"
+              value="<?php echo esc_attr(get_option('nutrition_labels_subdomain', '')); ?>"
+              placeholder="elabel" class="regular-text">
+            <p class="description">
+              <?php esc_html_e('Enter a subdomain (e.g. elabel) or a full hostname (e.g. elabel.example.com). The subdomain must resolve to this WordPress installation.', 'nutrition-labels'); ?>
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">
+            <?php esc_html_e('URL Scheme', 'nutrition-labels'); ?>
+          </th>
+          <td>
+            <?php $current_scheme = get_option('nutrition_labels_subdomain_scheme', 'https'); ?>
+            <label>
+              <input type="radio" name="nutrition_labels[subdomain_scheme]" value="https"
+                <?php checked('https', $current_scheme); ?>>
+              <?php esc_html_e('https (recommended)', 'nutrition-labels'); ?>
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="nutrition_labels[subdomain_scheme]" value="http"
+                <?php checked('http', $current_scheme); ?>>
+              <?php esc_html_e('http', 'nutrition-labels'); ?>
+            </label>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">
             <?php esc_html_e('Delete Data on Uninstall', 'nutrition-labels'); ?>
           </th>
           <td>
@@ -149,6 +203,14 @@ $active_count = $db->count_all_entries();
 
   <script>
     jQuery(document).ready(function($) {
+      function toggleSubdomainFields() {
+        var enabled = $('#use_subdomain').is(':checked');
+        $('#subdomain').prop('disabled', !enabled);
+        $('input[name="nutrition_labels[subdomain_scheme]"]').prop('disabled', !enabled);
+      }
+      toggleSubdomainFields();
+      $('#use_subdomain').on('change', toggleSubdomainFields);
+
       $('form input[name="action"][value="flush_rewrite_rules"]').closest('form').submit(function(e) {
         e.preventDefault();
 

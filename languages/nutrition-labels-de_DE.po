@@ -356,3 +356,27 @@ msgstr "%d Nährwertkennzeichnung(en) aktiv"
 
 msgid "Save Settings"
 msgstr "Einstellungen speichern"
+
+msgid "Subdomain E-Label URLs"
+msgstr "Subdomain-E-Label-URLs"
+
+msgid "Enable subdomain e-label URLs"
+msgstr "Subdomain-E-Label-URLs aktivieren"
+
+msgid "Serve e-labels from a dedicated subdomain as recommended by EU e-labelling regulations."
+msgstr "E-Labels über eine eigene Subdomain ausliefern, wie von der EU-E-Kennzeichnungsverordnung empfohlen."
+
+msgid "Subdomain"
+msgstr "Subdomain"
+
+msgid "Enter a subdomain (e.g. elabel) or a full hostname (e.g. elabel.example.com). The subdomain must resolve to this WordPress installation."
+msgstr "Geben Sie eine Subdomain (z. B. elabel) oder einen vollständigen Hostnamen (z. B. elabel.example.com) ein. Die Subdomain muss auf diese WordPress-Installation zeigen."
+
+msgid "URL Scheme"
+msgstr "URL-Schema"
+
+msgid "https (recommended)"
+msgstr "https (empfohlen)"
+
+msgid "http"
+msgstr "http"
