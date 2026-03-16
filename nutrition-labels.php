@@ -84,6 +84,10 @@ class NutritionLabels
     $db = new NutritionLabels_DB_Extended();
     $db->create_tables();
 
+    // The init action has already fired when the activation hook runs, so
+    // add_rewrite_rule() was never called. Register it explicitly here so
+    // the rule is in extra_rules_top before flush regenerates the option.
+    NutritionLabels_URL::add_rewrite_rules();
     flush_rewrite_rules();
   }
 
