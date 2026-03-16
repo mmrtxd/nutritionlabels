@@ -16,6 +16,7 @@ Nutrition Labels is a WordPress plugin that allows you to store and display nutr
 - **QR Code Generation**: Download QR codes (PNG or SVG) that link directly to a product's nutrition label
 - **CSV Export**: Export all nutrition data to a CSV file
 - **Database Management**: Search, view, and manage nutrition entries from the admin dashboard
+- **Subdomain E-Label URLs**: Serve nutrition labels from a dedicated subdomain (e.g., `e-label.yourdomain.com`) as recommended by EU e-labelling regulations, with automatic restriction of that subdomain to label pages only
 - **Customizable Settings**: Configure QR code size, format, and error correction level
 - **Clean Uninstall**: Optionally delete all plugin data when the plugin is removed
 
@@ -60,6 +61,44 @@ To request the label in a specific language, append a two-letter ISO 639-1 langu
 
 If no language suffix is given, the site default locale is used. Falls back to English for unsupported languages.
 
+### Subdomain E-Label URLs (Recommended for EU Compliance)
+
+EU e-labelling regulations advise serving digital labels from a URL that is clearly associated with the product's nutrition information — a dedicated subdomain makes the purpose immediately obvious to consumers and regulators alike.
+
+Good subdomain choices include:
+
+- `e-label.yourdomain.com`
+- `nutrition-info.yourdomain.com`
+- `elabel.yourdomain.com`
+- `labels.yourdomain.com`
+
+Avoid generic subdomains like `www2` or opaque ones like `s1` — the subdomain should communicate what the page is.
+
+#### Setup
+
+1. Create a DNS record (CNAME or A) pointing your chosen subdomain to the same server as your WordPress installation.
+2. Add the subdomain as a server alias in your web server config (Apache `ServerAlias` / Nginx `server_name`) so WordPress receives those requests.
+3. Go to **Nutrition Labels > Configuration** and:
+   - Check **Enable subdomain e-label URLs**
+   - Enter your subdomain in the **Subdomain** field — either a plain label (e.g. `e-label`) or a full hostname (e.g. `e-label.yourdomain.com`)
+   - Select your URL scheme (`https` strongly recommended)
+   - Save settings, then click **Flush Rewrite Rules**
+
+From that point on, all generated short URLs and QR codes will use the subdomain:
+
+```
+https://e-label.yourdomain.com/l/abc12
+https://e-label.yourdomain.com/l/abc12-de
+```
+
+#### Subdomain restriction
+
+When subdomain e-label URLs are enabled, the plugin automatically restricts the configured subdomain to nutrition label pages only. Any request to that subdomain that does not match a valid short URL (e.g. someone browsing to `https://e-label.yourdomain.com/`) will receive a 404 response. This prevents the subdomain from accidentally exposing your full WordPress site.
+
+Language suffixes continue to work normally on the subdomain — `e-label.yourdomain.com/l/abc12-de` serves the German label exactly as before.
+
+> **Note:** DNS propagation and web server configuration are outside the scope of the plugin. The subdomain must resolve to the same WordPress installation for short URLs to work.
+
 ### Downloading QR Codes
 
 1. Edit a product with nutrition information
@@ -81,6 +120,9 @@ Adjust the following settings under **Nutrition Labels > Configuration**:
 | QR Code Size | Pixel dimensions of downloaded QR codes | 500×500 |
 | QR Code Format | PNG (raster) or SVG (vector, recommended for print) | PNG |
 | Error Correction | Module density vs. damage resilience trade-off | Low |
+| Subdomain E-Label URLs | Serve labels from a dedicated subdomain instead of the main site | Off |
+| Subdomain | The subdomain label or full hostname to use | — |
+| URL Scheme | `https` (recommended) or `http` for the subdomain URLs | https |
 | Delete Data on Uninstall | Drop the database table and all records when the plugin is deleted | Off |
 
 > **Warning:** Enabling "Delete Data on Uninstall" is irreversible. All nutrition label records will be permanently deleted when the plugin is removed from WordPress.
@@ -178,6 +220,10 @@ Yes, by defining the `NUTRITION_LABELS_URL_PREFIX` constant in `wp-config.php` b
 **Where are QR codes generated?**
 
 QR codes are generated locally on your server using the [endroid/qr-code](https://github.com/endroid/qr-code) library (MIT licence). No data is sent to any external service.
+
+**Do I need a subdomain to comply with EU e-labelling regulations?**
+
+The plugin works without a subdomain. However, using a dedicated, descriptive subdomain (e.g., `e-label.yourdomain.com`) is recommended by EU e-labelling guidelines because it makes the purpose of the URL immediately clear to consumers. The subdomain restriction feature also ensures no other content is accidentally served from that URL.
 
 **Will my data be lost if I deactivate the plugin?**
 
