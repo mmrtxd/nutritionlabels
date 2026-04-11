@@ -55,7 +55,7 @@ if (!defined('ABSPATH')) {
     <?php endif; ?>
     <div id="nutrtiontable" class="border outline-double m-2 p-1">
       <table class="border-2 p-0 border-black text-base w-full">
-        <tr class="text-base bg-black font-bold text-white">
+        <tr class="text-sm bg-black font-bold text-white">
           <td class="p-5"><?php esc_html_e('Nutritional Information', 'nutrition-labels'); ?></td>
           <td class="p-5 text-right"><?php esc_html_e('Per 100ml', 'nutrition-labels'); ?></td>
         </tr>

@@ -47,6 +47,12 @@ msgstr "Saccharose"
 msgid "Grape Concentrate"
 msgstr "Traubenkonzentrat"
 
+msgid "Dosage Liqueur"
+msgstr "Fülldosage"
+
+msgid "Shipping Dosage"
+msgstr "Versanddosage"
+
 msgid "Sulfur Dioxide"
 msgstr "Schwefeldioxid"
 

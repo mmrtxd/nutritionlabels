@@ -42,6 +42,8 @@ class IngBaseIngredients implements \JsonSerializable
   public IngredientType $organicgrapes = IngredientType::Nil;
   public IngredientType $sacharose     = IngredientType::Nil;
   public IngredientType $gconcentrate  = IngredientType::Nil;
+  public IngredientType $filldosage   = IngredientType::Nil;
+  public IngredientType $shipdosage   = IngredientType::Nil;
 
   public function jsonSerialize(): mixed
   {
@@ -125,6 +127,8 @@ class NutritionLabelIngredientList implements \JsonSerializable
       'organicgrapes' => 'Organic Grapes',
       'sacharose'     => 'Sucrose',
       'gconcentrate'  => 'Grape Concentrate',
+      'filldosage'    => 'Dosage Liqueur',
+      'shipdosage'    => 'Shipping Dosage',
     ],
     'conservants' => [
       'sulfur'      => 'Sulfur Dioxide',
@@ -167,6 +171,8 @@ class NutritionLabelIngredientList implements \JsonSerializable
       'organicgrapes' => '',
       'sacharose'     => '',
       'gconcentrate'  => '',
+      'filldosage'    => '',
+      'shipdosage'    => '',
     ],
     'conservants' => [
       'sulfur'      => 'E220',
