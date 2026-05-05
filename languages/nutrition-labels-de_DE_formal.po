@@ -22,214 +22,278 @@ msgstr ""
 # -----------------------------------------------
 # Plugin meta
 # -----------------------------------------------
-
 #. Plugin Name of the plugin
 msgid "Nutrition Labels"
 msgstr "Nährwertkennzeichnung"
 
 #. Description of the plugin
-msgid "Adds nutrition label management, shortcodes, and QR code generation for products."
-msgstr "Fügt Nährwertkennzeichnungsverwaltung, Kurzcodes und QR-Code-Generierung für Produkte hinzu."
+msgid ""
+"Adds nutrition label management, shortcodes, and QR code generation for "
+"products."
+msgstr ""
+"Fügt Nährwertkennzeichnungsverwaltung, Kurzcodes und QR-Code-Generierung für "
+"Produkte hinzu."
 
 # -----------------------------------------------
 # Ingredient names  (includes/class-ingredients.php)
 # -----------------------------------------------
-
+#: includes/class-ingredients.php
 msgid "Grapes"
 msgstr "Trauben"
 
+#: includes/class-ingredients.php
 msgid "Organic Grapes"
 msgstr "Bio-Trauben"
 
+#: includes/class-ingredients.php
 msgid "Sucrose"
 msgstr "Saccharose"
 
+#: includes/class-ingredients.php
 msgid "Grape Concentrate"
 msgstr "Traubenkonzentrat"
 
+#: includes/class-ingredients.php
+msgid "Dosage Liqueur"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Shipping Dosage"
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Sulfur Dioxide"
 msgstr "Schwefeldioxid"
 
+#: includes/class-ingredients.php
 msgid "Potassium Bisulfite"
 msgstr "Kaliumhydrogensulfit"
 
+#: includes/class-ingredients.php
 msgid "Potassium Metabisulfite"
 msgstr "Kaliumdisulfit"
 
+#: includes/class-ingredients.php
 msgid "Potassium Sorbate"
 msgstr "Kaliumsorbat"
 
+#: includes/class-ingredients.php
 msgid "Lysozyme"
 msgstr "Lysozym"
 
+#: includes/class-ingredients.php
 msgid "Ascorbic Acid"
 msgstr "Ascorbinsäure"
 
+#: includes/class-ingredients.php
 msgid "Dimethyl Dicarbonate"
 msgstr "Dimethyldicarbonat"
 
+#: includes/class-ingredients.php
 msgid "Tartaric Acid"
 msgstr "Weinsäure"
 
+#: includes/class-ingredients.php
 msgid "Malic Acid"
 msgstr "Äpfelsäure"
 
+#: includes/class-ingredients.php
 msgid "Lactic Acid"
 msgstr "Milchsäure"
 
+#: includes/class-ingredients.php
 msgid "Calcium Sulfate"
 msgstr "Calciumsulfat"
 
+#: includes/class-ingredients.php
 msgctxt "acid regulator"
 msgid "Citric Acid"
 msgstr "Citronensäure"
 
+#: includes/class-ingredients.php
 msgctxt "stabilizer"
 msgid "Citric Acid"
 msgstr "Citronensäure"
 
+#: includes/class-ingredients.php
 msgid "Metatartaric Acid"
 msgstr "Metaweinsäure"
 
+#: includes/class-ingredients.php
 msgid "Gum Arabic"
 msgstr "Gummi arabicum"
 
+#: includes/class-ingredients.php
 msgid "Yeast Mannoproteins"
 msgstr "Hefemannoproteine"
 
+#: includes/class-ingredients.php
 msgid "Egg White"
 msgstr "Eiweiß"
 
+#: includes/class-ingredients.php
 msgid "Carboxymethylcellulose"
 msgstr "Carboxymethylcellulose"
 
+#: includes/class-ingredients.php
 msgid "Potassium Polyaspartate"
 msgstr "Kaliumpolyaspartat"
 
+#: includes/class-ingredients.php
 msgid "Fumaric Acid"
 msgstr "Fumarsäure"
 
+#: includes/class-ingredients.php
 msgid "Argon"
 msgstr "Argon"
 
+#: includes/class-ingredients.php
 msgid "Nitrogen"
 msgstr "Stickstoff"
 
+#: includes/class-ingredients.php
 msgid "Carbon Dioxide"
 msgstr "Kohlendioxid"
 
+#: includes/class-ingredients.php
 msgid "Packaged under protective atmosphere"
 msgstr "unter Schutzatmosphäre abgepackt"
 
 # -----------------------------------------------
 # Group headings  (class-ingredients.php + working-metabox.php)
 # -----------------------------------------------
-
+#: includes/class-ingredients.php
 msgid "Preservatives"
 msgstr "Konservierungsstoffe"
 
+#: includes/class-ingredients.php
 msgid "Acid Regulators"
 msgstr "Säureregulatoren"
 
+#: includes/class-ingredients.php
 msgid "Stabilizers"
 msgstr "Stabilisatoren"
-
-msgid "Base Ingredients"
-msgstr "Grundzutaten"
-
-msgid "Gases"
-msgstr "Gase"
 
 # -----------------------------------------------
 # Frontend label  (templates/nutrition-label-secure.php)
 # -----------------------------------------------
-
+#: templates/nutrition-label-secure.php
 msgid "Nutrition Label"
 msgstr "Nährwertkennzeichnung"
 
-#: templates/nutrition-label-secure.php
-#: admin/working-metabox.php
+#: templates/nutrition-label-secure.php admin/working-metabox.php
 msgid "Ingredients:"
 msgstr "Inhaltsstoffe:"
 
+#: templates/nutrition-label-secure.php
 msgid "Nutritional Information"
 msgstr "Nährwertangaben"
 
+#: templates/nutrition-label-secure.php
 msgid "Per 100ml"
 msgstr "Pro 100ml"
 
+#: templates/nutrition-label-secure.php
 msgid "Energy"
 msgstr "Energie"
 
+#: templates/nutrition-label-secure.php
 msgid "Carbohydrates"
 msgstr "Kohlenhydrate"
 
+#: templates/nutrition-label-secure.php
 msgid "of which Sugars"
 msgstr "Davon Zucker"
 
+#: templates/nutrition-label-secure.php
 msgid "May contain negligible amounts of protein and salt."
 msgstr "Kann geringfügige Mengen von Eiweiß und Salz enthalten."
 
 # -----------------------------------------------
 # Metabox  (admin/working-metabox.php)
 # -----------------------------------------------
-
+#: admin/working-metabox.php
 msgid "Nutrition Information"
 msgstr "Nährwertinformationen"
 
+#: admin/working-metabox.php
+msgid "Base Ingredients"
+msgstr "Grundzutaten"
+
+#: admin/working-metabox.php
+msgid "Gases"
+msgstr "Gase"
+
+#: admin/working-metabox.php
 msgid "Calories (kcal):"
 msgstr "Kalorien (kcal):"
 
+#: admin/working-metabox.php
 msgid "Kilojoules (kJ):"
 msgstr "Kilojoules (kJ):"
 
+#: admin/working-metabox.php
 msgid "Carbohydrates (g):"
 msgstr "Kohlenhydrate (g):"
 
+#: admin/working-metabox.php
 msgid "Sugar (g):"
 msgstr "Zucker (g):"
 
+#: admin/working-metabox.php
 msgid "Nutrition Label URL:"
 msgstr "Nährwertkennzeichnungs-URL:"
 
+#: admin/working-metabox.php
 msgid "Download QR Code"
 msgstr "QR-Code herunterladen"
 
+#: admin/working-metabox.php
 msgid "Save product to generate short URL first."
 msgstr "Produkt zuerst speichern, um eine Kurz-URL zu generieren."
 
+#: admin/working-metabox.php
 msgid "Text"
 msgstr "Text"
 
+#: admin/working-metabox.php
 msgid "Nil"
 msgstr "Nein"
 
+#: admin/working-metabox.php
 msgid "Bio"
 msgstr "Bio"
 
+#: includes/class-ingredients.php
 msgid "* from organic farming"
 msgstr "* aus biologischem Anbau"
 
 # -----------------------------------------------
 # Admin menu + messages  (class-nutrition-labels-admin-extended.php)
 # -----------------------------------------------
-
+#: admin/class-nutrition-labels-admin-extended.php
+#: admin/nutrition-settings-page-simple.php
 msgid "Nutrition Labels Settings"
 msgstr "Nährwertkennzeichnung – Einstellungen"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Configuration"
 msgstr "Konfiguration"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Database Management"
 msgstr "Datenbankverwaltung"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Settings saved successfully!"
 msgstr "Einstellungen erfolgreich gespeichert!"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Invalid nonce"
 msgstr "Ungültiges Sicherheits-Token"
 
 #. translators: %d: number of deleted entries
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Successfully deleted %d nutrition label entry"
 msgid_plural "Successfully deleted %d nutrition label entries"
 msgstr[0] "%d Nährwertkennzeichnung erfolgreich gelöscht"
@@ -238,121 +302,196 @@ msgstr[1] "%d Nährwertkennzeichnungen erfolgreich gelöscht"
 # -----------------------------------------------
 # Database management page  (admin/nutrition-db-management.php)
 # -----------------------------------------------
-
+#: admin/nutrition-db-management.php
 msgid "Nutrition Labels - Database Management"
 msgstr "Nährwertkennzeichnung – Datenbankverwaltung"
 
+#: admin/nutrition-db-management.php
 msgid "Search product name or short code..."
 msgstr "Produktname oder Kurzcode suchen …"
 
+#: admin/nutrition-db-management.php
 msgid "Search"
 msgstr "Suchen"
 
+#: admin/nutrition-db-management.php
 msgid "Clear Search"
 msgstr "Suche zurücksetzen"
 
+#: admin/nutrition-db-management.php
 msgid "No nutrition label entries found."
 msgstr "Keine Nährwertkennzeichnungen gefunden."
 
 #. translators: %1$d: number of visible entries, %2$d: total entries
+#: admin/nutrition-db-management.php
 msgid "Showing %1$d of %2$d entries"
 msgstr "%1$d von %2$d Einträgen angezeigt"
 
+#: admin/nutrition-db-management.php
 msgid "Select All"
 msgstr "Alle auswählen"
 
+#: admin/nutrition-db-management.php
 msgid "Select"
 msgstr "Auswählen"
 
+#: admin/nutrition-db-management.php
 msgid "Product"
 msgstr "Produkt"
 
+#: admin/nutrition-db-management.php
 msgid "Prefix"
 msgstr "Präfix"
 
+#: admin/nutrition-db-management.php
 msgid "Short Code"
 msgstr "Kurzcode"
 
+#: admin/nutrition-db-management.php
 msgid "Created"
 msgstr "Erstellt"
 
+#: admin/nutrition-db-management.php
 msgid "Actions"
 msgstr "Aktionen"
 
+#: admin/nutrition-db-management.php
 msgid "View Label"
 msgstr "Etikett anzeigen"
 
+#: admin/nutrition-db-management.php
 msgid "Delete"
 msgstr "Löschen"
 
+#: admin/nutrition-db-management.php
 msgid "Delete Selected"
 msgstr "Ausgewählte löschen"
 
+#: admin/nutrition-db-management.php
 msgid "Export to CSV"
 msgstr "Als CSV exportieren"
 
 # -----------------------------------------------
 # Configuration page  (admin/nutrition-settings-page.php)
 # -----------------------------------------------
-
+#: admin/nutrition-settings-page.php
 msgid "Nutrition Labels - Configuration"
 msgstr "Nährwertkennzeichnung – Konfiguration"
 
+#: admin/nutrition-settings-page.php
 msgid "QR Code Size"
 msgstr "QR-Code-Größe"
 
-msgid "Choose QR code size for download. Smaller sizes are better for small labels, larger for posters."
-msgstr "QR-Code-Größe für den Download wählen. Kleinere Größen eignen sich besser für kleine Etiketten, größere für Poster."
+#: admin/nutrition-settings-page.php
+msgid ""
+"Choose QR code size for download. Smaller sizes are better for small labels, "
+"larger for posters."
+msgstr ""
+"QR-Code-Größe für den Download wählen. Kleinere Größen eignen sich besser "
+"für kleine Etiketten, größere für Poster."
 
 #: admin/nutrition-settings-page.php
-#: admin/nutrition-settings-page-simple.php
 msgid "Short Code Length"
 msgstr "Kurzcode-Länge"
 
-msgid "Length affects uniqueness vs readability. Shorter codes may conflict more often."
-msgstr "Die Länge beeinflusst Einzigartigkeit vs. Lesbarkeit. Kürzere Codes können häufiger kollidieren."
+#: admin/nutrition-settings-page.php
+msgid ""
+"Length affects uniqueness vs readability. Shorter codes may conflict more "
+"often."
+msgstr ""
+"Die Länge beeinflusst Einzigartigkeit vs. Lesbarkeit. Kürzere Codes können "
+"häufiger kollidieren."
 
 #: admin/nutrition-settings-page.php
-#: admin/nutrition-settings-page-simple.php
 msgid "Character Set"
 msgstr "Zeichensatz"
 
+#: admin/nutrition-settings-page.php
 msgid "Current URL Format"
 msgstr "Aktuelles URL-Format"
 
-#: admin/nutrition-settings-page.php
-#: admin/nutrition-settings-page-simple.php
+#: admin/nutrition-settings-page.php admin/nutrition-settings-page-simple.php
 msgid "Information"
 msgstr "Informationen"
 
 # -----------------------------------------------
 # Settings page (admin/nutrition-settings-page-simple.php)
 # -----------------------------------------------
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Configure your nutrition labels plugin settings and manage QR code "
+"generation."
+msgstr ""
+"Plugin-Einstellungen für Nährwertkennzeichnungen konfigurieren und QR-Code-"
+"Generierung verwalten."
 
-msgid "Configure your nutrition labels plugin settings and manage QR code generation."
-msgstr "Plugin-Einstellungen für Nährwertkennzeichnungen konfigurieren und QR-Code-Generierung verwalten."
-
+#: admin/nutrition-settings-page-simple.php
 msgid "URL Prefix"
 msgstr "URL-Präfix"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Warning:"
 msgstr "Warnung:"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Changing this will make existing QR codes stop working!"
 msgstr "Eine Änderung macht bestehende QR-Codes ungültig!"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Minimum is 4 characters. Shorter codes may conflict more often."
 msgstr "Minimum 4 Zeichen. Kürzere Codes können häufiger kollidieren."
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Choose allowed characters for short codes."
 msgstr "Erlaubte Zeichen für Kurzcodes festlegen."
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Current Entries:"
 msgstr "Aktuelle Einträge:"
 
 #. translators: %d: number of active nutrition labels
+#: admin/nutrition-settings-page-simple.php
 msgid "%d nutrition labels active"
 msgstr "%d Nährwertkennzeichnung(en) aktiv"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Save Settings"
 msgstr "Einstellungen speichern"
+
+#: admin/nutrition-settings-page-simple.php
+#, fuzzy
+msgid "Subdomain E-Label URLs"
+msgstr "Nährwertkennzeichnungs-URL:"
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Enable subdomain e-label URLs"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Serve e-labels from a dedicated subdomain as recommended by EU e-labelling "
+"regulations."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Subdomain"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Enter a subdomain (e.g. elabel) or a full hostname (e.g. "
+"elabel.example.com). The subdomain must resolve to this WordPress "
+"installation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "URL Scheme"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "https (recommended)"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "http"
+msgstr ""

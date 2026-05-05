@@ -14,186 +14,267 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : (n%1!=0) ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : (n%1!"
+"=0) ? 2 : 3;\n"
 "X-Generator: Manually crafted\n"
 "X-Domain: nutrition-labels\n"
 
+#. Plugin Name of the plugin
 msgid "Nutrition Labels"
 msgstr "Nutričné štítky"
 
+#. Description of the plugin
+msgid ""
+"Adds nutrition label management, shortcodes, and QR code generation for "
+"products."
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Grapes"
 msgstr "Hrozno"
 
+#: includes/class-ingredients.php
 msgid "Organic Grapes"
 msgstr "Bio hrozno"
 
+#: includes/class-ingredients.php
 msgid "Sucrose"
 msgstr "Sacharóza"
 
+#: includes/class-ingredients.php
 msgid "Grape Concentrate"
 msgstr "Hroznový koncentrát"
 
+#: includes/class-ingredients.php
+msgid "Dosage Liqueur"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Shipping Dosage"
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Sulfur Dioxide"
 msgstr "Oxid siričitý"
 
+#: includes/class-ingredients.php
 msgid "Potassium Bisulfite"
 msgstr "Hydrogensulfit draselný"
 
+#: includes/class-ingredients.php
 msgid "Potassium Metabisulfite"
 msgstr "Metabisulfit draselný"
 
+#: includes/class-ingredients.php
 msgid "Potassium Sorbate"
 msgstr "Sorbát draselný"
 
+#: includes/class-ingredients.php
 msgid "Lysozyme"
 msgstr "Lyzozým"
 
+#: includes/class-ingredients.php
 msgid "Ascorbic Acid"
 msgstr "Kyselina askorbová"
 
+#: includes/class-ingredients.php
 msgid "Dimethyl Dicarbonate"
 msgstr "Dimetyldiuhličitan"
 
+#: includes/class-ingredients.php
 msgid "Tartaric Acid"
 msgstr "Kyselina vínna"
 
+#: includes/class-ingredients.php
 msgid "Malic Acid"
 msgstr "Kyselina jablčná"
 
+#: includes/class-ingredients.php
 msgid "Lactic Acid"
 msgstr "Kyselina mliečna"
 
+#: includes/class-ingredients.php
 msgid "Calcium Sulfate"
 msgstr "Síran vápenatý"
 
+#: includes/class-ingredients.php
 msgctxt "acid regulator"
 msgid "Citric Acid"
 msgstr "Kyselina citrónová"
 
+#: includes/class-ingredients.php
 msgctxt "stabilizer"
 msgid "Citric Acid"
 msgstr "Kyselina citrónová"
 
+#: includes/class-ingredients.php
 msgid "Metatartaric Acid"
 msgstr "Kyselina metatartarová"
 
+#: includes/class-ingredients.php
 msgid "Gum Arabic"
 msgstr "Arabská guma"
 
+#: includes/class-ingredients.php
 msgid "Yeast Mannoproteins"
 msgstr "Kvasinkové mannoproteíny"
 
+#: includes/class-ingredients.php
 msgid "Egg White"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "Carboxymethylcellulose"
 msgstr "Karboxymetylcelulóza"
 
+#: includes/class-ingredients.php
 msgid "Potassium Polyaspartate"
 msgstr "Polyaspartát draselný"
 
+#: includes/class-ingredients.php
 msgid "Fumaric Acid"
 msgstr "Kyselina fumarová"
 
+#: includes/class-ingredients.php
 msgid "Argon"
 msgstr "Argón"
 
+#: includes/class-ingredients.php
 msgid "Nitrogen"
 msgstr "Dusík"
 
+#: includes/class-ingredients.php
 msgid "Carbon Dioxide"
 msgstr "Oxid uhličitý"
 
+#: includes/class-ingredients.php
 msgid "Packaged under protective atmosphere"
 msgstr "Balené v ochrannej atmosfére"
 
+#: includes/class-ingredients.php
 msgid "Preservatives"
 msgstr "Konzervačné látky"
 
+#: includes/class-ingredients.php
 msgid "Acid Regulators"
 msgstr "Regulátory kyslosti"
 
+#: includes/class-ingredients.php
 msgid "Stabilizers"
 msgstr "Stabilizátory"
 
-msgid "Base Ingredients"
-msgstr "Základné suroviny"
-
-msgid "Gases"
-msgstr "Plyny"
-
+#: templates/nutrition-label-secure.php
 msgid "Nutrition Label"
 msgstr "Nutričný štítok"
 
+#: templates/nutrition-label-secure.php admin/working-metabox.php
 msgid "Ingredients:"
 msgstr "Zloženie:"
 
+#: templates/nutrition-label-secure.php
 msgid "Nutritional Information"
 msgstr "Nutričné hodnoty"
 
+#: templates/nutrition-label-secure.php
 msgid "Per 100ml"
 msgstr "Na 100 ml"
 
+#: templates/nutrition-label-secure.php
 msgid "Energy"
 msgstr "Energia"
 
+#: templates/nutrition-label-secure.php
 msgid "Carbohydrates"
 msgstr "Sacharidy"
 
+#: templates/nutrition-label-secure.php
 msgid "of which Sugars"
 msgstr "z toho Cukry"
 
+#: templates/nutrition-label-secure.php
 msgid "May contain negligible amounts of protein and salt."
 msgstr "Môže obsahovať zanedbateľné množstvo bielkovín a soli."
 
+#: admin/working-metabox.php
 msgid "Nutrition Information"
 msgstr "Nutričné informácie"
 
+#: admin/working-metabox.php
+msgid "Base Ingredients"
+msgstr "Základné suroviny"
+
+#: admin/working-metabox.php
+msgid "Gases"
+msgstr "Plyny"
+
+#: admin/working-metabox.php
 msgid "Calories (kcal):"
 msgstr "Kalórie (kcal):"
 
+#: admin/working-metabox.php
 msgid "Kilojoules (kJ):"
 msgstr "Kilojoulov (kJ):"
 
+#: admin/working-metabox.php
 msgid "Carbohydrates (g):"
 msgstr "Sacharidy (g):"
 
+#: admin/working-metabox.php
 msgid "Sugar (g):"
 msgstr "Cukry (g):"
 
+#: admin/working-metabox.php
 msgid "Nutrition Label URL:"
 msgstr "URL nutričného štítku:"
 
+#: admin/working-metabox.php
 msgid "Download QR Code"
 msgstr "Stiahnuť QR kód"
 
+#: admin/working-metabox.php
 msgid "Save product to generate short URL first."
 msgstr "Najprv produkt uložte, aby sa vygenerovala krátka URL."
 
+#: admin/working-metabox.php
 msgid "Text"
 msgstr "Text"
 
+#: admin/working-metabox.php
 msgid "Nil"
 msgstr "Žiadny"
 
+#: admin/working-metabox.php
 msgid "Bio"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "* from organic farming"
 msgstr ""
 
+#: admin/class-nutrition-labels-admin-extended.php
+#: admin/nutrition-settings-page-simple.php
 msgid "Nutrition Labels Settings"
 msgstr "Nastavenia nutričných štítkov"
 
+#: admin/class-nutrition-labels-admin-extended.php
+#, fuzzy
+msgid "Configuration"
+msgstr "Informácie"
+
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Database Management"
 msgstr "Správa databázy"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Settings saved successfully!"
 msgstr "Nastavenia boli úspešne uložené!"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Invalid nonce"
 msgstr "Neplatný bezpečnostný token"
 
+#. translators: %d: number of deleted entries
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Successfully deleted %d nutrition label entry"
 msgid_plural "Successfully deleted %d nutrition label entries"
 msgstr[0] "Úspešne odstránený %d nutričný štítok"
@@ -201,89 +282,196 @@ msgstr[1] "Úspešne odstránené %d nutričné štítky"
 msgstr[2] "Úspešne odstránených %d nutričných štítkov"
 msgstr[3] "Úspešne odstránený %d nutričný štítok"
 
+#: admin/nutrition-db-management.php
+#, fuzzy
+msgid "Nutrition Labels - Database Management"
+msgstr "Správa databázy"
+
+#: admin/nutrition-db-management.php
 msgid "Search product name or short code..."
 msgstr "Hľadať názov produktu alebo krátky kód…"
 
+#: admin/nutrition-db-management.php
 msgid "Search"
 msgstr "Hľadať"
 
+#: admin/nutrition-db-management.php
 msgid "Clear Search"
 msgstr "Vymazať hľadanie"
 
+#: admin/nutrition-db-management.php
 msgid "No nutrition label entries found."
 msgstr "Neboli nájdené žiadne nutričné štítky."
 
+#. translators: %1$d: number of visible entries, %2$d: total entries
+#: admin/nutrition-db-management.php
 msgid "Showing %1$d of %2$d entries"
 msgstr "Zobrazených %1$d z %2$d záznamov"
 
+#: admin/nutrition-db-management.php
 msgid "Select All"
 msgstr "Vybrať všetko"
 
+#: admin/nutrition-db-management.php
 msgid "Select"
 msgstr "Vybrať"
 
+#: admin/nutrition-db-management.php
 msgid "Product"
 msgstr "Produkt"
 
+#: admin/nutrition-db-management.php
 msgid "Prefix"
 msgstr "Predpona"
 
+#: admin/nutrition-db-management.php
 msgid "Short Code"
 msgstr "Krátky kód"
 
+#: admin/nutrition-db-management.php
 msgid "Created"
 msgstr "Vytvorené"
 
+#: admin/nutrition-db-management.php
 msgid "Actions"
 msgstr "Akcie"
 
+#: admin/nutrition-db-management.php
 msgid "View Label"
 msgstr "Zobraziť štítok"
 
-msgid "Download QR"
-msgstr "Stiahnuť QR"
-
+#: admin/nutrition-db-management.php
 msgid "Delete"
 msgstr "Zmazať"
 
+#: admin/nutrition-db-management.php
 msgid "Delete Selected"
 msgstr "Zmazať vybrané"
 
+#: admin/nutrition-db-management.php
 msgid "Export to CSV"
 msgstr "Exportovať do CSV"
 
+#: admin/nutrition-settings-page.php
+#, fuzzy
+msgid "Nutrition Labels - Configuration"
+msgstr "Nutričné hodnoty"
+
+#: admin/nutrition-settings-page.php
 msgid "QR Code Size"
 msgstr "Veľkosť QR kódu"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Choose QR code size for download. Smaller sizes are better for small labels, "
+"larger for posters."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Short Code Length"
 msgstr "Dĺžka krátkeho kódu"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Length affects uniqueness vs readability. Shorter codes may conflict more "
+"often."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Character Set"
 msgstr "Sada znakov"
 
+#: admin/nutrition-settings-page.php
+msgid "Current URL Format"
+msgstr ""
+
+#: admin/nutrition-settings-page.php admin/nutrition-settings-page-simple.php
 msgid "Information"
 msgstr "Informácie"
 
+# --- admin/nutrition-settings-page-simple.php ---
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Configure your nutrition labels plugin settings and manage QR code "
+"generation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "URL Prefix"
 msgstr "Predpona URL"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Warning:"
 msgstr "Upozornenie:"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Changing this will make existing QR codes stop working!"
 msgstr "Táto zmena spôsobí, že existujúce QR kódy prestanú fungovať!"
 
+#: admin/nutrition-settings-page-simple.php
+msgid "Minimum is 4 characters. Shorter codes may conflict more often."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Choose allowed characters for short codes."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "Current Entries:"
 msgstr "Aktuálne záznamy:"
 
+#. translators: %d: number of active nutrition labels
+#: admin/nutrition-settings-page-simple.php
 msgid "%d nutrition labels active"
 msgstr "%d aktívny nutričný štítok"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Save Settings"
 msgstr "Uložiť nastavenia"
 
-msgid "Generating..."
-msgstr "Generovanie…"
+#: admin/nutrition-settings-page-simple.php
+#, fuzzy
+msgid "Subdomain E-Label URLs"
+msgstr "URL nutričného štítku:"
 
-msgid "E-Label not found"
-msgstr "E-štítok nebol nájdený"
+#: admin/nutrition-settings-page-simple.php
+msgid "Enable subdomain e-label URLs"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Serve e-labels from a dedicated subdomain as recommended by EU e-labelling "
+"regulations."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Subdomain"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Enter a subdomain (e.g. elabel) or a full hostname (e.g. "
+"elabel.example.com). The subdomain must resolve to this WordPress "
+"installation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "URL Scheme"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "https (recommended)"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "http"
+msgstr ""
+
+#~ msgid "Download QR"
+#~ msgstr "Stiahnuť QR"
+
+#~ msgid "Generating..."
+#~ msgstr "Generovanie…"
+
+#~ msgid "E-Label not found"
+#~ msgstr "E-štítok nebol nájdený"

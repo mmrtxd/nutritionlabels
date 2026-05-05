@@ -171,6 +171,7 @@ msgid "Nutrition Label"
 msgstr ""
 
 #: templates/nutrition-label-secure.php
+#: admin/working-metabox.php
 msgid "Ingredients:"
 msgstr ""
 
@@ -202,10 +203,6 @@ msgstr ""
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
-msgstr ""
-
-#: admin/working-metabox.php
-msgid "Ingredients:"
 msgstr ""
 
 #: admin/working-metabox.php
@@ -263,6 +260,7 @@ msgstr ""
 # --- admin/class-nutrition-labels-admin-extended.php ---
 
 #: admin/class-nutrition-labels-admin-extended.php
+#: admin/nutrition-settings-page-simple.php
 msgid "Nutrition Labels Settings"
 msgstr ""
 
@@ -396,10 +394,6 @@ msgid "Information"
 msgstr ""
 
 # --- admin/nutrition-settings-page-simple.php ---
-
-#: admin/nutrition-settings-page-simple.php
-msgid "Nutrition Labels Settings"
-msgstr ""
 
 #: admin/nutrition-settings-page-simple.php
 msgid "Configure your nutrition labels plugin settings and manage QR code generation."

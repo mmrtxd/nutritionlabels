@@ -18,270 +18,457 @@ msgstr ""
 "X-Generator: Manually crafted\n"
 "X-Domain: nutrition-labels\n"
 
+#. Plugin Name of the plugin
 msgid "Nutrition Labels"
 msgstr "Ernæringsmærkater"
 
+#. Description of the plugin
+msgid ""
+"Adds nutrition label management, shortcodes, and QR code generation for "
+"products."
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Grapes"
 msgstr "Druer"
 
+#: includes/class-ingredients.php
 msgid "Organic Grapes"
 msgstr "Økologiske druer"
 
+#: includes/class-ingredients.php
 msgid "Sucrose"
 msgstr "Saccharose"
 
+#: includes/class-ingredients.php
 msgid "Grape Concentrate"
 msgstr "Druekoncentrat"
 
+#: includes/class-ingredients.php
+msgid "Dosage Liqueur"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Shipping Dosage"
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Sulfur Dioxide"
 msgstr "Svovldioxid"
 
+#: includes/class-ingredients.php
 msgid "Potassium Bisulfite"
 msgstr "Kaliumhydrogensulfit"
 
+#: includes/class-ingredients.php
 msgid "Potassium Metabisulfite"
 msgstr "Kaliumdisulfit"
 
+#: includes/class-ingredients.php
 msgid "Potassium Sorbate"
 msgstr "Kaliumsorbat"
 
+#: includes/class-ingredients.php
 msgid "Lysozyme"
 msgstr "Lysozym"
 
+#: includes/class-ingredients.php
 msgid "Ascorbic Acid"
 msgstr "Ascorbinsyre"
 
+#: includes/class-ingredients.php
 msgid "Dimethyl Dicarbonate"
 msgstr "Dimethyldicarbonat"
 
+#: includes/class-ingredients.php
 msgid "Tartaric Acid"
 msgstr "Vinsyre"
 
+#: includes/class-ingredients.php
 msgid "Malic Acid"
 msgstr "Æblesyre"
 
+#: includes/class-ingredients.php
 msgid "Lactic Acid"
 msgstr "Mælkesyre"
 
+#: includes/class-ingredients.php
 msgid "Calcium Sulfate"
 msgstr "Calciumsulfat"
 
+#: includes/class-ingredients.php
 msgctxt "acid regulator"
 msgid "Citric Acid"
 msgstr "Citronsyre"
 
+#: includes/class-ingredients.php
 msgctxt "stabilizer"
 msgid "Citric Acid"
 msgstr "Citronsyre"
 
+#: includes/class-ingredients.php
 msgid "Metatartaric Acid"
 msgstr "Metatartrinsyre"
 
+#: includes/class-ingredients.php
 msgid "Gum Arabic"
 msgstr "Arabisk gummi"
 
+#: includes/class-ingredients.php
 msgid "Yeast Mannoproteins"
 msgstr "Gærmannoprotein"
 
+#: includes/class-ingredients.php
 msgid "Egg White"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "Carboxymethylcellulose"
 msgstr "Carboxymethylcellulose"
 
+#: includes/class-ingredients.php
 msgid "Potassium Polyaspartate"
 msgstr "Kaliumpolyaspartat"
 
+#: includes/class-ingredients.php
 msgid "Fumaric Acid"
 msgstr "Fumarsyre"
 
+#: includes/class-ingredients.php
 msgid "Argon"
 msgstr "Argon"
 
+#: includes/class-ingredients.php
 msgid "Nitrogen"
 msgstr "Kvælstof"
 
+#: includes/class-ingredients.php
 msgid "Carbon Dioxide"
 msgstr "Kuldioxid"
 
+#: includes/class-ingredients.php
 msgid "Packaged under protective atmosphere"
 msgstr "Pakket under beskyttende atmosfære"
 
+#: includes/class-ingredients.php
 msgid "Preservatives"
 msgstr "Konserveringsmidler"
 
+#: includes/class-ingredients.php
 msgid "Acid Regulators"
 msgstr "Syrereguleringsmidler"
 
+#: includes/class-ingredients.php
 msgid "Stabilizers"
 msgstr "Stabilisatorer"
 
-msgid "Base Ingredients"
-msgstr "Basisingredienser"
-
-msgid "Gases"
-msgstr "Gasser"
-
+#: templates/nutrition-label-secure.php
 msgid "Nutrition Label"
 msgstr "Ernæringsmærkat"
 
+#: templates/nutrition-label-secure.php admin/working-metabox.php
 msgid "Ingredients:"
 msgstr "Ingredienser:"
 
+#: templates/nutrition-label-secure.php
 msgid "Nutritional Information"
 msgstr "Næringsoplysninger"
 
+#: templates/nutrition-label-secure.php
 msgid "Per 100ml"
 msgstr "Per 100 ml"
 
+#: templates/nutrition-label-secure.php
 msgid "Energy"
 msgstr "Energi"
 
+#: templates/nutrition-label-secure.php
 msgid "Carbohydrates"
 msgstr "Kulhydrater"
 
+#: templates/nutrition-label-secure.php
 msgid "of which Sugars"
 msgstr "heraf Sukkerarter"
 
+#: templates/nutrition-label-secure.php
 msgid "May contain negligible amounts of protein and salt."
 msgstr "Kan indeholde ubetydelige mængder protein og salt."
 
+#: admin/working-metabox.php
 msgid "Nutrition Information"
 msgstr "Ernæringsinformation"
 
+#: admin/working-metabox.php
+msgid "Base Ingredients"
+msgstr "Basisingredienser"
+
+#: admin/working-metabox.php
+msgid "Gases"
+msgstr "Gasser"
+
+#: admin/working-metabox.php
 msgid "Calories (kcal):"
 msgstr "Kalorier (kcal):"
 
+#: admin/working-metabox.php
 msgid "Kilojoules (kJ):"
 msgstr "Kilojoule (kJ):"
 
+#: admin/working-metabox.php
 msgid "Carbohydrates (g):"
 msgstr "Kulhydrater (g):"
 
+#: admin/working-metabox.php
 msgid "Sugar (g):"
 msgstr "Sukkerarter (g):"
 
+#: admin/working-metabox.php
 msgid "Nutrition Label URL:"
 msgstr "URL for ernæringsmærkat:"
 
+#: admin/working-metabox.php
 msgid "Download QR Code"
 msgstr "Download QR-kode"
 
+#: admin/working-metabox.php
 msgid "Save product to generate short URL first."
 msgstr "Gem produktet først for at generere en kort URL."
 
+#: admin/working-metabox.php
 msgid "Text"
 msgstr "Tekst"
 
+#: admin/working-metabox.php
 msgid "Nil"
 msgstr "Ingen"
 
+#: admin/working-metabox.php
 msgid "Bio"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "* from organic farming"
 msgstr ""
 
+#: admin/class-nutrition-labels-admin-extended.php
+#: admin/nutrition-settings-page-simple.php
 msgid "Nutrition Labels Settings"
 msgstr "Indstillinger for ernæringsmærkater"
 
+#: admin/class-nutrition-labels-admin-extended.php
+#, fuzzy
+msgid "Configuration"
+msgstr "Information"
+
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Database Management"
 msgstr "Databaseadministration"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Settings saved successfully!"
 msgstr "Indstillinger gemt!"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Invalid nonce"
 msgstr "Ugyldigt sikkerhedstoken"
 
+#. translators: %d: number of deleted entries
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Successfully deleted %d nutrition label entry"
 msgid_plural "Successfully deleted %d nutrition label entries"
 msgstr[0] "%d ernæringsmærkat slettet"
 msgstr[1] "%d ernæringsmærkater slettet"
 
+#: admin/nutrition-db-management.php
+#, fuzzy
+msgid "Nutrition Labels - Database Management"
+msgstr "Databaseadministration"
+
+#: admin/nutrition-db-management.php
 msgid "Search product name or short code..."
 msgstr "Søg efter produktnavn eller kortkode…"
 
+#: admin/nutrition-db-management.php
 msgid "Search"
 msgstr "Søg"
 
+#: admin/nutrition-db-management.php
 msgid "Clear Search"
 msgstr "Ryd søgning"
 
+#: admin/nutrition-db-management.php
 msgid "No nutrition label entries found."
 msgstr "Ingen ernæringsmærkater fundet."
 
+#. translators: %1$d: number of visible entries, %2$d: total entries
+#: admin/nutrition-db-management.php
 msgid "Showing %1$d of %2$d entries"
 msgstr "Viser %1$d af %2$d poster"
 
+#: admin/nutrition-db-management.php
 msgid "Select All"
 msgstr "Vælg alle"
 
+#: admin/nutrition-db-management.php
 msgid "Select"
 msgstr "Vælg"
 
+#: admin/nutrition-db-management.php
 msgid "Product"
 msgstr "Produkt"
 
+#: admin/nutrition-db-management.php
 msgid "Prefix"
 msgstr "Præfiks"
 
+#: admin/nutrition-db-management.php
 msgid "Short Code"
 msgstr "Kortkode"
 
+#: admin/nutrition-db-management.php
 msgid "Created"
 msgstr "Oprettet"
 
+#: admin/nutrition-db-management.php
 msgid "Actions"
 msgstr "Handlinger"
 
+#: admin/nutrition-db-management.php
 msgid "View Label"
 msgstr "Se mærkat"
 
-msgid "Download QR"
-msgstr "Download QR"
-
+#: admin/nutrition-db-management.php
 msgid "Delete"
 msgstr "Slet"
 
+#: admin/nutrition-db-management.php
 msgid "Delete Selected"
 msgstr "Slet valgte"
 
+#: admin/nutrition-db-management.php
 msgid "Export to CSV"
 msgstr "Eksporter til CSV"
 
+#: admin/nutrition-settings-page.php
+#, fuzzy
+msgid "Nutrition Labels - Configuration"
+msgstr "Næringsoplysninger"
+
+#: admin/nutrition-settings-page.php
 msgid "QR Code Size"
 msgstr "QR-kodestørrelse"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Choose QR code size for download. Smaller sizes are better for small labels, "
+"larger for posters."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Short Code Length"
 msgstr "Kortkodeslængde"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Length affects uniqueness vs readability. Shorter codes may conflict more "
+"often."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Character Set"
 msgstr "Tegnsæt"
 
+#: admin/nutrition-settings-page.php
+msgid "Current URL Format"
+msgstr ""
+
+#: admin/nutrition-settings-page.php admin/nutrition-settings-page-simple.php
 msgid "Information"
 msgstr "Information"
 
+# --- admin/nutrition-settings-page-simple.php ---
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Configure your nutrition labels plugin settings and manage QR code "
+"generation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "URL Prefix"
 msgstr "URL-præfiks"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Warning:"
 msgstr "Advarsel:"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Changing this will make existing QR codes stop working!"
 msgstr "Ændring af dette vil gøre eksisterende QR-koder ubrugelige!"
 
+#: admin/nutrition-settings-page-simple.php
+msgid "Minimum is 4 characters. Shorter codes may conflict more often."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Choose allowed characters for short codes."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "Current Entries:"
 msgstr "Aktuelle poster:"
 
+#. translators: %d: number of active nutrition labels
+#: admin/nutrition-settings-page-simple.php
 msgid "%d nutrition labels active"
 msgstr "%d ernæringsmærkat(er) aktiv(e)"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Save Settings"
 msgstr "Gem indstillinger"
 
-msgid "Generating..."
-msgstr "Genererer…"
+#: admin/nutrition-settings-page-simple.php
+#, fuzzy
+msgid "Subdomain E-Label URLs"
+msgstr "URL for ernæringsmærkat:"
 
-msgid "E-Label not found"
-msgstr "E-mærkat ikke fundet"
+#: admin/nutrition-settings-page-simple.php
+msgid "Enable subdomain e-label URLs"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Serve e-labels from a dedicated subdomain as recommended by EU e-labelling "
+"regulations."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Subdomain"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Enter a subdomain (e.g. elabel) or a full hostname (e.g. "
+"elabel.example.com). The subdomain must resolve to this WordPress "
+"installation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "URL Scheme"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "https (recommended)"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "http"
+msgstr ""
+
+#~ msgid "Download QR"
+#~ msgstr "Download QR"
+
+#~ msgid "Generating..."
+#~ msgstr "Genererer…"
+
+#~ msgid "E-Label not found"
+#~ msgstr "E-mærkat ikke fundet"

@@ -14,192 +14,269 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Generator: Manually crafted\n"
 "X-Domain: nutrition-labels\n"
 
+#. Plugin Name of the plugin
 msgid "Nutrition Labels"
 msgstr "Etykiety wartości odżywczych"
 
-msgid "Adds nutrition label management, shortcodes, and QR code generation for products."
-msgstr "Dodaje zarządzanie etykietami wartości odżywczych, krótkie kody i generowanie kodów QR dla produktów."
+#. Description of the plugin
+msgid ""
+"Adds nutrition label management, shortcodes, and QR code generation for "
+"products."
+msgstr ""
+"Dodaje zarządzanie etykietami wartości odżywczych, krótkie kody i "
+"generowanie kodów QR dla produktów."
 
+#: includes/class-ingredients.php
 msgid "Grapes"
 msgstr "Winogrona"
 
+#: includes/class-ingredients.php
 msgid "Organic Grapes"
 msgstr "Winogrona ekologiczne"
 
+#: includes/class-ingredients.php
 msgid "Sucrose"
 msgstr "Sacharoza"
 
+#: includes/class-ingredients.php
 msgid "Grape Concentrate"
 msgstr "Koncentrat winogronowy"
 
+#: includes/class-ingredients.php
+msgid "Dosage Liqueur"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Shipping Dosage"
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Sulfur Dioxide"
 msgstr "Dwutlenek siarki"
 
+#: includes/class-ingredients.php
 msgid "Potassium Bisulfite"
 msgstr "Wodorosiarczyn potasu"
 
+#: includes/class-ingredients.php
 msgid "Potassium Metabisulfite"
 msgstr "Pirosiarczyn potasu"
 
+#: includes/class-ingredients.php
 msgid "Potassium Sorbate"
 msgstr "Sorbinian potasu"
 
+#: includes/class-ingredients.php
 msgid "Lysozyme"
 msgstr "Lizozym"
 
+#: includes/class-ingredients.php
 msgid "Ascorbic Acid"
 msgstr "Kwas askorbinowy"
 
+#: includes/class-ingredients.php
 msgid "Dimethyl Dicarbonate"
 msgstr "Dimetylodikarbonian"
 
+#: includes/class-ingredients.php
 msgid "Tartaric Acid"
 msgstr "Kwas winowy"
 
+#: includes/class-ingredients.php
 msgid "Malic Acid"
 msgstr "Kwas jabłkowy"
 
+#: includes/class-ingredients.php
 msgid "Lactic Acid"
 msgstr "Kwas mlekowy"
 
+#: includes/class-ingredients.php
 msgid "Calcium Sulfate"
 msgstr "Siarczan wapnia"
 
+#: includes/class-ingredients.php
 msgctxt "acid regulator"
 msgid "Citric Acid"
 msgstr "Kwas cytrynowy"
 
+#: includes/class-ingredients.php
 msgctxt "stabilizer"
 msgid "Citric Acid"
 msgstr "Kwas cytrynowy"
 
+#: includes/class-ingredients.php
 msgid "Metatartaric Acid"
 msgstr "Kwas metatartarowy"
 
+#: includes/class-ingredients.php
 msgid "Gum Arabic"
 msgstr "Guma arabska"
 
+#: includes/class-ingredients.php
 msgid "Yeast Mannoproteins"
 msgstr "Mannoproteiny drożdżowe"
 
+#: includes/class-ingredients.php
 msgid "Egg White"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "Carboxymethylcellulose"
 msgstr "Karboksymetyloceluloza"
 
+#: includes/class-ingredients.php
 msgid "Potassium Polyaspartate"
 msgstr "Poliasparaginian potasu"
 
+#: includes/class-ingredients.php
 msgid "Fumaric Acid"
 msgstr "Kwas fumarowy"
 
+#: includes/class-ingredients.php
 msgid "Argon"
 msgstr "Argon"
 
+#: includes/class-ingredients.php
 msgid "Nitrogen"
 msgstr "Azot"
 
+#: includes/class-ingredients.php
 msgid "Carbon Dioxide"
 msgstr "Dwutlenek węgla"
 
+#: includes/class-ingredients.php
 msgid "Packaged under protective atmosphere"
 msgstr "Pakowane w atmosferze ochronnej"
 
+#: includes/class-ingredients.php
 msgid "Preservatives"
 msgstr "Substancje konserwujące"
 
+#: includes/class-ingredients.php
 msgid "Acid Regulators"
 msgstr "Regulatory kwasowości"
 
+#: includes/class-ingredients.php
 msgid "Stabilizers"
 msgstr "Stabilizatory"
 
-msgid "Base Ingredients"
-msgstr "Składniki podstawowe"
-
-msgid "Gases"
-msgstr "Gazy"
-
+#: templates/nutrition-label-secure.php
 msgid "Nutrition Label"
 msgstr "Etykieta wartości odżywczych"
 
+#: templates/nutrition-label-secure.php admin/working-metabox.php
 msgid "Ingredients:"
 msgstr "Składniki:"
 
+#: templates/nutrition-label-secure.php
 msgid "Nutritional Information"
 msgstr "Informacja o wartości odżywczej"
 
+#: templates/nutrition-label-secure.php
 msgid "Per 100ml"
 msgstr "Na 100 ml"
 
+#: templates/nutrition-label-secure.php
 msgid "Energy"
 msgstr "Energia"
 
+#: templates/nutrition-label-secure.php
 msgid "Carbohydrates"
 msgstr "Węglowodany"
 
+#: templates/nutrition-label-secure.php
 msgid "of which Sugars"
 msgstr "w tym Cukry"
 
+#: templates/nutrition-label-secure.php
 msgid "May contain negligible amounts of protein and salt."
 msgstr "Może zawierać nieznaczne ilości białka i soli."
 
+#: admin/working-metabox.php
 msgid "Nutrition Information"
 msgstr "Informacja żywieniowa"
 
+#: admin/working-metabox.php
+msgid "Base Ingredients"
+msgstr "Składniki podstawowe"
+
+#: admin/working-metabox.php
+msgid "Gases"
+msgstr "Gazy"
+
+#: admin/working-metabox.php
 msgid "Calories (kcal):"
 msgstr "Kalorie (kcal):"
 
+#: admin/working-metabox.php
 msgid "Kilojoules (kJ):"
 msgstr "Kilodżule (kJ):"
 
+#: admin/working-metabox.php
 msgid "Carbohydrates (g):"
 msgstr "Węglowodany (g):"
 
+#: admin/working-metabox.php
 msgid "Sugar (g):"
 msgstr "Cukry (g):"
 
+#: admin/working-metabox.php
 msgid "Nutrition Label URL:"
 msgstr "URL etykiety wartości odżywczych:"
 
+#: admin/working-metabox.php
 msgid "Download QR Code"
 msgstr "Pobierz kod QR"
 
+#: admin/working-metabox.php
 msgid "Save product to generate short URL first."
 msgstr "Najpierw zapisz produkt, aby wygenerować krótki URL."
 
+#: admin/working-metabox.php
 msgid "Text"
 msgstr "Tekst"
 
+#: admin/working-metabox.php
 msgid "Nil"
 msgstr "Brak"
 
+#: admin/working-metabox.php
 msgid "Bio"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "* from organic farming"
 msgstr ""
 
+#: admin/class-nutrition-labels-admin-extended.php
+#: admin/nutrition-settings-page-simple.php
 msgid "Nutrition Labels Settings"
 msgstr "Ustawienia etykiet wartości odżywczych"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Configuration"
 msgstr "Konfiguracja"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Database Management"
 msgstr "Zarządzanie bazą danych"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Settings saved successfully!"
 msgstr "Ustawienia zostały pomyślnie zapisane!"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Invalid nonce"
 msgstr "Nieprawidłowy token bezpieczeństwa"
 
+#. translators: %d: number of deleted entries
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Successfully deleted %d nutrition label entry"
 msgid_plural "Successfully deleted %d nutrition label entries"
 msgstr[0] "Pomyślnie usunięto %d etykietę wartości odżywczych"
@@ -207,92 +284,195 @@ msgstr[1] "Pomyślnie usunięto %d etykiety wartości odżywczych"
 msgstr[2] "Pomyślnie usunięto %d etykiet wartości odżywczych"
 msgstr[3] "Pomyślnie usunięto %d etykiety wartości odżywczych"
 
+#: admin/nutrition-db-management.php
 msgid "Nutrition Labels - Database Management"
 msgstr "Etykiety wartości odżywczych – Zarządzanie bazą danych"
 
+#: admin/nutrition-db-management.php
 msgid "Search product name or short code..."
 msgstr "Wyszukaj nazwę produktu lub krótki kod…"
 
+#: admin/nutrition-db-management.php
 msgid "Search"
 msgstr "Szukaj"
 
+#: admin/nutrition-db-management.php
 msgid "Clear Search"
 msgstr "Wyczyść wyszukiwanie"
 
+#: admin/nutrition-db-management.php
 msgid "No nutrition label entries found."
 msgstr "Nie znaleziono etykiet wartości odżywczych."
 
+#. translators: %1$d: number of visible entries, %2$d: total entries
+#: admin/nutrition-db-management.php
 msgid "Showing %1$d of %2$d entries"
 msgstr "Wyświetlanie %1$d z %2$d wpisów"
 
+#: admin/nutrition-db-management.php
 msgid "Select All"
 msgstr "Zaznacz wszystko"
 
+#: admin/nutrition-db-management.php
 msgid "Select"
 msgstr "Zaznacz"
 
+#: admin/nutrition-db-management.php
 msgid "Product"
 msgstr "Produkt"
 
+#: admin/nutrition-db-management.php
 msgid "Prefix"
 msgstr "Prefiks"
 
+#: admin/nutrition-db-management.php
 msgid "Short Code"
 msgstr "Krótki kod"
 
+#: admin/nutrition-db-management.php
 msgid "Created"
 msgstr "Utworzono"
 
+#: admin/nutrition-db-management.php
 msgid "Actions"
 msgstr "Akcje"
 
+#: admin/nutrition-db-management.php
 msgid "View Label"
 msgstr "Wyświetl etykietę"
 
-msgid "Download QR"
-msgstr "Pobierz QR"
-
+#: admin/nutrition-db-management.php
 msgid "Delete"
 msgstr "Usuń"
 
+#: admin/nutrition-db-management.php
 msgid "Delete Selected"
 msgstr "Usuń zaznaczone"
 
+#: admin/nutrition-db-management.php
 msgid "Export to CSV"
 msgstr "Eksportuj do CSV"
 
+#: admin/nutrition-settings-page.php
+#, fuzzy
+msgid "Nutrition Labels - Configuration"
+msgstr "Informacja o wartości odżywczej"
+
+#: admin/nutrition-settings-page.php
 msgid "QR Code Size"
 msgstr "Rozmiar kodu QR"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Choose QR code size for download. Smaller sizes are better for small labels, "
+"larger for posters."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Short Code Length"
 msgstr "Długość krótkiego kodu"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Length affects uniqueness vs readability. Shorter codes may conflict more "
+"often."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Character Set"
 msgstr "Zestaw znaków"
 
+#: admin/nutrition-settings-page.php
+msgid "Current URL Format"
+msgstr ""
+
+#: admin/nutrition-settings-page.php admin/nutrition-settings-page-simple.php
 msgid "Information"
 msgstr "Informacje"
 
+# --- admin/nutrition-settings-page-simple.php ---
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Configure your nutrition labels plugin settings and manage QR code "
+"generation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "URL Prefix"
 msgstr "Prefiks URL"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Warning:"
 msgstr "Ostrzeżenie:"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Changing this will make existing QR codes stop working!"
 msgstr "Zmiana tego spowoduje, że istniejące kody QR przestaną działać!"
 
+#: admin/nutrition-settings-page-simple.php
+msgid "Minimum is 4 characters. Shorter codes may conflict more often."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Choose allowed characters for short codes."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "Current Entries:"
 msgstr "Bieżące wpisy:"
 
+#. translators: %d: number of active nutrition labels
+#: admin/nutrition-settings-page-simple.php
 msgid "%d nutrition labels active"
 msgstr "%d aktywna etykieta wartości odżywczych"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Save Settings"
 msgstr "Zapisz ustawienia"
 
-msgid "Generating..."
-msgstr "Generowanie…"
+#: admin/nutrition-settings-page-simple.php
+#, fuzzy
+msgid "Subdomain E-Label URLs"
+msgstr "URL etykiety wartości odżywczych:"
 
-msgid "E-Label not found"
-msgstr "E-etykieta nie znaleziona"
+#: admin/nutrition-settings-page-simple.php
+msgid "Enable subdomain e-label URLs"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Serve e-labels from a dedicated subdomain as recommended by EU e-labelling "
+"regulations."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Subdomain"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Enter a subdomain (e.g. elabel) or a full hostname (e.g. "
+"elabel.example.com). The subdomain must resolve to this WordPress "
+"installation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "URL Scheme"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "https (recommended)"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "http"
+msgstr ""
+
+#~ msgid "Download QR"
+#~ msgstr "Pobierz QR"
+
+#~ msgid "Generating..."
+#~ msgstr "Generowanie…"
+
+#~ msgid "E-Label not found"
+#~ msgstr "E-etykieta nie znaleziona"

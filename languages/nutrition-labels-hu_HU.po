@@ -18,270 +18,457 @@ msgstr ""
 "X-Generator: Manually crafted\n"
 "X-Domain: nutrition-labels\n"
 
+#. Plugin Name of the plugin
 msgid "Nutrition Labels"
 msgstr "Tápértékcímkék"
 
+#. Description of the plugin
+msgid ""
+"Adds nutrition label management, shortcodes, and QR code generation for "
+"products."
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Grapes"
 msgstr "Szőlő"
 
+#: includes/class-ingredients.php
 msgid "Organic Grapes"
 msgstr "Bio szőlő"
 
+#: includes/class-ingredients.php
 msgid "Sucrose"
 msgstr "Szacharóz"
 
+#: includes/class-ingredients.php
 msgid "Grape Concentrate"
 msgstr "Szőlőkoncentrátum"
 
+#: includes/class-ingredients.php
+msgid "Dosage Liqueur"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Shipping Dosage"
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Sulfur Dioxide"
 msgstr "Kén-dioxid"
 
+#: includes/class-ingredients.php
 msgid "Potassium Bisulfite"
 msgstr "Kálium-hidrogén-szulfit"
 
+#: includes/class-ingredients.php
 msgid "Potassium Metabisulfite"
 msgstr "Kálium-metabiszulfit"
 
+#: includes/class-ingredients.php
 msgid "Potassium Sorbate"
 msgstr "Kálium-szorbát"
 
+#: includes/class-ingredients.php
 msgid "Lysozyme"
 msgstr "Lizozim"
 
+#: includes/class-ingredients.php
 msgid "Ascorbic Acid"
 msgstr "Aszkorbinsav"
 
+#: includes/class-ingredients.php
 msgid "Dimethyl Dicarbonate"
 msgstr "Dimetil-dikarbonát"
 
+#: includes/class-ingredients.php
 msgid "Tartaric Acid"
 msgstr "Borkősav"
 
+#: includes/class-ingredients.php
 msgid "Malic Acid"
 msgstr "Almasav"
 
+#: includes/class-ingredients.php
 msgid "Lactic Acid"
 msgstr "Tejsav"
 
+#: includes/class-ingredients.php
 msgid "Calcium Sulfate"
 msgstr "Kalcium-szulfát"
 
+#: includes/class-ingredients.php
 msgctxt "acid regulator"
 msgid "Citric Acid"
 msgstr "Citromsav"
 
+#: includes/class-ingredients.php
 msgctxt "stabilizer"
 msgid "Citric Acid"
 msgstr "Citromsav"
 
+#: includes/class-ingredients.php
 msgid "Metatartaric Acid"
 msgstr "Metaborkősav"
 
+#: includes/class-ingredients.php
 msgid "Gum Arabic"
 msgstr "Arabmézga"
 
+#: includes/class-ingredients.php
 msgid "Yeast Mannoproteins"
 msgstr "Élesztő-mannoproteinek"
 
+#: includes/class-ingredients.php
 msgid "Egg White"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "Carboxymethylcellulose"
 msgstr "Karboximetil-cellulóz"
 
+#: includes/class-ingredients.php
 msgid "Potassium Polyaspartate"
 msgstr "Kálium-poliaszpartát"
 
+#: includes/class-ingredients.php
 msgid "Fumaric Acid"
 msgstr "Fumársav"
 
+#: includes/class-ingredients.php
 msgid "Argon"
 msgstr "Argon"
 
+#: includes/class-ingredients.php
 msgid "Nitrogen"
 msgstr "Nitrogén"
 
+#: includes/class-ingredients.php
 msgid "Carbon Dioxide"
 msgstr "Szén-dioxid"
 
+#: includes/class-ingredients.php
 msgid "Packaged under protective atmosphere"
 msgstr "Védőgáz alatt csomagolva"
 
+#: includes/class-ingredients.php
 msgid "Preservatives"
 msgstr "Tartósítószerek"
 
+#: includes/class-ingredients.php
 msgid "Acid Regulators"
 msgstr "Savanyúságot szabályozó anyagok"
 
+#: includes/class-ingredients.php
 msgid "Stabilizers"
 msgstr "Stabilizátorok"
 
-msgid "Base Ingredients"
-msgstr "Alapanyagok"
-
-msgid "Gases"
-msgstr "Gázok"
-
+#: templates/nutrition-label-secure.php
 msgid "Nutrition Label"
 msgstr "Tápértékcímke"
 
+#: templates/nutrition-label-secure.php admin/working-metabox.php
 msgid "Ingredients:"
 msgstr "Összetevők:"
 
+#: templates/nutrition-label-secure.php
 msgid "Nutritional Information"
 msgstr "Tápérték-információ"
 
+#: templates/nutrition-label-secure.php
 msgid "Per 100ml"
 msgstr "100 ml-enként"
 
+#: templates/nutrition-label-secure.php
 msgid "Energy"
 msgstr "Energia"
 
+#: templates/nutrition-label-secure.php
 msgid "Carbohydrates"
 msgstr "Szénhidrát"
 
+#: templates/nutrition-label-secure.php
 msgid "of which Sugars"
 msgstr "ebből Cukrok"
 
+#: templates/nutrition-label-secure.php
 msgid "May contain negligible amounts of protein and salt."
 msgstr "Elhanyagolható mennyiségű fehérjét és sót tartalmazhat."
 
+#: admin/working-metabox.php
 msgid "Nutrition Information"
 msgstr "Tápértékadatok"
 
+#: admin/working-metabox.php
+msgid "Base Ingredients"
+msgstr "Alapanyagok"
+
+#: admin/working-metabox.php
+msgid "Gases"
+msgstr "Gázok"
+
+#: admin/working-metabox.php
 msgid "Calories (kcal):"
 msgstr "Kalória (kcal):"
 
+#: admin/working-metabox.php
 msgid "Kilojoules (kJ):"
 msgstr "Kilojoule (kJ):"
 
+#: admin/working-metabox.php
 msgid "Carbohydrates (g):"
 msgstr "Szénhidrát (g):"
 
+#: admin/working-metabox.php
 msgid "Sugar (g):"
 msgstr "Cukrok (g):"
 
+#: admin/working-metabox.php
 msgid "Nutrition Label URL:"
 msgstr "Tápértékcímke URL:"
 
+#: admin/working-metabox.php
 msgid "Download QR Code"
 msgstr "QR-kód letöltése"
 
+#: admin/working-metabox.php
 msgid "Save product to generate short URL first."
 msgstr "Először mentse el a terméket a rövid URL generálásához."
 
+#: admin/working-metabox.php
 msgid "Text"
 msgstr "Szöveg"
 
+#: admin/working-metabox.php
 msgid "Nil"
 msgstr "Egyik sem"
 
+#: admin/working-metabox.php
 msgid "Bio"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "* from organic farming"
 msgstr ""
 
+#: admin/class-nutrition-labels-admin-extended.php
+#: admin/nutrition-settings-page-simple.php
 msgid "Nutrition Labels Settings"
 msgstr "Tápértékcímke beállítások"
 
+#: admin/class-nutrition-labels-admin-extended.php
+#, fuzzy
+msgid "Configuration"
+msgstr "Információ"
+
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Database Management"
 msgstr "Adatbázis-kezelés"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Settings saved successfully!"
 msgstr "A beállítások sikeresen mentve!"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Invalid nonce"
 msgstr "Érvénytelen biztonsági token"
 
+#. translators: %d: number of deleted entries
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Successfully deleted %d nutrition label entry"
 msgid_plural "Successfully deleted %d nutrition label entries"
 msgstr[0] "%d tápértékcímke sikeresen törölve"
 msgstr[1] "%d tápértékcímke sikeresen törölve"
 
+#: admin/nutrition-db-management.php
+#, fuzzy
+msgid "Nutrition Labels - Database Management"
+msgstr "Adatbázis-kezelés"
+
+#: admin/nutrition-db-management.php
 msgid "Search product name or short code..."
 msgstr "Keressen terméknévre vagy rövid kódra…"
 
+#: admin/nutrition-db-management.php
 msgid "Search"
 msgstr "Keresés"
 
+#: admin/nutrition-db-management.php
 msgid "Clear Search"
 msgstr "Keresés törlése"
 
+#: admin/nutrition-db-management.php
 msgid "No nutrition label entries found."
 msgstr "Nem találhatók tápértékcímkék."
 
+#. translators: %1$d: number of visible entries, %2$d: total entries
+#: admin/nutrition-db-management.php
 msgid "Showing %1$d of %2$d entries"
 msgstr "%2$d bejegyzésből %1$d látható"
 
+#: admin/nutrition-db-management.php
 msgid "Select All"
 msgstr "Összes kijelölése"
 
+#: admin/nutrition-db-management.php
 msgid "Select"
 msgstr "Kijelölés"
 
+#: admin/nutrition-db-management.php
 msgid "Product"
 msgstr "Termék"
 
+#: admin/nutrition-db-management.php
 msgid "Prefix"
 msgstr "Előtag"
 
+#: admin/nutrition-db-management.php
 msgid "Short Code"
 msgstr "Rövid kód"
 
+#: admin/nutrition-db-management.php
 msgid "Created"
 msgstr "Létrehozva"
 
+#: admin/nutrition-db-management.php
 msgid "Actions"
 msgstr "Műveletek"
 
+#: admin/nutrition-db-management.php
 msgid "View Label"
 msgstr "Címke megtekintése"
 
-msgid "Download QR"
-msgstr "QR letöltése"
-
+#: admin/nutrition-db-management.php
 msgid "Delete"
 msgstr "Törlés"
 
+#: admin/nutrition-db-management.php
 msgid "Delete Selected"
 msgstr "Kijelöltek törlése"
 
+#: admin/nutrition-db-management.php
 msgid "Export to CSV"
 msgstr "Exportálás CSV-be"
 
+#: admin/nutrition-settings-page.php
+#, fuzzy
+msgid "Nutrition Labels - Configuration"
+msgstr "Tápérték-információ"
+
+#: admin/nutrition-settings-page.php
 msgid "QR Code Size"
 msgstr "QR-kód mérete"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Choose QR code size for download. Smaller sizes are better for small labels, "
+"larger for posters."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Short Code Length"
 msgstr "Rövid kód hossza"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Length affects uniqueness vs readability. Shorter codes may conflict more "
+"often."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Character Set"
 msgstr "Karakterkészlet"
 
+#: admin/nutrition-settings-page.php
+msgid "Current URL Format"
+msgstr ""
+
+#: admin/nutrition-settings-page.php admin/nutrition-settings-page-simple.php
 msgid "Information"
 msgstr "Információ"
 
+# --- admin/nutrition-settings-page-simple.php ---
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Configure your nutrition labels plugin settings and manage QR code "
+"generation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "URL Prefix"
 msgstr "URL előtag"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Warning:"
 msgstr "Figyelmeztetés:"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Changing this will make existing QR codes stop working!"
 msgstr "Ennek módosítása a meglévő QR-kódokat érvényteleníti!"
 
+#: admin/nutrition-settings-page-simple.php
+msgid "Minimum is 4 characters. Shorter codes may conflict more often."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Choose allowed characters for short codes."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "Current Entries:"
 msgstr "Jelenlegi bejegyzések:"
 
+#. translators: %d: number of active nutrition labels
+#: admin/nutrition-settings-page-simple.php
 msgid "%d nutrition labels active"
 msgstr "%d aktív tápértékcímke"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Save Settings"
 msgstr "Beállítások mentése"
 
-msgid "Generating..."
-msgstr "Generálás…"
+#: admin/nutrition-settings-page-simple.php
+#, fuzzy
+msgid "Subdomain E-Label URLs"
+msgstr "Tápértékcímke URL:"
 
-msgid "E-Label not found"
-msgstr "Az e-címke nem található"
+#: admin/nutrition-settings-page-simple.php
+msgid "Enable subdomain e-label URLs"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Serve e-labels from a dedicated subdomain as recommended by EU e-labelling "
+"regulations."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Subdomain"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Enter a subdomain (e.g. elabel) or a full hostname (e.g. "
+"elabel.example.com). The subdomain must resolve to this WordPress "
+"installation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "URL Scheme"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "https (recommended)"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "http"
+msgstr ""
+
+#~ msgid "Download QR"
+#~ msgstr "QR letöltése"
+
+#~ msgid "Generating..."
+#~ msgstr "Generálás…"
+
+#~ msgid "E-Label not found"
+#~ msgstr "Az e-címke nem található"

@@ -18,270 +18,459 @@ msgstr ""
 "X-Generator: Manually crafted\n"
 "X-Domain: nutrition-labels\n"
 
+#. Plugin Name of the plugin
 msgid "Nutrition Labels"
 msgstr "Διατροφικές ετικέτες"
 
+#. Description of the plugin
+msgid ""
+"Adds nutrition label management, shortcodes, and QR code generation for "
+"products."
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Grapes"
 msgstr "Σταφύλια"
 
+#: includes/class-ingredients.php
 msgid "Organic Grapes"
 msgstr "Βιολογικά σταφύλια"
 
+#: includes/class-ingredients.php
 msgid "Sucrose"
 msgstr "Σακχαρόζη"
 
+#: includes/class-ingredients.php
 msgid "Grape Concentrate"
 msgstr "Συμπυκνωμένος χυμός σταφυλιών"
 
+#: includes/class-ingredients.php
+msgid "Dosage Liqueur"
+msgstr ""
+
+#: includes/class-ingredients.php
+msgid "Shipping Dosage"
+msgstr ""
+
+#: includes/class-ingredients.php
 msgid "Sulfur Dioxide"
 msgstr "Διοξείδιο του θείου"
 
+#: includes/class-ingredients.php
 msgid "Potassium Bisulfite"
 msgstr "Όξινο θειώδες κάλιο"
 
+#: includes/class-ingredients.php
 msgid "Potassium Metabisulfite"
 msgstr "Μεταδιθειώδες κάλιο"
 
+#: includes/class-ingredients.php
 msgid "Potassium Sorbate"
 msgstr "Σορβικό κάλιο"
 
+#: includes/class-ingredients.php
 msgid "Lysozyme"
 msgstr "Λυσοζύμη"
 
+#: includes/class-ingredients.php
 msgid "Ascorbic Acid"
 msgstr "Ασκορβικό οξύ"
 
+#: includes/class-ingredients.php
 msgid "Dimethyl Dicarbonate"
 msgstr "Διμεθυλοδιανθρακικός εστέρας"
 
+#: includes/class-ingredients.php
 msgid "Tartaric Acid"
 msgstr "Τρυγικό οξύ"
 
+#: includes/class-ingredients.php
 msgid "Malic Acid"
 msgstr "Μηλικό οξύ"
 
+#: includes/class-ingredients.php
 msgid "Lactic Acid"
 msgstr "Γαλακτικό οξύ"
 
+#: includes/class-ingredients.php
 msgid "Calcium Sulfate"
 msgstr "Θειικό ασβέστιο"
 
+#: includes/class-ingredients.php
 msgctxt "acid regulator"
 msgid "Citric Acid"
 msgstr "Κιτρικό οξύ"
 
+#: includes/class-ingredients.php
 msgctxt "stabilizer"
 msgid "Citric Acid"
 msgstr "Κιτρικό οξύ"
 
+#: includes/class-ingredients.php
 msgid "Metatartaric Acid"
 msgstr "Μετατρυγικό οξύ"
 
+#: includes/class-ingredients.php
 msgid "Gum Arabic"
 msgstr "Αραβικό κόμμι"
 
+#: includes/class-ingredients.php
 msgid "Yeast Mannoproteins"
 msgstr "Μαννοπρωτεΐνες ζύμης"
 
+#: includes/class-ingredients.php
 msgid "Egg White"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "Carboxymethylcellulose"
 msgstr "Καρβοξυμεθυλοκυτταρίνη"
 
+#: includes/class-ingredients.php
 msgid "Potassium Polyaspartate"
 msgstr "Πολυασπαρτικό κάλιο"
 
+#: includes/class-ingredients.php
 msgid "Fumaric Acid"
 msgstr "Φουμαρικό οξύ"
 
+#: includes/class-ingredients.php
 msgid "Argon"
 msgstr "Αργόν"
 
+#: includes/class-ingredients.php
 msgid "Nitrogen"
 msgstr "Άζωτο"
 
+#: includes/class-ingredients.php
 msgid "Carbon Dioxide"
 msgstr "Διοξείδιο του άνθρακα"
 
+#: includes/class-ingredients.php
 msgid "Packaged under protective atmosphere"
 msgstr "Συσκευασμένο σε προστατευτική ατμόσφαιρα"
 
+#: includes/class-ingredients.php
 msgid "Preservatives"
 msgstr "Συντηρητικά"
 
+#: includes/class-ingredients.php
 msgid "Acid Regulators"
 msgstr "Ρυθμιστές οξύτητας"
 
+#: includes/class-ingredients.php
 msgid "Stabilizers"
 msgstr "Σταθεροποιητές"
 
-msgid "Base Ingredients"
-msgstr "Βασικά συστατικά"
-
-msgid "Gases"
-msgstr "Αέρια"
-
+#: templates/nutrition-label-secure.php
 msgid "Nutrition Label"
 msgstr "Διατροφική ετικέτα"
 
+#: templates/nutrition-label-secure.php admin/working-metabox.php
 msgid "Ingredients:"
 msgstr "Συστατικά:"
 
+#: templates/nutrition-label-secure.php
 msgid "Nutritional Information"
 msgstr "Διατροφικές πληροφορίες"
 
+#: templates/nutrition-label-secure.php
 msgid "Per 100ml"
 msgstr "Ανά 100 ml"
 
+#: templates/nutrition-label-secure.php
 msgid "Energy"
 msgstr "Ενέργεια"
 
+#: templates/nutrition-label-secure.php
 msgid "Carbohydrates"
 msgstr "Υδατάνθρακες"
 
+#: templates/nutrition-label-secure.php
 msgid "of which Sugars"
 msgstr "εκ των οποίων Σάκχαρα"
 
+#: templates/nutrition-label-secure.php
 msgid "May contain negligible amounts of protein and salt."
 msgstr "Μπορεί να περιέχει αμελητέες ποσότητες πρωτεΐνης και αλατιού."
 
+#: admin/working-metabox.php
 msgid "Nutrition Information"
 msgstr "Διατροφικά στοιχεία"
 
+#: admin/working-metabox.php
+msgid "Base Ingredients"
+msgstr "Βασικά συστατικά"
+
+#: admin/working-metabox.php
+msgid "Gases"
+msgstr "Αέρια"
+
+#: admin/working-metabox.php
 msgid "Calories (kcal):"
 msgstr "Θερμίδες (kcal):"
 
+#: admin/working-metabox.php
 msgid "Kilojoules (kJ):"
 msgstr "Κιλοτζάουλ (kJ):"
 
+#: admin/working-metabox.php
 msgid "Carbohydrates (g):"
 msgstr "Υδατάνθρακες (g):"
 
+#: admin/working-metabox.php
 msgid "Sugar (g):"
 msgstr "Σάκχαρα (g):"
 
+#: admin/working-metabox.php
 msgid "Nutrition Label URL:"
 msgstr "URL διατροφικής ετικέτας:"
 
+#: admin/working-metabox.php
 msgid "Download QR Code"
 msgstr "Λήψη κωδικού QR"
 
+#: admin/working-metabox.php
 msgid "Save product to generate short URL first."
 msgstr "Αποθηκεύστε πρώτα το προϊόν για τη δημιουργία σύντομης URL."
 
+#: admin/working-metabox.php
 msgid "Text"
 msgstr "Κείμενο"
 
+#: admin/working-metabox.php
 msgid "Nil"
 msgstr "Κανένα"
 
+#: admin/working-metabox.php
 msgid "Bio"
 msgstr ""
 
+#: includes/class-ingredients.php
 msgid "* from organic farming"
 msgstr ""
 
+#: admin/class-nutrition-labels-admin-extended.php
+#: admin/nutrition-settings-page-simple.php
 msgid "Nutrition Labels Settings"
 msgstr "Ρυθμίσεις διατροφικών ετικετών"
 
+#: admin/class-nutrition-labels-admin-extended.php
+#, fuzzy
+msgid "Configuration"
+msgstr "Πληροφορίες"
+
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Database Management"
 msgstr "Διαχείριση βάσης δεδομένων"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Settings saved successfully!"
 msgstr "Οι ρυθμίσεις αποθηκεύτηκαν!"
 
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Invalid nonce"
 msgstr "Μη έγκυρο διακριτικό ασφαλείας"
 
+#. translators: %d: number of deleted entries
+#: admin/class-nutrition-labels-admin-extended.php
 msgid "Successfully deleted %d nutrition label entry"
 msgid_plural "Successfully deleted %d nutrition label entries"
 msgstr[0] "Διαγράφηκε %d διατροφική ετικέτα"
 msgstr[1] "Διαγράφηκαν %d διατροφικές ετικέτες"
 
+#: admin/nutrition-db-management.php
+#, fuzzy
+msgid "Nutrition Labels - Database Management"
+msgstr "Διαχείριση βάσης δεδομένων"
+
+#: admin/nutrition-db-management.php
 msgid "Search product name or short code..."
 msgstr "Αναζήτηση ονόματος προϊόντος ή σύντομου κωδικού…"
 
+#: admin/nutrition-db-management.php
 msgid "Search"
 msgstr "Αναζήτηση"
 
+#: admin/nutrition-db-management.php
 msgid "Clear Search"
 msgstr "Εκκαθάριση αναζήτησης"
 
+#: admin/nutrition-db-management.php
 msgid "No nutrition label entries found."
 msgstr "Δεν βρέθηκαν διατροφικές ετικέτες."
 
+#. translators: %1$d: number of visible entries, %2$d: total entries
+#: admin/nutrition-db-management.php
 msgid "Showing %1$d of %2$d entries"
 msgstr "Εμφάνιση %1$d από %2$d εγγραφές"
 
+#: admin/nutrition-db-management.php
 msgid "Select All"
 msgstr "Επιλογή όλων"
 
+#: admin/nutrition-db-management.php
 msgid "Select"
 msgstr "Επιλογή"
 
+#: admin/nutrition-db-management.php
 msgid "Product"
 msgstr "Προϊόν"
 
+#: admin/nutrition-db-management.php
 msgid "Prefix"
 msgstr "Πρόθεμα"
 
+#: admin/nutrition-db-management.php
 msgid "Short Code"
 msgstr "Σύντομος κωδικός"
 
+#: admin/nutrition-db-management.php
 msgid "Created"
 msgstr "Δημιουργήθηκε"
 
+#: admin/nutrition-db-management.php
 msgid "Actions"
 msgstr "Ενέργειες"
 
+#: admin/nutrition-db-management.php
 msgid "View Label"
 msgstr "Προβολή ετικέτας"
 
-msgid "Download QR"
-msgstr "Λήψη QR"
-
+#: admin/nutrition-db-management.php
 msgid "Delete"
 msgstr "Διαγραφή"
 
+#: admin/nutrition-db-management.php
 msgid "Delete Selected"
 msgstr "Διαγραφή επιλεγμένων"
 
+#: admin/nutrition-db-management.php
 msgid "Export to CSV"
 msgstr "Εξαγωγή σε CSV"
 
+#: admin/nutrition-settings-page.php
+#, fuzzy
+msgid "Nutrition Labels - Configuration"
+msgstr "Διατροφικές πληροφορίες"
+
+#: admin/nutrition-settings-page.php
 msgid "QR Code Size"
 msgstr "Μέγεθος κωδικού QR"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Choose QR code size for download. Smaller sizes are better for small labels, "
+"larger for posters."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Short Code Length"
 msgstr "Μήκος σύντομου κωδικού"
 
+#: admin/nutrition-settings-page.php
+msgid ""
+"Length affects uniqueness vs readability. Shorter codes may conflict more "
+"often."
+msgstr ""
+
+#: admin/nutrition-settings-page.php
 msgid "Character Set"
 msgstr "Σύνολο χαρακτήρων"
 
+#: admin/nutrition-settings-page.php
+msgid "Current URL Format"
+msgstr ""
+
+#: admin/nutrition-settings-page.php admin/nutrition-settings-page-simple.php
 msgid "Information"
 msgstr "Πληροφορίες"
 
+# --- admin/nutrition-settings-page-simple.php ---
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Configure your nutrition labels plugin settings and manage QR code "
+"generation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "URL Prefix"
 msgstr "Πρόθεμα URL"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Warning:"
 msgstr "Προειδοποίηση:"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Changing this will make existing QR codes stop working!"
-msgstr "Η αλλαγή αυτή θα κάνει τους υπάρχοντες κωδικούς QR να σταματήσουν να λειτουργούν!"
+msgstr ""
+"Η αλλαγή αυτή θα κάνει τους υπάρχοντες κωδικούς QR να σταματήσουν να "
+"λειτουργούν!"
 
+#: admin/nutrition-settings-page-simple.php
+msgid "Minimum is 4 characters. Shorter codes may conflict more often."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Choose allowed characters for short codes."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
 msgid "Current Entries:"
 msgstr "Τρέχουσες εγγραφές:"
 
+#. translators: %d: number of active nutrition labels
+#: admin/nutrition-settings-page-simple.php
 msgid "%d nutrition labels active"
 msgstr "%d ενεργή/ές διατροφική/ές ετικέτα/ες"
 
+#: admin/nutrition-settings-page-simple.php
 msgid "Save Settings"
 msgstr "Αποθήκευση ρυθμίσεων"
 
-msgid "Generating..."
-msgstr "Δημιουργία…"
+#: admin/nutrition-settings-page-simple.php
+#, fuzzy
+msgid "Subdomain E-Label URLs"
+msgstr "URL διατροφικής ετικέτας:"
 
-msgid "E-Label not found"
-msgstr "Η ε-ετικέτα δεν βρέθηκε"
+#: admin/nutrition-settings-page-simple.php
+msgid "Enable subdomain e-label URLs"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Serve e-labels from a dedicated subdomain as recommended by EU e-labelling "
+"regulations."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "Subdomain"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid ""
+"Enter a subdomain (e.g. elabel) or a full hostname (e.g. "
+"elabel.example.com). The subdomain must resolve to this WordPress "
+"installation."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "URL Scheme"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "https (recommended)"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php
+msgid "http"
+msgstr ""
+
+#~ msgid "Download QR"
+#~ msgstr "Λήψη QR"
+
+#~ msgid "Generating..."
+#~ msgstr "Δημιουργία…"
+
+#~ msgid "E-Label not found"
+#~ msgstr "Η ε-ετικέτα δεν βρέθηκε"
