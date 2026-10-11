@@ -337,9 +337,11 @@ class NutritionLabels_URL
       return;
     }
 
-    echo '<a href="' . esc_url($url) . '" class="button nutrition-label-button" target="_blank" rel="noopener noreferrer">'
+    echo '<div class="nutrition-label-button-wrapper">'
+      . '<a href="' . esc_url($url) . '" class="button nutrition-label-button" target="_blank" rel="noopener noreferrer">'
       . esc_html__('Nährwertinformation', 'nutrition-labels')
-      . '</a>';
+      . '</a>'
+      . '</div>';
   }
 
   private static function build_label_url(string $prefix, string $slug): string
