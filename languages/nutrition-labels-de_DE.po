@@ -386,3 +386,7 @@ msgstr "https (empfohlen)"
 
 msgid "http"
 msgstr "http"
+
+#: includes/class-nutrition-labels-url.php
+msgid "Nährwertinformation"
+msgstr "Nährwertinformation"

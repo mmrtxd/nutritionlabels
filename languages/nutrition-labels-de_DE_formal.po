@@ -495,3 +495,7 @@ msgstr ""
 #: admin/nutrition-settings-page-simple.php
 msgid "http"
 msgstr ""
+
+#: includes/class-nutrition-labels-url.php
+msgid "Nährwertinformation"
+msgstr "Nährwertinformation"

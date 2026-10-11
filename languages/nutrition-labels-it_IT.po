@@ -470,6 +470,10 @@ msgstr ""
 msgid "http"
 msgstr ""
 
+#: includes/class-nutrition-labels-url.php
+msgid "Nährwertinformation"
+msgstr "Informazioni nutrizionali"
+
 #~ msgid "Download QR"
 #~ msgstr "Scarica QR"
 

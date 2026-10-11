@@ -466,6 +466,10 @@ msgstr ""
 msgid "http"
 msgstr ""
 
+#: includes/class-nutrition-labels-url.php
+msgid "Nährwertinformation"
+msgstr "Διατροφικές πληροφορίες"
+
 #~ msgid "Download QR"
 #~ msgstr "Λήψη QR"
 

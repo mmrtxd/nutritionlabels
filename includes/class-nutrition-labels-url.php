@@ -105,6 +105,7 @@ class NutritionLabels_URL
     add_filter('query_vars', array(__CLASS__, 'add_query_vars'));
     add_action('template_redirect', array(__CLASS__, 'enforce_subdomain_restriction'), 1);
     add_action('template_redirect', array(__CLASS__, 'handle_short_url'));
+    add_action('woocommerce_single_product_summary', array(__CLASS__, 'render_product_button'), 35);
   }
 
   private static function get_db()
@@ -314,6 +315,31 @@ class NutritionLabels_URL
     }
 
     return self::build_label_url($prefix, $slug);
+  }
+
+  public static function render_product_button(): void
+  {
+    if (!function_exists('is_product') || !is_product()) {
+      return;
+    }
+
+    $product_id = get_the_ID();
+    if (!$product_id) {
+      return;
+    }
+
+    $locale    = get_locale();
+    $lang_code = array_search($locale, self::$lang_map, true);
+    $lang_code = is_string($lang_code) ? $lang_code : '';
+
+    $url = self::get_short_url((int) $product_id, $lang_code);
+    if (!$url) {
+      return;
+    }
+
+    echo '<a href="' . esc_url($url) . '" class="button nutrition-label-button" target="_blank" rel="noopener noreferrer">'
+      . esc_html__('Nährwertinformation', 'nutrition-labels')
+      . '</a>';
   }
 
   private static function build_label_url(string $prefix, string $slug): string
