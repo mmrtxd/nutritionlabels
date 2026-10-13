@@ -468,8 +468,8 @@ msgid "http"
 msgstr ""
 
 #: includes/class-nutrition-labels-url.php
-msgid "Nährwertinformation"
-msgstr "Výživové informácie"
+msgid "Zutaten"
+msgstr "Zloženie"
 
 #~ msgid "Download QR"
 #~ msgstr "Stiahnuť QR"

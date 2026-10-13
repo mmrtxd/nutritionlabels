@@ -497,5 +497,5 @@ msgid "http"
 msgstr ""
 
 #: includes/class-nutrition-labels-url.php
-msgid "Nährwertinformation"
-msgstr "Nährwertinformation"
+msgid "Zutaten"
+msgstr "Zutaten"

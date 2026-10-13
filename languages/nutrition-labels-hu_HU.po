@@ -465,8 +465,8 @@ msgid "http"
 msgstr ""
 
 #: includes/class-nutrition-labels-url.php
-msgid "Nährwertinformation"
-msgstr "Tápértékjelölés"
+msgid "Zutaten"
+msgstr "Összetevők"
 
 #~ msgid "Download QR"
 #~ msgstr "QR letöltése"

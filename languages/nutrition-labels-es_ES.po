@@ -471,8 +471,8 @@ msgid "http"
 msgstr ""
 
 #: includes/class-nutrition-labels-url.php
-msgid "Nährwertinformation"
-msgstr "Información nutricional"
+msgid "Zutaten"
+msgstr "Ingredientes"
 
 #~ msgid "Download QR"
 #~ msgstr "Descargar QR"
