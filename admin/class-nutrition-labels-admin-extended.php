@@ -80,29 +80,18 @@ class NutritionLabels_Admin_Extended
 
   public function register_settings()
   {
-    register_setting('nutrition_labels_group', 'qr_size', array(
-      'type' => 'string',
-      'default' => '500x500',
-      'sanitize_callback' => array($this, 'sanitize_qr_size')
-    ));
-
-    register_setting('nutrition_labels_group', 'qr_format', array(
-      'type'              => 'string',
-      'default'           => 'png',
-      'sanitize_callback' => fn($v) => in_array($v, ['png', 'svg'], true) ? $v : 'png',
-    ));
-
-    register_setting('nutrition_labels_group', 'qr_error_correction', array(
-      'type'              => 'string',
-      'default'           => 'low',
-      'sanitize_callback' => fn($v) => in_array($v, ['low', 'medium', 'quartile', 'high'], true) ? $v : 'low',
-    ));
-  }
-
-  public function sanitize_qr_size($input)
-  {
-    $allowed = array('300x300', '500x500', '800x800');
-    return in_array($input, $allowed) ? $input : '500x500';
+    $options = [
+      NutritionLabels_Settings::QR_SIZE,
+      NutritionLabels_Settings::QR_FORMAT,
+      NutritionLabels_Settings::QR_ERROR_CORRECTION,
+    ];
+    foreach ($options as $option) {
+      register_setting('nutrition_labels_group', $option, array(
+        'type'              => 'string',
+        'default'           => NutritionLabels_Settings::default($option),
+        'sanitize_callback' => fn($v) => NutritionLabels_Settings::sanitize($option, $v),
+      ));
+    }
   }
 
   public function ajax_delete()
@@ -177,7 +166,7 @@ class NutritionLabels_Admin_Extended
       wp_send_json_error('Could not build short URL for this product');
     }
 
-    $format   = get_option('qr_format', 'png');
+    $format   = NutritionLabels_Settings::qr_format();
     $data_uri = NutritionLabels_QR::generate_qr_code_base64($short_url, $format);
     if ($data_uri === false) {
       wp_send_json_error('QR code generation failed');
@@ -290,18 +279,17 @@ class NutritionLabels_Admin_Extended
       wp_die(__('You do not have permission to change settings.', 'nutrition-labels'));
     }
     if (function_exists('wp_verify_nonce') && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? '')), 'nutrition_labels_settings')) {
-      if (isset($_POST['nutrition_labels']['qr_size'])) {
-        $allowed_qr_sizes = array('300x300', '500x500', '800x800');
-        $qr_size = sanitize_text_field($_POST['nutrition_labels']['qr_size']);
-        update_option('qr_size', in_array($qr_size, $allowed_qr_sizes) ? $qr_size : '500x500');
-      }
-      if (isset($_POST['nutrition_labels']['qr_format'])) {
-        $qr_format = sanitize_text_field($_POST['nutrition_labels']['qr_format']);
-        update_option('qr_format', in_array($qr_format, ['png', 'svg'], true) ? $qr_format : 'png');
-      }
-      if (isset($_POST['nutrition_labels']['qr_error_correction'])) {
-        $ec = sanitize_text_field($_POST['nutrition_labels']['qr_error_correction']);
-        update_option('qr_error_correction', in_array($ec, ['low', 'medium', 'quartile', 'high'], true) ? $ec : 'low');
+      // Form field key => option name
+      $qr_fields = [
+        'qr_size'             => NutritionLabels_Settings::QR_SIZE,
+        'qr_format'           => NutritionLabels_Settings::QR_FORMAT,
+        'qr_error_correction' => NutritionLabels_Settings::QR_ERROR_CORRECTION,
+      ];
+      foreach ($qr_fields as $field => $option) {
+        if (isset($_POST['nutrition_labels'][$field])) {
+          $value = sanitize_text_field(wp_unslash($_POST['nutrition_labels'][$field]));
+          update_option($option, NutritionLabels_Settings::sanitize($option, $value));
+        }
       }
       // Checkbox: only present in POST when checked; absence means unchecked.
       update_option(

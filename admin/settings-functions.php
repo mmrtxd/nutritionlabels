@@ -39,7 +39,7 @@ if (!function_exists('nutrition_selected')) {
 }
 
 // Helper function to generate error correction level options
-function qr_error_correction_options($current)
+function nutrition_labels_qr_error_correction_options($current)
 {
   $options = array(
     'low'      => 'Low (L) — 7% recovery, fewest modules — best for small clean prints',
@@ -58,7 +58,7 @@ function qr_error_correction_options($current)
 }
 
 // Helper function to generate format options for QR code format
-function qr_format_options($current_format)
+function nutrition_labels_qr_format_options($current_format)
 {
   $options = array(
     'png' => 'PNG (Default — raster image, widest compatibility)',
@@ -75,7 +75,7 @@ function qr_format_options($current_format)
 }
 
 // Helper function to generate size options
-function qr_size_options($current_size)
+function nutrition_labels_qr_size_options($current_size)
 {
   $options = array(
     '300x300' => '300×300 (Small - Good for small labels)',

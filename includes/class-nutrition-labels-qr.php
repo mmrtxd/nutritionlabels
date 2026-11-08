@@ -35,14 +35,14 @@ class NutritionLabels_QR
 {
   /**
    * Generates a QR code and returns the raw output string.
-   * Format is 'png' (default) or 'svg', falling back to the qr_format option.
+   * Format is 'png' (default) or 'svg', falling back to the QR format setting.
    *
    * @return string|false  Raw bytes (PNG) or SVG markup, or false on failure.
    */
   public static function generate_qr_code(string $url, ?string $format = null): string|false
   {
     if ($format === null) {
-      $format = get_option('qr_format', 'png');
+      $format = NutritionLabels_Settings::qr_format();
     }
 
     try {
@@ -70,7 +70,7 @@ class NutritionLabels_QR
   public static function generate_qr_code_base64(string $url, ?string $format = null): string|false
   {
     if ($format === null) {
-      $format = get_option('qr_format', 'png');
+      $format = NutritionLabels_Settings::qr_format();
     }
 
     $data = self::generate_qr_code($url, $format);
@@ -83,22 +83,22 @@ class NutritionLabels_QR
   }
 
   /**
-   * Returns the configured QR size in pixels, parsed from the qr_size option (e.g. "500x500").
+   * Returns the configured QR size in pixels, parsed from the QR size setting (e.g. "500x500").
    */
   private static function configured_size(): int
   {
-    $size_str = get_option('qr_size', '500x500');
+    $size_str = NutritionLabels_Settings::qr_size();
     $parts    = explode('x', $size_str);
     $size     = (int) ($parts[0] ?? 500);
     return $size > 0 ? $size : 500;
   }
 
   /**
-   * Returns the configured ErrorCorrectionLevel from the qr_error_correction option.
+   * Returns the configured ErrorCorrectionLevel from the QR error correction setting.
    */
   private static function configured_error_correction(): ErrorCorrectionLevel
   {
-    $value = get_option('qr_error_correction', 'low');
+    $value = NutritionLabels_Settings::qr_error_correction();
     return ErrorCorrectionLevel::tryFrom((string) $value) ?? ErrorCorrectionLevel::Low;
   }
 }

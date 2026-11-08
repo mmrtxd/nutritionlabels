@@ -35,9 +35,22 @@ if (get_option('nutrition_labels_delete_data_on_uninstall') === 'yes') {
   $wpdb->query("DROP TABLE IF EXISTS {$table}");
 }
 
-delete_option('qr_size');
-delete_option('qr_format');
-delete_option('qr_error_correction');
+delete_option('nutrition_labels_qr_size');
+delete_option('nutrition_labels_qr_format');
+delete_option('nutrition_labels_qr_error_correction');
+// Pre-1.3.0 unprefixed names (only present if the 1.3.0 migration never ran).
+// Same rule as the migration: delete only values that are clearly ours, since
+// generic names like "qr_size" may belong to another plugin.
+$legacy_qr_options = [
+  'qr_size'             => ['300x300', '500x500', '800x800'],
+  'qr_format'           => ['png', 'svg'],
+  'qr_error_correction' => ['low', 'medium', 'quartile', 'high'],
+];
+foreach ($legacy_qr_options as $legacy_name => $allowed_values) {
+  if (in_array(get_option($legacy_name), $allowed_values, true)) {
+    delete_option($legacy_name);
+  }
+}
 delete_option('nutrition_labels_db_version');
 delete_option('nutrition_labels_delete_data_on_uninstall');
 delete_option('nutrition_labels_use_subdomain');

@@ -47,9 +47,9 @@ if (isset($_POST['submit-nutrition-settings']) && class_exists('NutritionLabels_
 }
 
 // Get current settings
-$current_qr_size        = get_option('qr_size', '500x500');
-$current_qr_format      = get_option('qr_format', 'png');
-$current_qr_correction  = get_option('qr_error_correction', 'low');
+$current_qr_size        = NutritionLabels_Settings::qr_size();
+$current_qr_format      = NutritionLabels_Settings::qr_format();
+$current_qr_correction  = NutritionLabels_Settings::qr_error_correction();
 $db = new NutritionLabels_DB_Extended();
 $active_count = $db->count_all_entries();
 ?>
@@ -77,7 +77,7 @@ $active_count = $db->count_all_entries();
           </th>
           <td>
             <select name="nutrition_labels[qr_size]" id="qr_size">
-              <?php echo qr_size_options($current_qr_size); ?>
+              <?php echo nutrition_labels_qr_size_options($current_qr_size); ?>
             </select>
           </td>
         </tr>
@@ -91,7 +91,7 @@ $active_count = $db->count_all_entries();
           </th>
           <td>
             <select name="nutrition_labels[qr_format]" id="qr_format">
-              <?php echo qr_format_options($current_qr_format); ?>
+              <?php echo nutrition_labels_qr_format_options($current_qr_format); ?>
             </select>
           </td>
         </tr>
@@ -105,7 +105,7 @@ $active_count = $db->count_all_entries();
           </th>
           <td>
             <select name="nutrition_labels[qr_error_correction]" id="qr_error_correction">
-              <?php echo qr_error_correction_options($current_qr_correction); ?>
+              <?php echo nutrition_labels_qr_error_correction_options($current_qr_correction); ?>
             </select>
           </td>
         </tr>
@@ -246,9 +246,9 @@ $active_count = $db->count_all_entries();
         : home_url('/' . NUTRITION_LABELS_URL_PREFIX . '/[shortcode]');
       ?>
       <li><strong><?php esc_html_e('URL Format:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html($url_format); ?></code></li>
-      <li><strong><?php esc_html_e('QR Code Size:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html(get_option('qr_size', '500x500')); ?></code></li>
-      <li><strong><?php esc_html_e('QR Code Format:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html(strtoupper(get_option('qr_format', 'png'))); ?></code></li>
-      <li><strong><?php esc_html_e('Error Correction:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html(ucfirst(get_option('qr_error_correction', 'low'))); ?></code></li>
+      <li><strong><?php esc_html_e('QR Code Size:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html($current_qr_size); ?></code></li>
+      <li><strong><?php esc_html_e('QR Code Format:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html(strtoupper($current_qr_format)); ?></code></li>
+      <li><strong><?php esc_html_e('Error Correction:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html(ucfirst($current_qr_correction)); ?></code></li>
       <li><strong><?php esc_html_e('Database Table:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html($db->table_name); ?></code></li>
     </ul>
   </div>

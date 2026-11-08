@@ -48,7 +48,7 @@ if (!file_exists(plugin_dir_path(__FILE__) . 'vendor/autoload.php')) {
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
 define('NUTRITION_LABELS_VERSION', '1.2.0');
-define('NUTRITION_LABELS_DB_VERSION', '1.2.0');
+define('NUTRITION_LABELS_DB_VERSION', '1.3.0');
 
 define('NUTRITION_LABELS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NUTRITION_LABELS_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -65,6 +65,7 @@ if (!defined('NUTRITION_LABELS_CHARACTER_SET')) {
 
 // Include required files
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-ingredients.php';
+require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-settings.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-db-extended.php';
 require_once NUTRITION_LABELS_PLUGIN_DIR . 'includes/class-nutrition-labels-url.php';
 
@@ -169,6 +170,13 @@ class NutritionLabels
       $wpdb->query("ALTER TABLE {$table} MODIFY short_code VARCHAR(10) NULL DEFAULT NULL");
       $wpdb->query("UPDATE {$table} SET short_code = NULL WHERE short_code = ''");
       update_option('nutrition_labels_db_version', '1.2.0');
+    }
+
+    // 1.3.0: QR options get the plugin prefix (qr_size → nutrition_labels_qr_size, …).
+    // Not a schema change, but versioned here so it runs exactly once per site.
+    if (version_compare($installed_db_version, '1.3.0', '<')) {
+      NutritionLabels_Settings::migrate_legacy_options();
+      update_option('nutrition_labels_db_version', '1.3.0');
     }
 
     // Future migrations can go here

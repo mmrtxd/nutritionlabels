@@ -18,10 +18,11 @@ WordPress plugin ("Nutrition Labels" v1.2.0) that adds product nutrition label m
 
 **Entry point:** `nutrition-labels.php` — registers activation/deactivation hooks, runs DB migrations, bootstraps admin and URL rewriting.
 
-**Three core classes in `includes/`:**
+**Core classes in `includes/`:**
 
 - `class-nutrition-labels-db-extended.php` — CRUD for the `wp_nutrition_short_urls` table, shortcode generation with collision detection, search/pagination, CSV export queries
 - `class-nutrition-labels-url.php` — WordPress rewrite rules for short URLs (e.g., `/l/abc12`), front-end route handling, template loading, WooCommerce product page button (`render_product_button()` on `woocommerce_single_product_summary` priority 35)
+- `class-nutrition-labels-settings.php` — `NutritionLabels_Settings`: single source for QR option names (`nutrition_labels_qr_*`), defaults, allowed values, getters, and the 1.3.0 legacy-option migration. Always read QR settings through it, never via raw `get_option()`.
 - `class-nutrition-labels-qr.php` — local QR code generation via `endroid/qr-code` (bundled in `vendor/`, needs PHP 8.4)
 
 **Admin UI in `admin/`:**
