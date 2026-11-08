@@ -111,10 +111,12 @@ $base_url = admin_url('admin.php?page=nutrition_labels_db_management');
                   <?php echo esc_html(date('Y-m-d H:i', strtotime($entry->created_at))); ?>
                 </td>
                 <td class="column-actions">
-                  <?php if ($label_url !== '' && !$orphaned): ?>
+                  <?php if ($label_url !== ''): ?>
                     <a class="button" href="<?php echo esc_url($label_url); ?>" target="_blank" rel="noopener noreferrer">
                       <?php esc_html_e('View Label', 'nutrition-labels'); ?>
                     </a>
+                  <?php endif; ?>
+                  <?php if ($label_url !== '' && !$orphaned): ?>
                     <button type="button" class="button" onclick="downloadQrCode(<?php echo (int) $pid; ?>, this)">
                       <?php esc_html_e('Download QR', 'nutrition-labels'); ?>
                     </button>

@@ -189,19 +189,17 @@ class NutritionLabels_URL
   }
 
   /**
-   * A label is public only while its product is published. Users who can edit
-   * the product may still preview labels of drafts / private products.
+   * Every label with a short code is public, whatever the product's status:
+   * - drafts: the print shop must be able to scan and verify the QR code
+   *   before (or while) printing, without a WordPress login;
+   * - unpublished / trashed / deleted products: bottles carrying the printed
+   *   QR code stay on the market, so the e-label must keep working.
+   * Only a short code pointing at a non-product post is rejected.
    */
   private static function is_label_viewable(int $product_id): bool
   {
     $post = get_post($product_id);
-    if (!$post || $post->post_type !== 'product') {
-      return false;
-    }
-    if ($post->post_status === 'publish') {
-      return true;
-    }
-    return current_user_can('edit_post', $product_id);
+    return !$post || $post->post_type === 'product';
   }
 
   /**

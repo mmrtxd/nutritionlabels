@@ -77,20 +77,6 @@ class NutritionLabels
     add_action('plugins_loaded', [$this, 'load_textdomain']);
     add_action('init', [$this, 'init']);
     add_action('admin_init', [$this, 'migrate_database']);
-
-    // Remove the label row when its product is permanently deleted, so the
-    // short URL stops resolving. Registered globally because deletion can
-    // happen outside wp-admin (REST API, WP-CLI, scheduled trash emptying).
-    add_action('before_delete_post', [$this, 'delete_label_for_post']);
-  }
-
-  public function delete_label_for_post($post_id)
-  {
-    if (get_post_type($post_id) !== 'product') {
-      return;
-    }
-    $db = new NutritionLabels_DB_Extended();
-    $db->delete_by_product_id((int) $post_id);
   }
 
   public function load_textdomain()
