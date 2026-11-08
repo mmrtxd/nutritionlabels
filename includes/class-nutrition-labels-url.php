@@ -149,29 +149,7 @@ class NutritionLabels_URL
       return;
     }
 
-    $use_subdomain = get_option('nutrition_labels_use_subdomain', 'no') === 'yes';
-    if (!$use_subdomain) {
-      return;
-    }
-
-    $subdomain_val = trim(get_option('nutrition_labels_subdomain', ''));
-    if ($subdomain_val === '') {
-      return;
-    }
-
-    // Build expected host the same way as build_label_url()
-    if (str_contains($subdomain_val, '.')) {
-      $expected_host = strtolower($subdomain_val);
-    } else {
-      $site_host     = parse_url(home_url(), PHP_URL_HOST);
-      $expected_host = strtolower($subdomain_val . '.' . $site_host);
-    }
-
-    // Strip port from HTTP_HOST before comparing
-    $request_host = strtolower(sanitize_text_field($_SERVER['HTTP_HOST'] ?? ''));
-    $request_host = preg_replace('/:\d+$/', '', $request_host);
-
-    if ($request_host !== $expected_host) {
+    if (!self::is_elabel_host()) {
       return; // Not the e-label subdomain — no restriction
     }
 
@@ -200,11 +178,51 @@ class NutritionLabels_URL
     $locale = self::resolve_locale($lang_raw);
 
     $db         = self::get_db();
-    $product_id = $db->get_product_id_by_shortcode($shortcode);
+    $product_id = (int) $db->get_product_id_by_shortcode($shortcode);
 
-    if ($product_id) {
-      self::display_nutrition_label($product_id, $locale);
+    if (!$product_id || !self::is_label_viewable($product_id)) {
+      self::send_404();
+      return;
     }
+
+    self::display_nutrition_label($product_id, $locale);
+  }
+
+  /**
+   * A label is public only while its product is published. Users who can edit
+   * the product may still preview labels of drafts / private products.
+   */
+  private static function is_label_viewable(int $product_id): bool
+  {
+    $post = get_post($product_id);
+    if (!$post || $post->post_type !== 'product') {
+      return false;
+    }
+    if ($post->post_status === 'publish') {
+      return true;
+    }
+    return current_user_can('edit_post', $product_id);
+  }
+
+  /**
+   * Unknown short code: respond with a real 404 instead of falling through to
+   * the homepage. On the e-label host use a bare page so no theme (and no
+   * theme tracking) is rendered there.
+   */
+  private static function send_404(): void
+  {
+    if (self::is_elabel_host()) {
+      wp_die(
+        esc_html__('Not found', 'nutrition-labels'),
+        esc_html__('Not found', 'nutrition-labels'),
+        ['response' => 404]
+      );
+    }
+
+    global $wp_query;
+    $wp_query->set_404();
+    status_header(404);
+    nocache_headers();
   }
 
   /**
@@ -258,7 +276,7 @@ class NutritionLabels_URL
       if ($locale_filter_fn !== null) {
         remove_filter('locale', $locale_filter_fn, PHP_INT_MAX);
       }
-      wp_die(__('E-Label not found', 'nutrition-labels'));
+      wp_die(esc_html__('E-Label not found', 'nutrition-labels'));
     }
 
     $product_title = get_the_title($product_id);
@@ -282,6 +300,7 @@ class NutritionLabels_URL
       'kilojoules'      => $nutrition_table_data['kilojoules'],
       'carbohydrates'   => $nutrition_table_data['carbohydrates'],
       'sugar'           => $nutrition_table_data['sugar'],
+      'html_lang'       => str_replace('_', '-', $locale !== '' ? $locale : get_locale()),
     );
 
     $template = locate_template('nutrition-labels/nutrition-label-secure.php');
@@ -346,20 +365,52 @@ class NutritionLabels_URL
 
   private static function build_label_url(string $prefix, string $slug): string
   {
-    $use_subdomain = get_option('nutrition_labels_use_subdomain', 'no') === 'yes';
-    $subdomain_val = trim(get_option('nutrition_labels_subdomain', ''));
+    $host = self::get_elabel_host();
 
-    if ($use_subdomain && $subdomain_val !== '') {
-      if (str_contains($subdomain_val, '.')) {
-        $host = $subdomain_val;
-      } else {
-        $site_host = parse_url(home_url(), PHP_URL_HOST);
-        $host = $subdomain_val . '.' . $site_host;
-      }
+    if ($host !== '') {
       $scheme = get_option('nutrition_labels_subdomain_scheme', 'https') === 'http' ? 'http' : 'https';
       return "{$scheme}://{$host}/{$prefix}/{$slug}";
     }
 
     return home_url("/{$prefix}/{$slug}");
+  }
+
+  /**
+   * Returns the configured e-label host (lowercase), or '' when the subdomain
+   * feature is disabled. Plain label → prepended to the site host; a value
+   * containing a dot is used verbatim.
+   */
+  public static function get_elabel_host(): string
+  {
+    if (get_option('nutrition_labels_use_subdomain', 'no') !== 'yes') {
+      return '';
+    }
+
+    $subdomain_val = strtolower(trim((string) get_option('nutrition_labels_subdomain', '')));
+    if ($subdomain_val === '') {
+      return '';
+    }
+
+    if (str_contains($subdomain_val, '.')) {
+      return $subdomain_val;
+    }
+
+    $site_host = strtolower((string) parse_url(home_url(), PHP_URL_HOST));
+    return $subdomain_val . '.' . $site_host;
+  }
+
+  /** True when the current request arrived on the configured e-label host. */
+  private static function is_elabel_host(): bool
+  {
+    $expected_host = self::get_elabel_host();
+    if ($expected_host === '') {
+      return false;
+    }
+
+    // Strip port from HTTP_HOST before comparing
+    $request_host = strtolower(sanitize_text_field(wp_unslash($_SERVER['HTTP_HOST'] ?? '')));
+    $request_host = preg_replace('/:\d+$/', '', $request_host);
+
+    return $request_host === $expected_host;
   }
 }

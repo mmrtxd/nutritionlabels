@@ -11,7 +11,7 @@
  * Domain Path: /languages
  * License:     GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Requires PHP: 8.1
+ * Requires PHP: 8.4
  * Requires at least: 5.0
  */
 
@@ -36,10 +36,19 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
+if (!file_exists(plugin_dir_path(__FILE__) . 'vendor/autoload.php')) {
+  add_action('admin_notices', static function () {
+    echo '<div class="notice notice-error"><p>'
+      . esc_html__('Nutrition Labels: the vendor/ directory is missing. Run "composer install" in the plugin folder.', 'nutrition-labels')
+      . '</p></div>';
+  });
+  return;
+}
+
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
 define('NUTRITION_LABELS_VERSION', '1.2.0');
-define('NUTRITION_LABELS_DB_VERSION', '1.1.0');
+define('NUTRITION_LABELS_DB_VERSION', '1.2.0');
 
 define('NUTRITION_LABELS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NUTRITION_LABELS_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -68,6 +77,20 @@ class NutritionLabels
     add_action('plugins_loaded', [$this, 'load_textdomain']);
     add_action('init', [$this, 'init']);
     add_action('admin_init', [$this, 'migrate_database']);
+
+    // Remove the label row when its product is permanently deleted, so the
+    // short URL stops resolving. Registered globally because deletion can
+    // happen outside wp-admin (REST API, WP-CLI, scheduled trash emptying).
+    add_action('before_delete_post', [$this, 'delete_label_for_post']);
+  }
+
+  public function delete_label_for_post($post_id)
+  {
+    if (get_post_type($post_id) !== 'product') {
+      return;
+    }
+    $db = new NutritionLabels_DB_Extended();
+    $db->delete_by_product_id((int) $post_id);
   }
 
   public function load_textdomain()
@@ -93,7 +116,10 @@ class NutritionLabels
 
   public static function deactivate()
   {
-    flush_rewrite_rules();
+    // flush_rewrite_rules() here would regenerate the rules *including* our
+    // short-URL rule (added on init during this request). Deleting the option
+    // makes WP rebuild it on the next request, when the plugin is inactive.
+    delete_option('rewrite_rules');
   }
 
   public function init()
@@ -118,6 +144,10 @@ class NutritionLabels
     $table = $wpdb->prefix . 'nutrition_short_urls';
 
     $installed_db_version = get_option('nutrition_labels_db_version', '0.0.0');
+
+    if (version_compare($installed_db_version, NUTRITION_LABELS_DB_VERSION, '>=')) {
+      return; // Up to date — nothing to do on this request.
+    }
 
     // Example migration: Add url_prefix column
     if (version_compare($installed_db_version, '1.1.0', '<')) {
@@ -146,8 +176,16 @@ class NutritionLabels
       update_option('nutrition_labels_db_version', '1.1.0');
     }
 
+    // 1.2.0: short_code becomes nullable. Rows saved with nutrition values but
+    // no ingredients used to get short_code = '', and the second such row hit
+    // the UNIQUE key and was silently dropped. NULLs don't collide.
+    if (version_compare($installed_db_version, '1.2.0', '<')) {
+      $wpdb->query("ALTER TABLE {$table} MODIFY short_code VARCHAR(10) NULL DEFAULT NULL");
+      $wpdb->query("UPDATE {$table} SET short_code = NULL WHERE short_code = ''");
+      update_option('nutrition_labels_db_version', '1.2.0');
+    }
+
     // Future migrations can go here
-    // if (version_compare($installed_db_version, '1.2.0', '<')) { ... }
   }
 }
 

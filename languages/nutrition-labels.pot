@@ -467,3 +467,230 @@ msgstr ""
 #: includes/class-nutrition-labels-url.php
 msgid "Zutaten"
 msgstr ""
+
+#: admin/class-nutrition-labels-admin-extended.php:207
+msgid "You do not have permission to export CSV"
+msgstr ""
+
+#: admin/class-nutrition-labels-admin-extended.php:283
+msgid "Rewrite rules flushed successfully!"
+msgstr ""
+
+#: admin/class-nutrition-labels-admin-extended.php:290
+msgid "You do not have permission to change settings."
+msgstr ""
+
+#: admin/nutrition-db-management.php:26
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: admin/nutrition-db-management.php:81
+msgid "Export Codes"
+msgstr ""
+
+#: admin/nutrition-db-management.php:100
+msgid "(product deleted)"
+msgstr ""
+
+#: admin/nutrition-db-management.php:119
+msgid "Download QR"
+msgstr ""
+
+#: admin/nutrition-db-management.php:163
+msgid "&laquo; Previous"
+msgstr ""
+
+#: admin/nutrition-db-management.php:164
+msgid "Next &raquo;"
+msgstr ""
+
+#: admin/nutrition-db-management.php:187
+msgid ""
+"Delete nutrition label entry?\n"
+"\n"
+"Product will NOT be deleted - only the nutrition label data will be "
+"removed.\n"
+"\n"
+"This cannot be undone."
+msgstr ""
+
+#: admin/nutrition-db-management.php:205
+msgid "Error: Could not delete entry"
+msgstr ""
+
+#: admin/nutrition-db-management.php:220
+msgid "Generating..."
+msgstr ""
+
+#: admin/nutrition-db-management.php:241
+#: admin/nutrition-settings-page-simple.php:227 admin/working-metabox.php:393
+msgid "Error:"
+msgstr ""
+
+#: admin/nutrition-db-management.php:241 admin/working-metabox.php:394
+msgid "Failed to generate QR code"
+msgstr ""
+
+#: admin/nutrition-db-management.php:245 admin/working-metabox.php:395
+msgid "Error: Could not generate QR code"
+msgstr ""
+
+#: admin/nutrition-db-management.php:271
+msgid "Please select at least one entry to delete"
+msgstr ""
+
+#: admin/nutrition-db-management.php:276
+msgid ""
+"Delete %d nutrition label entries?\n"
+"\n"
+"Products will NOT be deleted - only the nutrition label data will be "
+"removed.\n"
+"\n"
+"This cannot be undone."
+msgstr ""
+
+#: admin/nutrition-db-management.php:295
+msgid "Error: Could not delete entries"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:75
+msgid ""
+"Pixel dimensions of the downloaded QR image. For print use SVG format is "
+"recommended — it is resolution-independent and will be crisp at any size "
+"regardless of this setting."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:88
+msgid "QR Code Format"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:89
+msgid ""
+"SVG is a vector format — edges stay perfectly sharp at any print size and is "
+"recommended for wine labels. PNG is a pixel-based image; choose a large size "
+"if using PNG for print."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:102
+msgid "Error Correction"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:103
+msgid ""
+"Higher correction levels add redundant data so the code can still scan if "
+"partially damaged, but produce a denser, more complex pattern. For small "
+"clean wine labels (18 mm) Low is recommended — it produces the fewest "
+"modules and is easiest to scan."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:169
+msgid "Delete Data on Uninstall"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:175
+msgid ""
+"Permanently delete all nutrition label data when the plugin is uninstalled"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:178
+msgid ""
+"Warning: enabling this will drop the database table and all nutrition label "
+"records when the plugin is deleted. This cannot be undone."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:198
+msgid "Flush Rewrite Rules"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:200
+msgid ""
+"If short URLs are not working (404 errors), click this button to refresh "
+"WordPress rewrite rules."
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:227
+msgid "Unknown error"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:231
+msgid "Error: Could not flush rewrite rules"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:248
+msgid "URL Format:"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:249
+msgid "QR Code Size:"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:250
+msgid "QR Code Format:"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:251
+msgid "Error Correction:"
+msgstr ""
+
+#: admin/nutrition-settings-page-simple.php:252
+msgid "Database Table:"
+msgstr ""
+
+#: admin/working-metabox.php:329
+msgid "Nutrition data could not be saved."
+msgstr ""
+
+#: admin/working-metabox.php:367
+msgid "Nutrition Labels:"
+msgstr ""
+
+#: admin/working-metabox.php:391
+msgid "Generating QR code..."
+msgstr ""
+
+#: admin/working-metabox.php:392
+msgid "Product ID not found"
+msgstr ""
+
+#: admin/working-metabox.php:396
+msgid "Please enter a valid number for calories"
+msgstr ""
+
+#: admin/working-metabox.php:397
+msgid "Please enter a valid number for kilojoules"
+msgstr ""
+
+#: includes/class-nutrition-labels-db-extended.php:239
+msgid "Invalid Product Id or product does not exist"
+msgstr ""
+
+#: includes/class-nutrition-labels-db-extended.php:278
+msgid "Unable to generate shortcode - exceeded 50 tries"
+msgstr ""
+
+#: includes/class-nutrition-labels-db-extended.php:287
+msgid ""
+"The nutrition_labels_shortcode filter returned an invalid or duplicate "
+"shortcode"
+msgstr ""
+
+#: includes/class-nutrition-labels-db-extended.php:305
+msgid "Shortcode DB Update failed"
+msgstr ""
+
+#: includes/class-nutrition-labels-url.php:161
+#: includes/class-nutrition-labels-url.php:162
+#: includes/class-nutrition-labels-url.php:216
+#: includes/class-nutrition-labels-url.php:217
+msgid "Not found"
+msgstr ""
+
+#: includes/class-nutrition-labels-url.php:279
+msgid "E-Label not found"
+msgstr ""
+
+#: nutrition-labels.php:42
+msgid ""
+"Nutrition Labels: the vendor/ directory is missing. Run \"composer install\" "
+"in the plugin folder."
+msgstr ""

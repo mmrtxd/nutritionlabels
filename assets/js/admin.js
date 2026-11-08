@@ -1,4 +1,6 @@
 jQuery(document).ready(function($) {
+    var i18n = (window.nutritionLabels && nutritionLabels.i18n) || {};
+
     // QR Code Download Handler
     $('#download_qr_code').on('click', function(e) {
         e.preventDefault();
@@ -7,12 +9,12 @@ jQuery(document).ready(function($) {
         var productId = button.data('product-id');
 
         if (!productId) {
-            alert('Product ID not found');
+            alert(i18n.noProductId || 'Product ID not found');
             return;
         }
 
         var originalText = button.text();
-        button.prop('disabled', true).text('Generating QR code...');
+        button.prop('disabled', true).text(i18n.generating || 'Generating QR code...');
 
         $.ajax({
             url: nutritionLabels.ajaxUrl,
@@ -32,11 +34,11 @@ jQuery(document).ready(function($) {
                     link.click();
                     document.body.removeChild(link);
                 } else {
-                    alert('Error: ' + (response.data || 'Failed to generate QR code'));
+                    alert((i18n.error || 'Error:') + ' ' + (response.data || i18n.qrFailed || 'Failed to generate QR code'));
                 }
             },
-            error: function(xhr, status, error) {
-                alert('AJAX Error: ' + error);
+            error: function() {
+                alert(i18n.ajaxError || 'Error: Could not generate QR code');
             },
             complete: function() {
                 button.prop('disabled', false).text(originalText);
@@ -50,33 +52,17 @@ jQuery(document).ready(function($) {
         var kilojoules = $('input[name="nutrition_kilojoules"]').val();
 
         if (calories && (isNaN(calories) || calories < 0)) {
-            alert('Please enter a valid number for calories');
+            alert(i18n.badCalories || 'Please enter a valid number for calories');
             $('input[name="nutrition_calories"]').focus();
             return false;
         }
 
         if (kilojoules && (isNaN(kilojoules) || kilojoules < 0)) {
-            alert('Please enter a valid number for kilojoules');
+            alert(i18n.badKilojoules || 'Please enter a valid number for kilojoules');
             $('input[name="nutrition_kilojoules"]').focus();
             return false;
         }
 
         return true;
-    });
-
-    // Auto-save on field changes (30-second debounce)
-    var autoSaveTimer;
-
-    function triggerAutoSave() {
-        clearTimeout(autoSaveTimer);
-        autoSaveTimer = setTimeout(function() {
-            if (!$('#save-post').prop('disabled')) {
-                $('#save-post').click();
-            }
-        }, 30000);
-    }
-
-    $('input[name^="nutrition_"], #nutrition_ingredients').on('change', function() {
-        triggerAutoSave();
     });
 });

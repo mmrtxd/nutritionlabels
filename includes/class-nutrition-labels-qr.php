@@ -56,7 +56,7 @@ class NutritionLabels_QR
         roundBlockSizeMode: RoundBlockSizeMode::Margin,
       );
       return $writer->write($qrCode)->getString();
-    } catch (\Exception $e) {
+    } catch (\Throwable $e) {
       return false;
     }
   }
@@ -83,42 +83,6 @@ class NutritionLabels_QR
   }
 
   /**
-   * Streams a QR code directly to the browser as a file download.
-   * For use as a direct download endpoint (non-AJAX).
-   */
-  public static function download_qr_code(int $product_id, string $product_name): void
-  {
-    if (!current_user_can('edit_posts')) {
-      wp_die('Unauthorized');
-    }
-
-    $product = get_post($product_id);
-    if (!$product || $product->post_type !== 'product') {
-      wp_die('Product not found or invalid');
-    }
-
-    $short_url = NutritionLabels_URL::get_short_url($product_id);
-    if (!$short_url) {
-      wp_die('Unable to generate short URL for QR code');
-    }
-
-    $format = get_option('qr_format', 'png');
-    $data   = self::generate_qr_code($short_url, $format);
-    if ($data === false) {
-      wp_die('Error generating QR code.');
-    }
-
-    $mime = $format === 'svg' ? 'image/svg+xml' : 'image/png';
-    header('Content-Type: ' . $mime);
-    header('Content-Disposition: attachment; filename="' . sanitize_file_name($product_name) . '-nutrition-qr.' . $format . '"');
-    header('Cache-Control: private, max-age=3600');
-    header('X-Content-Type-Options: nosniff');
-
-    echo $data;
-    exit;
-  }
-
-  /**
    * Returns the configured QR size in pixels, parsed from the qr_size option (e.g. "500x500").
    */
   private static function configured_size(): int
@@ -135,6 +99,6 @@ class NutritionLabels_QR
   private static function configured_error_correction(): ErrorCorrectionLevel
   {
     $value = get_option('qr_error_correction', 'low');
-    return ErrorCorrectionLevel::from($value);
+    return ErrorCorrectionLevel::tryFrom((string) $value) ?? ErrorCorrectionLevel::Low;
   }
 }

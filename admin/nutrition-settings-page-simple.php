@@ -66,7 +66,6 @@ $active_count = $db->count_all_entries();
     }
     ?>
 
-    <?php require_once NUTRITION_LABELS_PLUGIN_DIR . 'admin/settings-functions.php'; ?>
     <table class="form-table" role="presentation">
       <tbody>
         <tr>
@@ -185,9 +184,9 @@ $active_count = $db->count_all_entries();
 
     <?php
     if (function_exists('submit_button')) {
-      submit_button('Save Settings', 'primary', 'submit-nutrition-settings');
+      submit_button(__('Save Settings', 'nutrition-labels'), 'primary', 'submit-nutrition-settings');
     } else {
-      echo '<input type="submit" name="submit-nutrition-settings" value="Save Settings" class="button button-primary">';
+      echo '<input type="submit" name="submit-nutrition-settings" value="' . esc_attr__('Save Settings', 'nutrition-labels') . '" class="button button-primary">';
     }
     ?>
   </form>
@@ -196,9 +195,9 @@ $active_count = $db->count_all_entries();
     <form method="post" action="">
       <?php wp_nonce_field('flush_rewrite_rules', '_wpnonce_flush'); ?>
       <input type="hidden" name="action" value="flush_rewrite_rules">
-      <button type="submit" class="button button-secondary">🔄 Flush Rewrite Rules</button>
+      <button type="submit" class="button button-secondary">🔄 <?php esc_html_e('Flush Rewrite Rules', 'nutrition-labels'); ?></button>
     </form>
-    <p class="description">If short URLs are not working (404 errors), click this button to refresh WordPress rewrite rules.</p>
+    <p class="description"><?php esc_html_e('If short URLs are not working (404 errors), click this button to refresh WordPress rewrite rules.', 'nutrition-labels'); ?></p>
   </div>
 
   <script>
@@ -225,11 +224,11 @@ $active_count = $db->count_all_entries();
             if (response.success) {
               alert(response.message);
             } else {
-              alert('Error: ' + (response.data || 'Unknown error'));
+              alert(<?php echo wp_json_encode(__('Error:', 'nutrition-labels')); ?> + ' ' + (response.data || <?php echo wp_json_encode(__('Unknown error', 'nutrition-labels')); ?>));
             }
           },
           error: function() {
-            alert('Error: Could not flush rewrite rules');
+            alert(<?php echo wp_json_encode(__('Error: Could not flush rewrite rules', 'nutrition-labels')); ?>);
           }
         });
       });
@@ -240,11 +239,17 @@ $active_count = $db->count_all_entries();
     <h3><?php esc_html_e('Information', 'nutrition-labels'); ?></h3>
     <ul>
       <li><strong><?php esc_html_e('Current Entries:', 'nutrition-labels'); ?></strong> <?php printf(esc_html__('%d nutrition labels active', 'nutrition-labels'), $active_count); ?></li>
-      <li><strong>URL Format:</strong> <code><?php echo esc_html(home_url('/' . NUTRITION_LABELS_URL_PREFIX . '/[shortcode]')); ?></code></li>
-      <li><strong>QR Code Size:</strong> <code><?php echo esc_html(get_option('qr_size', '500x500')); ?></code></li>
-      <li><strong>QR Code Format:</strong> <code><?php echo esc_html(strtoupper(get_option('qr_format', 'png'))); ?></code></li>
-      <li><strong>Error Correction:</strong> <code><?php echo esc_html(ucfirst(get_option('qr_error_correction', 'low'))); ?></code></li>
-      <li><strong>Database Table:</strong> <code>wp_nutrition_short_urls</code></li>
+      <?php
+      $elabel_host = NutritionLabels_URL::get_elabel_host();
+      $url_format  = $elabel_host !== ''
+        ? get_option('nutrition_labels_subdomain_scheme', 'https') . '://' . $elabel_host . '/' . NUTRITION_LABELS_URL_PREFIX . '/[shortcode]'
+        : home_url('/' . NUTRITION_LABELS_URL_PREFIX . '/[shortcode]');
+      ?>
+      <li><strong><?php esc_html_e('URL Format:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html($url_format); ?></code></li>
+      <li><strong><?php esc_html_e('QR Code Size:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html(get_option('qr_size', '500x500')); ?></code></li>
+      <li><strong><?php esc_html_e('QR Code Format:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html(strtoupper(get_option('qr_format', 'png'))); ?></code></li>
+      <li><strong><?php esc_html_e('Error Correction:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html(ucfirst(get_option('qr_error_correction', 'low'))); ?></code></li>
+      <li><strong><?php esc_html_e('Database Table:', 'nutrition-labels'); ?></strong> <code><?php echo esc_html($db->table_name); ?></code></li>
     </ul>
   </div>
 </div>

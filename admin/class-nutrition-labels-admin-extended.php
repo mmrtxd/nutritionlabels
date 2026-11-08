@@ -40,7 +40,6 @@ class NutritionLabels_Admin_Extended
     $this->db = new NutritionLabels_DB_Extended();
 
     // Register AJAX handlers
-    add_action('wp_ajax_nutrition_search', array($this, 'ajax_search'));
     add_action('wp_ajax_nutrition_delete', array($this, 'ajax_delete'));
     add_action('wp_ajax_flush_rewrite_rules', array($this, 'ajax_flush_rewrite_rules'));
     add_action('wp_ajax_nutrition_qr_download', array($this, 'ajax_download_qr'));
@@ -106,26 +105,6 @@ class NutritionLabels_Admin_Extended
     return in_array($input, $allowed) ? $input : '500x500';
   }
 
-  public function ajax_search()
-  {
-    check_ajax_referer('nutrition_search');
-    if (!current_user_can('manage_options')) {
-      wp_die('Unauthorized');
-    }
-
-    $search = sanitize_text_field($_POST['search']);
-    $page = isset($_POST['page']) ? absint($_POST['page']) : 1;
-    $per_page = 50;
-
-    $entries = $this->db->search_entries($search, $per_page, $page);
-
-    wp_send_json(array(
-      'entries' => $entries,
-      'has_more' => count($entries) === $per_page,
-      'current_page' => $page
-    ));
-  }
-
   public function ajax_delete()
   {
     check_ajax_referer('nutrition_delete', '_wpnonce');
@@ -133,7 +112,8 @@ class NutritionLabels_Admin_Extended
       wp_die('Unauthorized');
     }
 
-    $product_ids = array_map('absint', $_POST['product_ids']);
+    $raw_ids     = isset($_POST['product_ids']) && is_array($_POST['product_ids']) ? wp_unslash($_POST['product_ids']) : [];
+    $product_ids = array_filter(array_map('absint', $raw_ids));
 
     if (empty($product_ids)) {
       wp_send_json_error('No products selected');
@@ -143,12 +123,11 @@ class NutritionLabels_Admin_Extended
     $deleted_count = 0;
 
     foreach ($product_ids as $product_id) {
-      if (get_post($product_id)) {
-        // Only delete the nutrition label entry, NOT the product
-        $result = $this->db->delete_by_product_id($product_id);
-        if ($result !== false) {
-          $deleted_count++;
-        }
+      // Only delete the nutrition label entry, NOT the product. Rows whose
+      // product no longer exists (orphans) can be deleted too.
+      $result = $this->db->delete_by_product_id($product_id);
+      if ($result) {
+        $deleted_count++;
       }
     }
 
@@ -217,42 +196,58 @@ class NutritionLabels_Admin_Extended
 
   public function elabel_export_csv()
   {
+    // Only act on an actual CSV export request for our page. This runs on every
+    // admin_init — including admin-ajax.php requests from front-end visitors —
+    // so it must bail out silently for everything else.
+    if (($_GET['export'] ?? '') !== 'csv' || ($_GET['page'] ?? '') !== 'nutrition_labels_db_management') {
+      return;
+    }
+
     if (!current_user_can('manage_options')) {
-      wp_die('You do not have permission to export CSV');
+      wp_die(esc_html__('You do not have permission to export CSV', 'nutrition-labels'));
     }
 
-    if (isset($_GET['export']) && $_GET['export'] === 'csv') {
-
-      if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'nutrition_labels_export')) {
-        wp_die(__('Invalid nonce', 'nutrition-labels'));
-      }
-
-      $db = new NutritionLabels_DB_Extended();
-      $entries = $db->get_entries_for_export();
-
-      header('Content-Type: text/csv');
-      header('Content-Disposition: attachment; filename="nutrition-labels.csv"');
-      $output = fopen('php://output', 'w');
-
-      // Headers
-      fputcsv($output, ['Product ID', 'Product Title', 'Short Code', 'Prefix', 'Calories', 'Kilojoules', 'Carbs', 'Sugar']);
-
-      foreach ($entries as $entry) {
-        fputcsv($output, [
-          $entry->product_id,
-          ltrim(get_the_title($entry->product_id), '=+-@'),
-          $entry->short_code,
-          $entry->url_prefix,
-          $entry->calories,
-          $entry->kilojoules,
-          $entry->carbohydrates,
-          $entry->sugar
-        ]);
-      }
-
-      fclose($output);
-      exit;
+    if (!isset($_GET['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'nutrition_labels_export')) {
+      wp_die(esc_html__('Invalid nonce', 'nutrition-labels'));
     }
+
+    $entries = $this->db->get_entries_for_export();
+
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename="nutrition-labels.csv"');
+    $output = fopen('php://output', 'w');
+
+    // Headers
+    fputcsv($output, ['Product ID', 'Product Title', 'Short Code', 'Prefix', 'Calories', 'Kilojoules', 'Carbs', 'Sugar']);
+
+    foreach ($entries as $entry) {
+      fputcsv($output, [
+        $entry->product_id,
+        self::csv_safe(get_the_title($entry->product_id)),
+        $entry->short_code,
+        $entry->url_prefix,
+        $entry->calories,
+        $entry->kilojoules,
+        $entry->carbohydrates,
+        $entry->sugar
+      ]);
+    }
+
+    fclose($output);
+    exit;
+  }
+
+  /**
+   * Neutralises spreadsheet formula injection (OWASP): cells starting with
+   * = + - @ TAB or CR are prefixed with a single quote so they are treated as text.
+   */
+  private static function csv_safe(string $value): string
+  {
+    $value = html_entity_decode($value, ENT_QUOTES, 'UTF-8');
+    if ($value !== '' && in_array($value[0], ['=', '+', '-', '@', "\t", "\r"], true)) {
+      return "'" . $value;
+    }
+    return $value;
   }
 
   public function render_settings_page()
@@ -271,7 +266,7 @@ class NutritionLabels_Admin_Extended
 
   public static function get_settings_nonce()
   {
-    return function_exists('wp_create_nonce') ? wp_create_nonce('update-options') : '';
+    return function_exists('wp_create_nonce') ? wp_create_nonce('nutrition_labels_settings') : '';
   }
 
   public function ajax_flush_rewrite_rules()
@@ -285,7 +280,7 @@ class NutritionLabels_Admin_Extended
 
     wp_send_json(array(
       'success' => true,
-      'message' => 'Rewrite rules flushed successfully!'
+      'message' => __('Rewrite rules flushed successfully!', 'nutrition-labels')
     ));
   }
 
@@ -294,7 +289,7 @@ class NutritionLabels_Admin_Extended
     if (!current_user_can('manage_options')) {
       wp_die(__('You do not have permission to change settings.', 'nutrition-labels'));
     }
-    if (function_exists('wp_verify_nonce') && wp_verify_nonce($_POST['_wpnonce'] ?? '', 'update-options')) {
+    if (function_exists('wp_verify_nonce') && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? '')), 'nutrition_labels_settings')) {
       if (isset($_POST['nutrition_labels']['qr_size'])) {
         $allowed_qr_sizes = array('300x300', '500x500', '800x800');
         $qr_size = sanitize_text_field($_POST['nutrition_labels']['qr_size']);
@@ -323,7 +318,12 @@ class NutritionLabels_Admin_Extended
         $raw = sanitize_text_field($_POST['nutrition_labels']['subdomain']);
         // Strip scheme/path if user accidentally pastes a full URL
         $raw = preg_replace('#^https?://|/.*$#', '', $raw);
-        update_option('nutrition_labels_subdomain', strtolower($raw));
+        // Hostnames only: letters, digits, dots and hyphens.
+        $raw = strtolower(trim($raw, ". \t"));
+        if ($raw !== '' && !preg_match('/^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/', $raw)) {
+          $raw = '';
+        }
+        update_option('nutrition_labels_subdomain', $raw);
       }
       $scheme = sanitize_text_field($_POST['nutrition_labels']['subdomain_scheme'] ?? 'https');
       update_option('nutrition_labels_subdomain_scheme', in_array($scheme, ['https', 'http'], true) ? $scheme : 'https');

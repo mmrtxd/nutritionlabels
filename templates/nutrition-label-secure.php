@@ -21,14 +21,14 @@ if (!defined('ABSPATH')) {
   exit;
 } ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo esc_attr($nutrition_data['html_lang'] ?? 'de-DE'); ?>">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo esc_html($nutrition_data['product_title']); ?> - <?php esc_html_e('Nutrition Label', 'nutrition-labels'); ?></title>
-  <link rel="stylesheet" href="<?php echo esc_url(plugin_dir_url(__FILE__) . 'style.css'); ?>">
+  <link rel="stylesheet" href="<?php echo esc_url(NUTRITION_LABELS_PLUGIN_URL . 'templates/style.css'); ?>">
 </head>
 
 <body class="bg-stone-300 p-5">

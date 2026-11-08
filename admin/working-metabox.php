@@ -37,6 +37,7 @@ class Working_NutritionLabels_MetaBox
     add_action('add_meta_boxes', [$this, 'register_metabox']);
     add_action('save_post', [$this, 'save_data'], 10, 2);
     add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
+    add_action('admin_notices', [$this, 'show_error_notice']);
   }
 
   /**
@@ -310,8 +311,7 @@ class Working_NutritionLabels_MetaBox
     ];
 
     // Only insert a new row when there is actual data to store.
-    // Saving an empty row leaves short_code = '' in the DB (violates UNIQUE
-    // on the next save and produces broken /l/ URLs).
+    // (short_code stays NULL until an ingredient is selected.)
     $existing = $this->db->get_nutrition_by_product_id($post_id);
     $has_data = $ingredient_list->toDisplayString() !== ''
       || ($data['calories'] > 0)
@@ -324,12 +324,48 @@ class Working_NutritionLabels_MetaBox
     }
 
     // Save via DB class
-    $this->db->save_nutrition_data($post_id, $data);
+    $saved = $this->db->save_nutrition_data($post_id, $data);
+    if ($saved === false) {
+      $this->flag_error($post_id, __('Nutrition data could not be saved.', 'nutrition-labels'));
+      return;
+    }
 
     // Ensure short code exists if any ingredient is selected
     if ($ingredient_list->toDisplayString() !== '') {
-      $this->db->ensure_short_code($post_id);
+      $result = $this->db->ensure_short_code($post_id);
+      if (is_wp_error($result)) {
+        $this->flag_error($post_id, $result->get_error_message());
+      }
     }
+  }
+
+  /**
+   * Stores a one-shot error for the current user; shown on the next edit screen load.
+   */
+  private function flag_error(int $post_id, string $message): void
+  {
+    set_transient('nutrition_labels_error_' . get_current_user_id() . '_' . $post_id, $message, 60);
+  }
+
+  public function show_error_notice(): void
+  {
+    $screen = get_current_screen();
+    if (!$screen || $screen->base !== 'post' || $screen->post_type !== 'product') {
+      return;
+    }
+    $post_id = isset($_GET['post']) ? absint($_GET['post']) : 0;
+    if (!$post_id) {
+      return;
+    }
+    $key     = 'nutrition_labels_error_' . get_current_user_id() . '_' . $post_id;
+    $message = get_transient($key);
+    if ($message === false) {
+      return;
+    }
+    delete_transient($key);
+    echo '<div class="notice notice-error is-dismissible"><p><strong>'
+      . esc_html__('Nutrition Labels:', 'nutrition-labels') . '</strong> '
+      . esc_html($message) . '</p></div>';
   }
 
   /**
@@ -342,15 +378,24 @@ class Working_NutritionLabels_MetaBox
 
     wp_enqueue_script(
       'nutrition-labels-admin',
-      plugins_url('nutrition-labels/assets/js/admin.js'),
+      NUTRITION_LABELS_PLUGIN_URL . 'assets/js/admin.js',
       ['jquery'],
-      '1.0.0',
+      NUTRITION_LABELS_VERSION,
       true
     );
 
     wp_localize_script('nutrition-labels-admin', 'nutritionLabels', [
       'ajaxUrl' => admin_url('admin-ajax.php'),
       'nonce'   => wp_create_nonce('nutrition_qr_download'),
+      'i18n'    => [
+        'generating'   => __('Generating QR code...', 'nutrition-labels'),
+        'noProductId'  => __('Product ID not found', 'nutrition-labels'),
+        'error'        => __('Error:', 'nutrition-labels'),
+        'qrFailed'     => __('Failed to generate QR code', 'nutrition-labels'),
+        'ajaxError'    => __('Error: Could not generate QR code', 'nutrition-labels'),
+        'badCalories'  => __('Please enter a valid number for calories', 'nutrition-labels'),
+        'badKilojoules' => __('Please enter a valid number for kilojoules', 'nutrition-labels'),
+      ],
     ]);
   }
 }

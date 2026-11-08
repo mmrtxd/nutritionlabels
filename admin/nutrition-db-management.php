@@ -31,27 +31,29 @@ if (!current_user_can('manage_options')) {
  */
 
 // Initialize
-$search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+$search = isset($_GET['search']) ? sanitize_text_field(wp_unslash($_GET['search'])) : '';
 $page = isset($_GET['paged']) ? max(1, absint($_GET['paged'])) : 1;
 $per_page = 50;
 
 // Get entries
 $db = new NutritionLabels_DB_Extended();
 $entries = !empty($search) ? $db->search_entries($search, $per_page, $page) : $db->get_all_entries($per_page, $page);
-$total = !empty($search) ? $db->count_search_results($search) : $db->count_all_entries();
+$total = (int) (!empty($search) ? $db->count_search_results($search) : $db->count_all_entries());
+$base_url = admin_url('admin.php?page=nutrition_labels_db_management');
 ?>
 
 <div class="wrap">
   <h1><?php esc_html_e('Nutrition Labels - Database Management', 'nutrition-labels'); ?></h1>
 
   <div class="nutrition-labels-toolbar">
-    <form method="get" action="">
+    <form method="get" action="<?php echo esc_url(admin_url('admin.php')); ?>">
+      <input type="hidden" name="page" value="nutrition_labels_db_management">
       <input type="text" name="search" value="<?php echo esc_attr($search); ?>" placeholder="<?php esc_attr_e('Search product name or short code...', 'nutrition-labels'); ?>">
       <input type="submit" value="<?php esc_attr_e('Search', 'nutrition-labels'); ?>" class="button">
     </form>
 
     <?php if (!empty($search)): ?>
-      <a href="?paged=1" class="button"><?php esc_html_e('Clear Search', 'nutrition-labels'); ?></a>
+      <a href="<?php echo esc_url($base_url); ?>" class="button"><?php esc_html_e('Clear Search', 'nutrition-labels'); ?></a>
     <?php endif; ?>
   </div>
 
@@ -61,7 +63,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
     </div>
   <?php else: ?>
     <div class="nutrition-labels-table-wrapper">
-      <p><?php printf(esc_html__('Showing %1$d of %2$d entries', 'nutrition-labels'), count($entries), $total); ?></p>
+      <p><?php printf(esc_html__('Showing %1$d of %2$d entries', 'nutrition-labels'), count($entries), (int) $total); ?></p>
 
       <form method="post" action="">
         <?php wp_nonce_field('nutrition_delete', '_wpnonce'); ?>
@@ -82,15 +84,25 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
           </thead>
           <tbody>
             <?php foreach ($entries as $entry): ?>
+              <?php
+              $pid       = absint($entry->product_id);
+              $title     = get_the_title($pid);
+              $orphaned  = !get_post($pid);
+              $label_url = NutritionLabels_URL::get_short_url($pid) ?: '';
+              ?>
               <tr>
                 <td class="check-column">
-                  <input id="cb-select-<?php echo $entry->product_id; ?>" type="checkbox" name="product_ids[]" value="<?php echo $entry->product_id; ?>">
-                  <label class="screen-reader-text" for="cb-select-<?php echo $entry->product_id; ?>"><?php esc_html_e('Select', 'nutrition-labels'); ?></label>
+                  <input id="cb-select-<?php echo esc_attr($pid); ?>" type="checkbox" name="product_ids[]" value="<?php echo esc_attr($pid); ?>">
+                  <label class="screen-reader-text" for="cb-select-<?php echo esc_attr($pid); ?>"><?php esc_html_e('Select', 'nutrition-labels'); ?></label>
                 </td>
                 <td>
-                  <strong><?php echo esc_html(get_the_title($entry->product_id)); ?></strong>
+                  <?php if ($orphaned): ?>
+                    <strong><em><?php esc_html_e('(product deleted)', 'nutrition-labels'); ?></em></strong>
+                  <?php else: ?>
+                    <strong><?php echo esc_html($title); ?></strong>
+                  <?php endif; ?>
                   <br>
-                  <small>ID: <?php echo $entry->product_id; ?></small>
+                  <small>ID: <?php echo esc_html($pid); ?></small>
                 </td>
                 <td>
                   <code>/<?php echo esc_html(NUTRITION_LABELS_URL_PREFIX) . '/' . esc_html($entry->short_code); ?></code>
@@ -99,16 +111,17 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                   <?php echo esc_html(date('Y-m-d H:i', strtotime($entry->created_at))); ?>
                 </td>
                 <td class="column-actions">
-                  <?php $label_url = esc_js(home_url('/' . NUTRITION_LABELS_URL_PREFIX . '/' . $entry->short_code)); ?>
-                  <button type="button" class="button" onclick="viewNutritionLabel('<?php echo $label_url; ?>')">
-                    <?php esc_html_e('View Label', 'nutrition-labels'); ?>
-                  </button>
-                  <button type="button" class="button" onclick="downloadQrCode(<?php echo $entry->product_id; ?>, this)">
-                    <?php esc_html_e('Download QR', 'nutrition-labels'); ?>
-                  </button>
+                  <?php if ($label_url !== '' && !$orphaned): ?>
+                    <a class="button" href="<?php echo esc_url($label_url); ?>" target="_blank" rel="noopener noreferrer">
+                      <?php esc_html_e('View Label', 'nutrition-labels'); ?>
+                    </a>
+                    <button type="button" class="button" onclick="downloadQrCode(<?php echo (int) $pid; ?>, this)">
+                      <?php esc_html_e('Download QR', 'nutrition-labels'); ?>
+                    </button>
+                  <?php endif; ?>
                 </td>
                 <td class="export-action">
-                  <select onchange="exportQrCode(<?php echo $entry->product_id; ?>, this)">
+                  <select onchange="exportQrCode(<?php echo (int) $pid; ?>, this)" <?php disabled($label_url === '' || $orphaned); ?>>
                     <option value="">— <?php esc_html_e('Select', 'nutrition-labels'); ?> —</option>
                     <?php foreach (NutritionLabels_URL::get_lang_names() as $code => $name): ?>
                       <option value="<?php echo esc_attr($code); ?>"><?php echo esc_html($name); ?></option>
@@ -116,7 +129,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
                   </select>
                 </td>
                 <td class="delete-action">
-                  <button type="button" class="button" onclick="deleteEntry(<?php echo $entry->product_id; ?>)">
+                  <button type="button" class="button" onclick="deleteEntry(<?php echo (int) $pid; ?>)">
                     <?php esc_html_e('Delete', 'nutrition-labels'); ?>
                   </button>
                 </td>
@@ -128,10 +141,10 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
         <div class="nutrition-labels-bulk-actions">
           <button type="button" id="bulk_delete" class="button button-primary"><?php esc_html_e('Delete Selected', 'nutrition-labels'); ?></button>
           <a
-            href="<?php echo wp_nonce_url(
+            href="<?php echo esc_url(wp_nonce_url(
                     admin_url('admin.php?page=nutrition_labels_db_management&export=csv'),
                     'nutrition_labels_export'
-                  ); ?>"
+                  )); ?>"
             class="button">
             <?php esc_html_e('Export to CSV', 'nutrition-labels'); ?>
           </a>
@@ -142,17 +155,16 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
     <?php if ($total > $per_page): ?>
       <div class="tablenav">
         <?php
-        $current_url = add_query_arg(array('search' => $search, 'paged' => $page));
+        $paged_base = add_query_arg(array_filter(array('search' => $search)), $base_url);
 
-        echo paginate_links(array(
-          'base' => add_query_arg('paged', '%_%%', $current_url),
-          'format' => '',
-          'prev_text' => __('&laquo; Previous'),
-          'next_text' => __('Next &raquo;'),
-          'total' => $total,
-          'current' => $page,
-          'per_page' => $per_page
-        ));
+        echo wp_kses_post(paginate_links(array(
+          'base'      => add_query_arg('paged', '%#%', $paged_base),
+          'format'    => '',
+          'prev_text' => __('&laquo; Previous', 'nutrition-labels'),
+          'next_text' => __('Next &raquo;', 'nutrition-labels'),
+          'total'     => (int) ceil($total / $per_page),
+          'current'   => $page,
+        )));
         ?>
       </div>
     <?php endif; ?>
@@ -161,22 +173,18 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
   <script>
     // Define ajaxurl if not already defined
     if (typeof ajaxurl === 'undefined') {
-      var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+      var ajaxurl = '<?php echo esc_js(admin_url('admin-ajax.php')); ?>';
     }
 
     function toggleAllCheckboxes(source) {
-      checkboxes = document.getElementsByName('product_ids[]');
+      var checkboxes = document.getElementsByName('product_ids[]');
       for (var i = 0, n = checkboxes.length; i < n; i++) {
         checkboxes[i].checked = source.checked;
       }
     }
 
-    function viewNutritionLabel(url) {
-      window.open(url);
-    }
-
     function deleteEntry(productId) {
-      if (confirm('Delete nutrition label entry?\n\nProduct will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.')) {
+      if (confirm(<?php echo wp_json_encode(__("Delete nutrition label entry?\n\nProduct will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.", 'nutrition-labels')); ?>)) {
         jQuery.ajax({
           url: ajaxurl,
           type: 'POST',
@@ -194,7 +202,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
             }
           },
           error: function() {
-            alert('Error: Could not delete entry');
+            alert(<?php echo wp_json_encode(__('Error: Could not delete entry', 'nutrition-labels')); ?>);
             // Still reload to show current state
             location.reload();
           }
@@ -260,11 +268,13 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
         }).get();
 
         if (selectedIds.length === 0) {
-          alert('Please select at least one entry to delete');
+          alert(<?php echo wp_json_encode(__('Please select at least one entry to delete', 'nutrition-labels')); ?>);
           return;
         }
 
-        if (confirm('Delete ' + selectedIds.length + ' nutrition label entries?\n\nProducts will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.')) {
+        /* translators: %d: number of selected entries */
+        var confirmMsg = <?php echo wp_json_encode(__("Delete %d nutrition label entries?\n\nProducts will NOT be deleted - only the nutrition label data will be removed.\n\nThis cannot be undone.", 'nutrition-labels')); ?>;
+        if (confirm(confirmMsg.replace('%d', selectedIds.length))) {
           $.ajax({
             url: ajaxurl,
             type: 'POST',
@@ -282,7 +292,7 @@ $total = !empty($search) ? $db->count_search_results($search) : $db->count_all_e
               }
             },
             error: function() {
-              alert('Error: Could not delete entries');
+              alert(<?php echo wp_json_encode(__('Error: Could not delete entries', 'nutrition-labels')); ?>);
               // Still reload to show current state
               location.reload();
             }

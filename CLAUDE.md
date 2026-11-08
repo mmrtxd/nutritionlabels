@@ -22,22 +22,22 @@ WordPress plugin ("Nutrition Labels" v1.2.0) that adds product nutrition label m
 
 - `class-nutrition-labels-db-extended.php` — CRUD for the `wp_nutrition_short_urls` table, shortcode generation with collision detection, search/pagination, CSV export queries
 - `class-nutrition-labels-url.php` — WordPress rewrite rules for short URLs (e.g., `/l/abc12`), front-end route handling, template loading, WooCommerce product page button (`render_product_button()` on `woocommerce_single_product_summary` priority 35)
-- `class-nutrition-labels-qr.php` — QR code generation via external QRServer API (`api.qrserver.com`), AJAX download handler
+- `class-nutrition-labels-qr.php` — local QR code generation via `endroid/qr-code` (bundled in `vendor/`, needs PHP 8.4)
 
 **Admin UI in `admin/`:**
 
-- `class-nutrition-labels-admin-extended.php` — admin menu registration, settings, AJAX handlers (search/delete/flush rules), CSV export
+- `class-nutrition-labels-admin-extended.php` — admin menu registration, settings, AJAX handlers (delete/flush rules/QR download), CSV export. Note: `elabel_export_csv()` runs on every `admin_init` (incl. front-end admin-ajax.php) — it must return early unless it's an actual export request.
 - `working-metabox.php` — product editor meta box for nutrition data entry, save hooks
 - `nutrition-db-management.php` — database management page with search and bulk actions
-- `nutrition-settings-page.php` / `nutrition-settings-page-simple.php` — settings pages for QR size, shortcode length, character sets, URL prefix
+- `nutrition-settings-page-simple.php` — settings page (QR size/format/error correction, subdomain, uninstall behaviour). URL prefix, shortcode length and charset are constants, not settings.
 
 **Frontend:** `templates/nutrition-label-secure.php` — public-facing nutrition label rendered with Tailwind CSS.
 
-**Admin JS:** `assets/js/admin.js` — QR download handler, form validation, auto-save with 30-second debounce.
+**Admin JS:** `assets/js/admin.js` — QR download handler, form validation. Strings come from `nutritionLabels.i18n` (localized in the metabox).
 
 ## Database
 
-Single custom table `wp_nutrition_short_urls` with columns: `id`, `product_id` (unique FK to posts), `url_prefix`, `short_code` (unique), nutrition fields (`ingredients`, `calories`, `kilojoules`, `carbohydrates`, `sugar`), and timestamps.
+Single custom table `wp_nutrition_short_urls` with columns: `id`, `product_id` (unique FK to posts), `url_prefix`, `short_code` (unique, NULL until an ingredient is selected — never `''`), nutrition fields (`ingredients`, `calories`, `kilojoules`, `carbohydrates`, `sugar`), and timestamps.
 
 ## Security Patterns
 

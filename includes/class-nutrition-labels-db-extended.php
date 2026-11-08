@@ -46,7 +46,7 @@ class NutritionLabels_DB_Extended
             id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
             product_id BIGINT(20) UNSIGNED NOT NULL,
             url_prefix VARCHAR(10) NOT NULL DEFAULT 'l',
-            short_code VARCHAR(10) NOT NULL,
+            short_code VARCHAR(10) NULL DEFAULT NULL,
             ingredients TEXT NOT NULL,
             calories MEDIUMINT(5) UNSIGNED NOT NULL DEFAULT 0,
             kilojoules MEDIUMINT(6) UNSIGNED NOT NULL DEFAULT 0,
@@ -271,14 +271,23 @@ class NutritionLabels_DB_Extended
       }
     } while ($this->shortcode_exists($new_code) && $tries < 50);
 
-    $new_code = apply_filters('nutrition_labels_shortcode', $new_code, $product_id);
-
-    if ($tries >= 50) {
+    if ($tries >= 50 && $this->shortcode_exists($new_code)) {
       // Failed to generate a unique code
       return new WP_Error(
         'shortcode_generation_failed',
         __('Unable to generate shortcode - exceeded 50 tries', 'nutrition-labels')
       );
+    }
+
+    $filtered = apply_filters('nutrition_labels_shortcode', $new_code, $product_id);
+    if ($filtered !== $new_code) {
+      if (!is_string($filtered) || !$this->is_valid_shortcode($filtered) || $this->shortcode_exists($filtered)) {
+        return new WP_Error(
+          'shortcode_filter_invalid',
+          __('The nutrition_labels_shortcode filter returned an invalid or duplicate shortcode', 'nutrition-labels')
+        );
+      }
+      $new_code = $filtered;
     }
 
     // Insert the new shortcode into the existing row
@@ -307,10 +316,13 @@ class NutritionLabels_DB_Extended
 
   public function search_entries($search = '', $per_page = 50, $page = 1)
   {
-    $offset = ($page - 1) * $per_page;
+    $per_page = max(1, (int) $per_page);
+    $page     = max(1, (int) $page);
+    $offset   = ($page - 1) * $per_page;
 
+    // Placeholder order must match the SQL: LIKE args first, then LIMIT.
     $where = '';
-    $args  = array($offset, $per_page);
+    $args  = array();
 
     if ($search !== '') {
       $like = '%' . $this->wpdb->esc_like($search) . '%';
@@ -318,6 +330,9 @@ class NutritionLabels_DB_Extended
       $args[] = $like;
       $args[] = $like;
     }
+
+    $args[] = $offset;
+    $args[] = $per_page;
 
     $sql = "
         SELECT ns.*, p.post_title
@@ -343,7 +358,7 @@ class NutritionLabels_DB_Extended
         SELECT ns.*, p.post_title, p.post_type
         FROM {$this->table_name} ns
         LEFT JOIN {$this->wpdb->posts} p ON ns.product_id = p.ID
-        WHERE p.post_type = 'product'
+        WHERE (p.ID IS NULL OR p.post_type = 'product')
         ORDER BY ns.created_at DESC
         LIMIT %d, %d
     ";
@@ -359,7 +374,7 @@ class NutritionLabels_DB_Extended
         SELECT COUNT(*)
         FROM {$this->table_name} ns
         LEFT JOIN {$this->wpdb->posts} p ON ns.product_id = p.ID
-        WHERE p.post_type = 'product'
+        WHERE (p.ID IS NULL OR p.post_type = 'product')
     ";
 
     return (int) $this->wpdb->get_var($sql);
@@ -437,6 +452,8 @@ class NutritionLabels_DB_Extended
         'source'         => 'table',
       );
     }
+
+    return false;
   }
 
 

@@ -40,3 +40,6 @@ delete_option('qr_format');
 delete_option('qr_error_correction');
 delete_option('nutrition_labels_db_version');
 delete_option('nutrition_labels_delete_data_on_uninstall');
+delete_option('nutrition_labels_use_subdomain');
+delete_option('nutrition_labels_subdomain');
+delete_option('nutrition_labels_subdomain_scheme');
