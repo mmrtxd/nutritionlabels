@@ -55,11 +55,11 @@ msgstr "Traubenkonzentrat"
 
 #: includes/class-ingredients.php
 msgid "Dosage Liqueur"
-msgstr ""
+msgstr "Fülldosage"
 
 #: includes/class-ingredients.php
 msgid "Shipping Dosage"
-msgstr ""
+msgstr "Versanddosage"
 
 #: includes/class-ingredients.php
 msgid "Sulfur Dioxide"
