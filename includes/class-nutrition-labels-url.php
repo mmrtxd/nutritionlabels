@@ -277,7 +277,10 @@ class NutritionLabels_URL
       wp_die(esc_html__('E-Label not found', 'nutrition-labels'));
     }
 
-    $product_title = get_the_title($product_id);
+    // Live title while the product exists; stored copy once it's deleted.
+    $product_title = get_post($product_id)
+      ? get_the_title($product_id)
+      : $nutrition_table_data['product_title'];
 
     // toHtml() calls __() internally — must run after locale switch
     $ingredients_obj = $nutrition_table_data['ingredients'];

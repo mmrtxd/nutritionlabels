@@ -45,6 +45,7 @@ class NutritionLabels_DB_Extended
     $sql = "CREATE TABLE {$this->table_name} (
             id MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
             product_id BIGINT(20) UNSIGNED NOT NULL,
+            product_title VARCHAR(255) NOT NULL DEFAULT '',
             url_prefix VARCHAR(10) NOT NULL DEFAULT 'l',
             short_code VARCHAR(10) NULL DEFAULT NULL,
             ingredients TEXT NOT NULL,
@@ -179,6 +180,7 @@ class NutritionLabels_DB_Extended
       'carbohydrates' => (float) ($data['carbohydrates'] ?? 0),
       'sugar'         => (float) ($data['sugar'] ?? 0),
       'updated_at'    => $now,
+      'product_title' => self::title_for_storage($product_id),
     );
 
     if ($exists > 0) {
@@ -186,7 +188,7 @@ class NutritionLabels_DB_Extended
         $this->table_name,
         $payload,
         array('product_id' => (int) $product_id),
-        array('%s', '%d', '%d', '%f', '%f', '%s'),
+        array('%s', '%d', '%d', '%f', '%f', '%s', '%s'),
         array('%d')
       );
     } else {
@@ -197,7 +199,7 @@ class NutritionLabels_DB_Extended
       $result = $this->wpdb->insert(
         $this->table_name,
         $payload,
-        array('%s', '%d', '%d', '%f', '%f', '%s', '%d', '%s')
+        array('%s', '%d', '%d', '%f', '%f', '%s', '%s', '%d', '%s')
       );
     }
 
@@ -208,6 +210,28 @@ class NutritionLabels_DB_Extended
     return $result;
   }
 
+
+  /**
+   * Refreshes the stored copy of the product title.
+   *
+   * Labels stay live after their product is deleted (printed QR codes are
+   * still in circulation), so the title must survive the post. While the
+   * product exists the live title wins; this copy is only the fallback.
+   */
+  public function sync_product_title($product_id)
+  {
+    if (!is_numeric($product_id) || $product_id <= 0) {
+      return false;
+    }
+
+    return $this->wpdb->update(
+      $this->table_name,
+      array('product_title' => self::title_for_storage($product_id)),
+      array('product_id' => (int) $product_id),
+      array('%s'),
+      array('%d')
+    );
+  }
 
   public function delete_nutrition_data($product_id)
   {
@@ -326,7 +350,7 @@ class NutritionLabels_DB_Extended
 
     if ($search !== '') {
       $like = '%' . $this->wpdb->esc_like($search) . '%';
-      $where = "WHERE (ns.short_code LIKE %s OR p.post_title LIKE %s)";
+      $where = "WHERE (ns.short_code LIKE %s OR COALESCE(p.post_title, ns.product_title) LIKE %s)";
       $args[] = $like;
       $args[] = $like;
     }
@@ -335,7 +359,7 @@ class NutritionLabels_DB_Extended
     $args[] = $per_page;
 
     $sql = "
-        SELECT ns.*, p.post_title
+        SELECT ns.*, COALESCE(p.post_title, ns.product_title) AS post_title
         FROM {$this->table_name} ns
         LEFT JOIN {$this->wpdb->posts} p ON ns.product_id = p.ID
         {$where}
@@ -355,7 +379,7 @@ class NutritionLabels_DB_Extended
     $offset   = ($page - 1) * $per_page;
 
     $sql = "
-        SELECT ns.*, p.post_title, p.post_type
+        SELECT ns.*, COALESCE(p.post_title, ns.product_title) AS post_title, p.post_type
         FROM {$this->table_name} ns
         LEFT JOIN {$this->wpdb->posts} p ON ns.product_id = p.ID
         WHERE (p.ID IS NULL OR p.post_type = 'product')
@@ -406,7 +430,7 @@ class NutritionLabels_DB_Extended
 
     if ($search !== '') {
       $like = '%' . $this->wpdb->esc_like($search) . '%';
-      $where = "WHERE (ns.short_code LIKE %s OR p.post_title LIKE %s)";
+      $where = "WHERE (ns.short_code LIKE %s OR COALESCE(p.post_title, ns.product_title) LIKE %s)";
       $args[] = $like;
       $args[] = $like;
     }
@@ -440,6 +464,7 @@ class NutritionLabels_DB_Extended
       }
 
       return array(
+        'product_title'  => $row->product_title ?? '',
         'url_prefix'     => $row->url_prefix ?? '',
         'short_code'     => $row->short_code ?? '',
         'ingredients'    => $ingredient_list,
@@ -460,12 +485,21 @@ class NutritionLabels_DB_Extended
   public function get_entries_for_export()
   {
     return $this->wpdb->get_results("
-            SELECT ns.*, p.post_title
+            SELECT ns.*, COALESCE(p.post_title, ns.product_title) AS post_title
             FROM {$this->table_name} ns
             LEFT JOIN {$this->wpdb->posts} p ON ns.product_id = p.ID
-            WHERE p.post_type = 'product'
+            WHERE (p.ID IS NULL OR p.post_type = 'product')
             ORDER BY ns.created_at DESC
         ");
+  }
+
+  /**
+   * Post title clipped to the column width — wpdb rejects the whole write
+   * (incl. nutrition data) if a value exceeds the column length.
+   */
+  private static function title_for_storage($product_id): string
+  {
+    return mb_substr((string) get_post_field('post_title', $product_id, 'raw'), 0, 255);
   }
 
   private function is_valid_shortcode($shortcode)

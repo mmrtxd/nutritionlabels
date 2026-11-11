@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WordPress plugin ("Nutrition Labels" v1.3.0) that adds product nutrition label management with QR code generation and short URL routing. Designed for WooCommerce or any WordPress site with "product" post types. Labels are rendered in German.
+WordPress plugin ("Nutrition Labels" v1.4.0) that adds product nutrition label management with QR code generation and short URL routing. Designed for WooCommerce or any WordPress site with "product" post types. Labels are rendered in German.
 
 ## Development & Deployment
 
@@ -38,8 +38,8 @@ WordPress plugin ("Nutrition Labels" v1.3.0) that adds product nutrition label m
 
 ## Database
 
-Single custom table `wp_nutrition_short_urls` with columns: `id`, `product_id` (unique FK to posts), `url_prefix`, `short_code` (unique, NULL until an ingredient is selected — never `''`), nutrition fields (`ingredients`, `calories`, `kilojoules`, `carbohydrates`, `sugar`), and timestamps.
+Single custom table `wp_nutrition_short_urls` with columns: `id`, `product_id` (unique FK to posts), `url_prefix`, `short_code` (unique, NULL until an ingredient is selected — never `''`), `product_title` (copy of the post title, kept in sync via `post_updated`/`before_delete_post`; only used as fallback once the product is deleted — labels outlive their product), nutrition fields (`ingredients`, `calories`, `kilojoules`, `carbohydrates`, `sugar`), and timestamps.
 
 ## Security Patterns
 
-All forms and AJAX use WordPress nonce verification, capability checks (`manage_options`, `edit_posts`), input sanitization (`sanitize_text_field`, `absint`, `floatval`), and output escaping (`esc_html`, `esc_attr`, `esc_url`). Follow these patterns when adding new endpoints.
+All forms and AJAX use WordPress nonce verification, capability checks (`manage_options` for settings, `NutritionLabels_Admin_Extended::db_management_capability()` — `manage_woocommerce` with WooCommerce, else `manage_options` — for Database Management/delete/CSV, `edit_posts`), input sanitization (`sanitize_text_field`, `absint`, `floatval`), and output escaping (`esc_html`, `esc_attr`, `esc_url`). Follow these patterns when adding new endpoints.

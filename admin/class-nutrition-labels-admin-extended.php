@@ -54,6 +54,16 @@ class NutritionLabels_Admin_Extended
     add_action('admin_init', array($this, 'elabel_export_csv'));
   }
 
+  /**
+   * Capability for Database Management (list, search, delete, CSV export, QR
+   * download of deleted products). With WooCommerce this includes shop
+   * managers; plugin settings stay admin-only (manage_options).
+   */
+  public static function db_management_capability(): string
+  {
+    return class_exists('WooCommerce') ? 'manage_woocommerce' : 'manage_options';
+  }
+
   public function register_admin_menu_pages()
   {
     // Add top-level menu with position just below Settings
@@ -72,7 +82,7 @@ class NutritionLabels_Admin_Extended
       'nutrition_labels_main',
       __('Database Management', 'nutrition-labels'),
       __('Database Management', 'nutrition-labels'),
-      'manage_options',
+      self::db_management_capability(),
       'nutrition_labels_db_management',
       array($this, 'render_db_management_page')
     );
@@ -97,7 +107,7 @@ class NutritionLabels_Admin_Extended
   public function ajax_delete()
   {
     check_ajax_referer('nutrition_delete', '_wpnonce');
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can(self::db_management_capability())) {
       wp_die('Unauthorized');
     }
 
@@ -142,7 +152,14 @@ class NutritionLabels_Admin_Extended
       wp_send_json_error('Invalid product ID');
     }
 
-    if (!current_user_can('edit_post', $product_id)) {
+    // edit_post is always denied for a post that no longer exists. Labels of
+    // deleted products stay live (printed QR codes), so their QR code is still
+    // available — to the same capability that guards Database Management.
+    $product = get_post($product_id);
+    $allowed = $product
+      ? current_user_can('edit_post', $product_id)
+      : current_user_can(self::db_management_capability());
+    if (!$allowed) {
       wp_die('Unauthorized');
     }
 
@@ -172,8 +189,11 @@ class NutritionLabels_Admin_Extended
       wp_send_json_error('QR code generation failed');
     }
 
-    $product      = get_post($product_id);
-    $product_name = sanitize_file_name($product->post_title);
+    $title        = $product ? $product->post_title : (string) ($nutrition_data['product_title'] ?? '');
+    $product_name = sanitize_file_name($title);
+    if ($product_name === '') {
+      $product_name = 'product-' . $product_id;
+    }
     $lang_suffix  = $lang_code !== '' ? '-' . $lang_code : '';
     $filename     = $product_name . '-nutrition-qr' . $lang_suffix . '.' . $format;
 
@@ -192,7 +212,7 @@ class NutritionLabels_Admin_Extended
       return;
     }
 
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can(self::db_management_capability())) {
       wp_die(esc_html__('You do not have permission to export CSV', 'nutrition-labels'));
     }
 
@@ -212,7 +232,7 @@ class NutritionLabels_Admin_Extended
     foreach ($entries as $entry) {
       fputcsv($output, [
         $entry->product_id,
-        self::csv_safe(get_the_title($entry->product_id)),
+        self::csv_safe((string) $entry->post_title),
         $entry->short_code,
         $entry->url_prefix,
         $entry->calories,

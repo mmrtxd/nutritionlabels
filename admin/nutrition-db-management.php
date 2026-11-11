@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-if (!current_user_can('manage_options')) {
+if (!current_user_can(NutritionLabels_Admin_Extended::db_management_capability())) {
   wp_die(__('You do not have permission to access this page.', 'nutrition-labels'));
 }
 
@@ -86,8 +86,8 @@ $base_url = admin_url('admin.php?page=nutrition_labels_db_management');
             <?php foreach ($entries as $entry): ?>
               <?php
               $pid       = absint($entry->product_id);
-              $title     = get_the_title($pid);
               $orphaned  = !get_post($pid);
+              $title     = $orphaned ? (string) $entry->product_title : get_the_title($pid);
               $label_url = NutritionLabels_URL::get_short_url($pid) ?: '';
               ?>
               <tr>
@@ -97,7 +97,10 @@ $base_url = admin_url('admin.php?page=nutrition_labels_db_management');
                 </td>
                 <td>
                   <?php if ($orphaned): ?>
-                    <strong><em><?php esc_html_e('(product deleted)', 'nutrition-labels'); ?></em></strong>
+                    <?php if ($title !== ''): ?>
+                      <strong><?php echo esc_html($title); ?></strong>
+                    <?php endif; ?>
+                    <em><?php esc_html_e('(product deleted)', 'nutrition-labels'); ?></em>
                   <?php else: ?>
                     <strong><?php echo esc_html($title); ?></strong>
                   <?php endif; ?>
@@ -116,14 +119,14 @@ $base_url = admin_url('admin.php?page=nutrition_labels_db_management');
                       <?php esc_html_e('View Label', 'nutrition-labels'); ?>
                     </a>
                   <?php endif; ?>
-                  <?php if ($label_url !== '' && !$orphaned): ?>
+                  <?php if ($label_url !== ''): ?>
                     <button type="button" class="button" onclick="downloadQrCode(<?php echo (int) $pid; ?>, this)">
                       <?php esc_html_e('Download QR', 'nutrition-labels'); ?>
                     </button>
                   <?php endif; ?>
                 </td>
                 <td class="export-action">
-                  <select onchange="exportQrCode(<?php echo (int) $pid; ?>, this)" <?php disabled($label_url === '' || $orphaned); ?>>
+                  <select onchange="exportQrCode(<?php echo (int) $pid; ?>, this)" <?php disabled($label_url === ''); ?>>
                     <option value="">— <?php esc_html_e('Select', 'nutrition-labels'); ?> —</option>
                     <?php foreach (NutritionLabels_URL::get_lang_names() as $code => $name): ?>
                       <option value="<?php echo esc_attr($code); ?>"><?php echo esc_html($name); ?></option>

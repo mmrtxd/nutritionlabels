@@ -4,7 +4,7 @@
  * Plugin Name: Nutrition Labels
  * Plugin URI:  https://example.com/nutrition-labels
  * Description: Adds nutrition label management, shortcodes, and QR code generation for products.
- * Version:     1.3.0
+ * Version:     1.4.0
  * Author:      Markus Hammer 
  * Author URI:  https://hammerwein.at
  * Text Domain: nutrition-labels
@@ -47,8 +47,8 @@ if (!file_exists(plugin_dir_path(__FILE__) . 'vendor/autoload.php')) {
 
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
-define('NUTRITION_LABELS_VERSION', '1.3.0');
-define('NUTRITION_LABELS_DB_VERSION', '1.3.0');
+define('NUTRITION_LABELS_VERSION', '1.4.0');
+define('NUTRITION_LABELS_DB_VERSION', '1.4.0');
 
 define('NUTRITION_LABELS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NUTRITION_LABELS_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -78,6 +78,19 @@ class NutritionLabels
     add_action('plugins_loaded', [$this, 'load_textdomain']);
     add_action('init', [$this, 'init']);
     add_action('admin_init', [$this, 'migrate_database']);
+
+    // Keep the stored title copy current. Registered outside is_admin() so
+    // REST/WooCommerce API edits and cron deletions are covered too.
+    add_action('post_updated', [$this, 'sync_product_title']);
+    add_action('before_delete_post', [$this, 'sync_product_title']);
+  }
+
+  public function sync_product_title($post_id)
+  {
+    if (get_post_type($post_id) !== 'product') {
+      return;
+    }
+    (new NutritionLabels_DB_Extended())->sync_product_title($post_id);
   }
 
   public function load_textdomain()
@@ -177,6 +190,30 @@ class NutritionLabels
     if (version_compare($installed_db_version, '1.3.0', '<')) {
       NutritionLabels_Settings::migrate_legacy_options();
       update_option('nutrition_labels_db_version', '1.3.0');
+    }
+
+    // 1.4.0: store a copy of the product title. Labels outlive their product,
+    // and without it a deleted product's label page has no heading.
+    if (version_compare($installed_db_version, '1.4.0', '<')) {
+      $column = $wpdb->get_var($wpdb->prepare(
+        "SELECT COLUMN_NAME
+         FROM INFORMATION_SCHEMA.COLUMNS
+         WHERE TABLE_SCHEMA = DATABASE()
+           AND TABLE_NAME = %s
+           AND COLUMN_NAME = 'product_title'",
+        $table
+      ));
+
+      if (!$column) {
+        $wpdb->query("ALTER TABLE {$table} ADD COLUMN product_title VARCHAR(255) NOT NULL DEFAULT '' AFTER product_id");
+      }
+
+      $wpdb->query("
+        UPDATE {$table} ns
+        INNER JOIN {$wpdb->posts} p ON ns.product_id = p.ID
+        SET ns.product_title = p.post_title
+      ");
+      update_option('nutrition_labels_db_version', '1.4.0');
     }
 
     // Future migrations can go here
