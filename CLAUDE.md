@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WordPress plugin ("Nutrition Labels" v1.4.0) that adds product nutrition label management with QR code generation and short URL routing. Designed for WooCommerce or any WordPress site with "product" post types. Labels are rendered in German.
+WordPress plugin ("Nutrition Labels" v1.4.1) that adds product nutrition label management with QR code generation and short URL routing. Designed for WooCommerce or any WordPress site with "product" post types. Labels are rendered in German.
 
 ## Development & Deployment
 

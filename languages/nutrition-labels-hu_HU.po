@@ -191,8 +191,8 @@ msgid "of which Sugars"
 msgstr "ebből Cukrok"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Elhanyagolható mennyiségű fehérjét és sót tartalmazhat."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Elhanyagolható mennyiségű zsírt, telített zsírsavakat, fehérjét és sót tartalmaz."
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
@@ -476,3 +476,9 @@ msgstr "Összetevők"
 
 #~ msgid "E-Label not found"
 #~ msgstr "Az e-címke nem található"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

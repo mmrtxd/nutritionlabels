@@ -63,23 +63,23 @@ if (!defined('ABSPATH')) {
           <td class="p-5 align-top">
             <?php esc_html_e('Energy', 'nutrition-labels'); ?>
           </td>
-          <td class="p-5 text-right"><?php echo esc_html(number_format($nutrition_data['kilojoules'])); ?> kJ / <?php echo esc_html(number_format($nutrition_data['calories'])); ?> kcal</td>
+          <td class="p-5 text-right"><?php echo esc_html(NutritionLabels_URL::format_number($nutrition_data['kilojoules'])); ?> kJ / <?php echo esc_html(NutritionLabels_URL::format_number($nutrition_data['calories'])); ?> kcal</td>
         </tr>
         <tr class="border">
           <td class="p-5">
             <?php esc_html_e('Carbohydrates', 'nutrition-labels'); ?>
           </td>
           <td class="p-5 text-right">
-            <?php echo esc_html(number_format($nutrition_data['carbohydrates'], 1)); ?> g
+            <?php echo esc_html(NutritionLabels_URL::format_number($nutrition_data['carbohydrates'], 1)); ?> g
           </td>
         </tr>
         <tr>
           <td class="p-5"><?php esc_html_e('of which Sugars', 'nutrition-labels'); ?></td>
-          <td class="p-5 text-right"><?php echo esc_html(number_format($nutrition_data['sugar'], 1)); ?> g</td>
+          <td class="p-5 text-right"><?php echo esc_html(NutritionLabels_URL::format_number($nutrition_data['sugar'], 1)); ?> g</td>
         </tr>
       </table>
       <div id="negligible" class="text-sm p-4 tracking-widest uppercase text-center">
-        <p><?php esc_html_e('May contain negligible amounts of protein and salt.', 'nutrition-labels'); ?></p>
+        <p><?php esc_html_e('Contains negligible amounts of fat, saturates, protein and salt.', 'nutrition-labels'); ?></p>
       </div>
     </div>
   </div>

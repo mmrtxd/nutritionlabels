@@ -192,8 +192,8 @@ msgid "of which Sugars"
 msgstr "z toho Cukry"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Môže obsahovať zanedbateľné množstvo bielkovín a soli."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Obsahuje zanedbateľné množstvo tukov, nasýtených mastných kyselín, bielkovín a soli."
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
@@ -479,3 +479,9 @@ msgstr "Zloženie"
 
 #~ msgid "E-Label not found"
 #~ msgstr "E-štítok nebol nájdený"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

@@ -193,8 +193,8 @@ msgid "of which Sugars"
 msgstr "di cui Zuccheri"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Può contenere quantità trascurabili di proteine e sale."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Contiene quantità trascurabili di grassi, acidi grassi saturi, proteine e sale."
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
@@ -482,3 +482,9 @@ msgstr "Ingredienti"
 
 #~ msgid "E-Label not found"
 #~ msgstr "E-etichetta non trovata"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

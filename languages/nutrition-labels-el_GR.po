@@ -191,8 +191,8 @@ msgid "of which Sugars"
 msgstr "εκ των οποίων Σάκχαρα"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Μπορεί να περιέχει αμελητέες ποσότητες πρωτεΐνης και αλατιού."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Περιέχει αμελητέες ποσότητες λιπαρών, κορεσμένων λιπαρών, πρωτεϊνών και αλατιού."
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
@@ -478,3 +478,9 @@ msgstr "Συστατικά"
 
 #~ msgid "E-Label not found"
 #~ msgstr "Η ε-ετικέτα δεν βρέθηκε"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

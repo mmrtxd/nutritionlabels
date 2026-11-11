@@ -173,8 +173,8 @@ msgstr "Kohlenhydrate"
 msgid "of which Sugars"
 msgstr "Davon Zucker"
 
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Kann geringfügige Mengen von Eiweiß und Salz enthalten."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Enthält geringfügige Mengen von Fett, gesättigten Fettsäuren, Eiweiß und Salz."
 
 # -----------------------------------------------
 # Metabox  (admin/working-metabox.php)
@@ -617,3 +617,9 @@ msgid ""
 "Nutrition Labels: the vendor/ directory is missing. Run \"composer install\" "
 "in the plugin folder."
 msgstr "Nutrition Labels: Das Verzeichnis vendor/ fehlt. Führen Sie „composer install“ im Plugin-Ordner aus."
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

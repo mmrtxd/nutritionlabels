@@ -191,8 +191,8 @@ msgid "of which Sugars"
 msgstr "josta Sokereita"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Voi sisältää merkityksettömiä määriä proteiinia ja suolaa."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Sisältää merkityksettömiä määriä rasvaa, tyydyttyneitä rasvoja, proteiinia ja suolaa."
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
@@ -477,3 +477,9 @@ msgstr "Ainesosat"
 
 #~ msgid "E-Label not found"
 #~ msgstr "E-etikettiä ei löydy"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

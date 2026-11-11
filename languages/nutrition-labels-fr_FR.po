@@ -193,8 +193,8 @@ msgid "of which Sugars"
 msgstr "dont Sucres"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Peut contenir des quantités négligeables de protéines et de sel."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Contient des quantités négligeables de matières grasses, d'acides gras saturés, de protéines et de sel."
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
@@ -482,3 +482,9 @@ msgstr "Ingrédients"
 
 #~ msgid "E-Label not found"
 #~ msgstr "E-étiquette introuvable"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

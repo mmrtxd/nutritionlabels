@@ -196,7 +196,7 @@ msgid "of which Sugars"
 msgstr ""
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
 msgstr ""
 
 # --- admin/working-metabox.php ---
@@ -693,4 +693,10 @@ msgstr ""
 msgid ""
 "Nutrition Labels: the vendor/ directory is missing. Run \"composer install\" "
 "in the plugin folder."
+msgstr ""
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
 msgstr ""

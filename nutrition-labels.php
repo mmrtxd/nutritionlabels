@@ -4,7 +4,7 @@
  * Plugin Name: Nutrition Labels
  * Plugin URI:  https://example.com/nutrition-labels
  * Description: Adds nutrition label management, shortcodes, and QR code generation for products.
- * Version:     1.4.0
+ * Version:     1.4.1
  * Author:      Markus Hammer 
  * Author URI:  https://hammerwein.at
  * Text Domain: nutrition-labels
@@ -47,7 +47,7 @@ if (!file_exists(plugin_dir_path(__FILE__) . 'vendor/autoload.php')) {
 
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
-define('NUTRITION_LABELS_VERSION', '1.4.0');
+define('NUTRITION_LABELS_VERSION', '1.4.1');
 define('NUTRITION_LABELS_DB_VERSION', '1.4.0');
 
 define('NUTRITION_LABELS_PLUGIN_DIR', plugin_dir_path(__FILE__));

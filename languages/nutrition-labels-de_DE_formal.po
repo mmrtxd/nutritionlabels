@@ -206,8 +206,8 @@ msgid "of which Sugars"
 msgstr "Davon Zucker"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Kann geringfügige Mengen von Eiweiß und Salz enthalten."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Enthält geringfügige Mengen von Fett, gesättigten Fettsäuren, Eiweiß und Salz."
 
 # -----------------------------------------------
 # Metabox  (admin/working-metabox.php)
@@ -499,3 +499,9 @@ msgstr ""
 #: includes/class-nutrition-labels-url.php
 msgid "Zutaten"
 msgstr "Zutaten"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

@@ -193,8 +193,8 @@ msgid "of which Sugars"
 msgstr "waarvan Suikers"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Kan verwaarloosbare hoeveelheden eiwitten en zout bevatten."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Bevat verwaarloosbare hoeveelheden vetten, verzadigde vetzuren, eiwitten en zout."
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
@@ -476,3 +476,9 @@ msgstr "Ingrediënten"
 
 #~ msgid "E-Label not found"
 #~ msgstr "E-etiket niet gevonden"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","

@@ -318,6 +318,22 @@ class NutritionLabels_URL
    * Returns the full short URL for a product, optionally with a language suffix.
    * e.g. https://example.com/l/abc12-de
    */
+  /**
+   * Formats a nutrition value for the label in the label's language.
+   *
+   * Not number_format_i18n(): it reads $wp_locale, which WordPress builds once
+   * in the site language and our per-label locale switch does not rebuild —
+   * an English label would get the German decimal comma. The separator is a
+   * plugin string instead, so it follows the label's locale. No thousands
+   * separator: values per 100 ml stay far below 1000.
+   */
+  public static function format_number(float $value, int $decimals = 0): string
+  {
+    /* translators: decimal separator for nutrition values, e.g. "," in German */
+    $decimal_separator = _x('.', 'decimal separator', 'nutrition-labels');
+    return number_format($value, $decimals, $decimal_separator, '');
+  }
+
   public static function get_short_url(int $product_id, string $lang_code = ''): string|false
   {
     $db   = self::get_db();

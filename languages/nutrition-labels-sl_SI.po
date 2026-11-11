@@ -192,8 +192,8 @@ msgid "of which Sugars"
 msgstr "od tega Sladkorji"
 
 #: templates/nutrition-label-secure.php
-msgid "May contain negligible amounts of protein and salt."
-msgstr "Lahko vsebuje zanemarljive količine beljakovin in soli."
+msgid "Contains negligible amounts of fat, saturates, protein and salt."
+msgstr "Vsebuje zanemarljive količine maščob, nasičenih maščob, beljakovin in soli."
 
 #: admin/working-metabox.php
 msgid "Nutrition Information"
@@ -479,3 +479,9 @@ msgstr "Sestavine"
 
 #~ msgid "E-Label not found"
 #~ msgstr "E-nalepka ni bila najdena"
+
+#. translators: decimal separator for nutrition values, e.g. "," in German
+#: includes/class-nutrition-labels-url.php
+msgctxt "decimal separator"
+msgid "."
+msgstr ","
